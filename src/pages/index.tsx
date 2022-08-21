@@ -286,7 +286,8 @@ const Home: NextPage = () => {
 						<p className='text-3xl lg:text-7xl'>Contact Me</p>
 					</InView>
 					<div className='flex justify-between mt-16 gap-x-5 lg:gap-x-16'>
-						<button
+						<a
+							href='mailto:olurodemusab@gmail.com'
 							className={clsx(
 								'btn btn-circle bg-transparent border-2 w-[50px] h-[50px] lg:w-[82px] lg:h-[82px] p-2',
 								currentTheme === 'dark' ? 'border-white' : 'border-main'
@@ -297,8 +298,11 @@ const Home: NextPage = () => {
 									currentTheme === 'dark' ? 'text-white' : 'text-main'
 								)}
 							/>
-						</button>
-						<button
+						</a>
+						<a
+							href='https://twitter.com/_RedDxt'
+							target='_blank'
+							rel='noreferrer'
 							className={clsx(
 								'btn btn-circle bg-transparent border-2 w-[50px] h-[50px] lg:w-[82px] lg:h-[82px] p-2',
 								currentTheme === 'dark' ? 'border-white' : 'border-main'
@@ -309,8 +313,11 @@ const Home: NextPage = () => {
 									currentTheme === 'dark' ? 'text-white' : 'text-main'
 								)}
 							/>
-						</button>
-						<button
+						</a>
+						<a
+							href='https://www.linkedin.com/in/mus-ab-olurode-3a70871b4/'
+							target='_blank'
+							rel='noreferrer'
 							className={clsx(
 								'btn btn-circle bg-transparent border-2 w-[50px] h-[50px] lg:w-[82px] lg:h-[82px] p-2',
 								currentTheme === 'dark' ? 'border-white' : 'border-main'
@@ -321,8 +328,11 @@ const Home: NextPage = () => {
 									currentTheme === 'dark' ? 'text-white' : 'text-main'
 								)}
 							/>
-						</button>
-						<button
+						</a>
+						<a
+							href='https://github.com/musab-olurode'
+							target='_blank'
+							rel='noreferrer'
 							className={clsx(
 								'btn btn-circle bg-transparent border-2 w-[50px] h-[50px] lg:w-[82px] lg:h-[82px] p-2',
 								currentTheme === 'dark' ? 'border-white' : 'border-main'
@@ -333,7 +343,7 @@ const Home: NextPage = () => {
 									currentTheme === 'dark' ? 'text-white' : 'text-main'
 								)}
 							/>
-						</button>
+						</a>
 					</div>
 				</section>
 

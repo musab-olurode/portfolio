@@ -9,13 +9,22 @@ import {
 } from '@heroicons/react/solid';
 import { interests, languages, skills } from '../helpers/constants';
 import BlobImg from '../../public/blob.svg';
+import Head from 'next/head';
 
 const Print: NextPage = () => {
 	return (
 		<>
+			<Head>
+				<title>Mus&apos;ab Olurode - Full Stack Developer</title>
+				<meta
+					name='description'
+					content='Experienced full-stack developer with over 4+ years of professional experience'
+				/>
+			</Head>
 			<a
-				href='/api/pdf'
-				download='musab_olurode_resume.pdf'
+				href='https://drive.google.com/file/d/1s3b2eJFmPri2QxJ3ZVHYX20gx0SdpJZX/view?usp=sharing'
+				target='_blank'
+				rel='noreferrer'
 				className='link text-blue-900 absolute top-0 right-10'>
 				Download PDF
 			</a>
