@@ -1,0 +1,14 @@
+.page {
+	margin: auto;
+	background: white;
+	position: relative;
+	width: 210mm;
+	height: 297mm;
+	box-shadow: 0 10px 8px rgb(0 0 0 / 0.04), 0 4px 3px rgb(0 0 0 / 0.1);
+	color: black;
+}
+
+@page {
+	size: A4;
+	margin: 0;
+}
