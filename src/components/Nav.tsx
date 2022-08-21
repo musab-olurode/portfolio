@@ -1,5 +1,6 @@
 import { MenuIcon } from '@heroicons/react/solid';
 import clsx from 'clsx';
+import Link from 'next/link';
 import React from 'react';
 import { UnderlineSmallIcon } from './icons/underline-small';
 
@@ -67,11 +68,11 @@ const Nav: React.FC<NavProps> = ({
 								</a>
 							</li>
 							<li>
-								<a
-									className='hover:bg-transparent focus:bg-transparent flex flex-col items-center mt-5'
-									href='/resume'>
-									Résumé
-								</a>
+								<Link href='/resume'>
+									<a className='hover:bg-transparent focus:bg-transparent flex flex-col items-center mt-5'>
+										Résumé
+									</a>
+								</Link>
 							</li>
 							<li>
 								<a
@@ -120,11 +121,11 @@ const Nav: React.FC<NavProps> = ({
 							</a>
 						</li>
 						<li>
-							<a
-								className='hover:bg-transparent focus:bg-transparent flex flex-col items-center mt-5'
-								href='/resume'>
-								Résumé
-							</a>
+							<Link href='/resume'>
+								<a className='hover:bg-transparent focus:bg-transparent flex flex-col items-center mt-5'>
+									Résumé
+								</a>
+							</Link>
 						</li>
 						<li>
 							<a

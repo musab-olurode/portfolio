@@ -14,6 +14,7 @@ import LinkedInIcon from '../components/icons/linked-in';
 import GithubIcon from '../components/icons/github';
 import MoonIcon from '../components/icons/moon';
 import { InView, useInView } from 'react-intersection-observer';
+import Head from 'next/head';
 
 const Home: NextPage = () => {
 	const [currentTheme, setCurrentTheme] = useState<'light' | 'dark'>('dark');
@@ -79,6 +80,13 @@ const Home: NextPage = () => {
 
 	return (
 		<>
+			<Head>
+				<title>Mus&apos;ab Olurode - Full Stack Developer</title>
+				<meta
+					name='description'
+					content='Experienced full-stack developer with over 4+ years of professional experience'
+				/>
+			</Head>
 			<Nav
 				currentSection={currentSection}
 				currentTheme={currentTheme}
@@ -146,7 +154,7 @@ const Home: NextPage = () => {
 						<span>Gamer</span>
 					</div>
 					<p className='text-md md:text-2xl mt-12'>
-						I am Olurode Mus&apos;ab, a full-stack developer with over 4+ years
+						I am Mus&apos;ab Olurode, a full-stack developer with over 4+ years
 						of production-level software development experience. <br />
 						<br />I have spent over 4 working on both the server and client
 						sides of different applications. I have also spent the time and more
