@@ -23,7 +23,7 @@ const Home: NextPage = () => {
 	>('main');
 	const [currentTab, setCurrentTab] = useState<
 		'montech' | 'scrapays' | 'binary'
-	>('montech');
+	>('scrapays');
 
 	const mainRef = useRef<HTMLDivElement>(null);
 	const aboutRef = useRef<HTMLDivElement>(null);
@@ -70,6 +70,21 @@ const Home: NextPage = () => {
 	const handleOnChangeTab = (tab: 'montech' | 'scrapays' | 'binary') => {
 		setCurrentTab(tab);
 	};
+
+	const styleScrollBar = () => {
+		document.documentElement.style.setProperty(
+			'--scrollbar-background',
+			`${currentTheme === 'light' ? 'white' : '#080b16'}`
+		);
+		document.documentElement.style.setProperty(
+			'--scrollbar-thumb-background',
+			`${currentTheme === 'dark' ? 'white' : '#080b16'}`
+		);
+	};
+
+	useEffect(() => {
+		styleScrollBar();
+	}, [currentTheme]);
 
 	useEffect(() => {
 		if (localStorage) {
@@ -156,12 +171,12 @@ const Home: NextPage = () => {
 					<p className='text-md md:text-2xl mt-12'>
 						I am Mus&apos;ab Olurode, a full-stack developer with over 4+ years
 						of production-level software development experience. <br />
-						<br />I have spent over 4 working on both the server and client
-						sides of different applications. I have also spent the time and more
-						collaborating on multiple mobile and web frontend and backend
-						projects with frameworks including Ionic, Angular, React, Vuejs,
-						Flutter, Laravel and Nodejs. My experience here has given me the
-						opportunity to build my teamwork skills and time management skills.
+						<br />I have spent over 4 years working on both the server and
+						client sides of different applications. I have also spent the time
+						and more collaborating on multiple mobile and web frontend and
+						backend projects with frameworks including Ionic, Angular, React,
+						Vuejs, Flutter, Laravel and Nodejs. My experience here has given me
+						the opportunity to build my teamwork and time management skills.
 					</p>
 				</section>
 
@@ -183,7 +198,7 @@ const Home: NextPage = () => {
 									'tab lg:border-l-2 lg:border-b-0 tab-bordered text-lg lg:text-4xl py-2 lg:py-5 h-auto flex-grow',
 									currentTab === 'scrapays' ? ' tab-active' : ''
 								)}
-								onClick={() => setCurrentTab('scrapays')}>
+								onClick={() => handleOnChangeTab('scrapays')}>
 								Scrapays Technologies
 							</a>
 							<a
@@ -191,7 +206,7 @@ const Home: NextPage = () => {
 									'tab lg:border-l-2 lg:border-b-0 tab-bordered text-lg lg:text-4xl py-2 lg:py-5 h-auto flex-grow',
 									currentTab === 'montech' ? ' tab-active' : ''
 								)}
-								onClick={() => setCurrentTab('montech')}>
+								onClick={() => handleOnChangeTab('montech')}>
 								Montech Studios
 							</a>
 							<a
@@ -199,7 +214,7 @@ const Home: NextPage = () => {
 									'tab lg:border-l-2 lg:border-b-0 tab-bordered text-lg lg:text-4xl py-2 lg:py-5 h-auto flex-grow',
 									currentTab === 'binary' ? ' tab-active' : ''
 								)}
-								onClick={() => setCurrentTab('binary')}>
+								onClick={() => handleOnChangeTab('binary')}>
 								The Binary Agency
 							</a>
 						</div>

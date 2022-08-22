@@ -18,7 +18,7 @@ const Nav: React.FC<NavProps> = ({
 	return (
 		<div
 			className={clsx(
-				'fixed w-full z-50',
+				'fixed [width:calc(100%-7px)] z-50',
 				currentTheme === 'light' ? 'bg-white' : 'bg-main'
 			)}>
 			<div className='navbar container mx-auto lg:-mt-5'>

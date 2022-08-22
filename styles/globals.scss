@@ -2,9 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+	--scrollbar-background: #080b16;
+	--scrollbar-thumb-background: white;
+}
+
 html {
 	-webkit-print-color-adjust: exact;
 }
+
 html,
 body {
 	padding: 0;
@@ -22,6 +28,39 @@ body {
 	font-weight: normal;
 	font-style: normal;
 	font-display: swap;
+}
+
+/* Customizing scroll-bar */
+::-webkit-scrollbar {
+	width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: var(--scrollbar-background);
+	border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: var(--scrollbar-thumb-background);
+	border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: var(--scrollbar-thumb-background);
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.hide-scrollbar::-webkit-scrollbar {
+	display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scrollbar {
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
 }
 
 #__next {
