@@ -191,11 +191,11 @@ const Home: NextPage = () => {
 							Work Experience
 						</p>
 					</InView>
-					<div className='flex flex-col lg:flex-row'>
-						<div className='tabs mb-4 lg:mb-0 lg:flex-col lg:items-start h-full lg:shrink-0'>
+					<div className='flex flex-col lg:flex-row lg:min-h-[504px]'>
+						<div className='tabs mb-4 lg:mb-0 flex-col lg:items-start h-full lg:shrink-0'>
 							<a
 								className={clsx(
-									'tab lg:border-l-2 lg:border-b-0 tab-bordered text-lg lg:text-4xl py-2 lg:py-5 h-auto flex-grow',
+									'tab lg:border-l-2 lg:border-b-0 tab-bordered text-lg lg:text-4xl py-2 lg:py-5 h-auto flex-grow w-full',
 									currentTab === 'scrapays' ? ' tab-active' : ''
 								)}
 								onClick={() => handleOnChangeTab('scrapays')}>
@@ -203,7 +203,7 @@ const Home: NextPage = () => {
 							</a>
 							<a
 								className={clsx(
-									'tab lg:border-l-2 lg:border-b-0 tab-bordered text-lg lg:text-4xl py-2 lg:py-5 h-auto flex-grow',
+									'tab lg:border-l-2 lg:border-b-0 tab-bordered text-lg lg:text-4xl py-2 lg:py-5 h-auto flex-grow w-full',
 									currentTab === 'montech' ? ' tab-active' : ''
 								)}
 								onClick={() => handleOnChangeTab('montech')}>
@@ -211,7 +211,7 @@ const Home: NextPage = () => {
 							</a>
 							<a
 								className={clsx(
-									'tab lg:border-l-2 lg:border-b-0 tab-bordered text-lg lg:text-4xl py-2 lg:py-5 h-auto flex-grow',
+									'tab lg:border-l-2 lg:border-b-0 tab-bordered text-lg lg:text-4xl py-2 lg:py-5 h-auto flex-grow w-full',
 									currentTab === 'binary' ? ' tab-active' : ''
 								)}
 								onClick={() => handleOnChangeTab('binary')}>
@@ -303,6 +303,7 @@ const Home: NextPage = () => {
 					<div className='flex justify-between mt-16 gap-x-5 lg:gap-x-16'>
 						<a
 							href='mailto:olurodemusab@gmail.com'
+							title='Email'
 							className={clsx(
 								'btn btn-circle bg-transparent border-2 w-[50px] h-[50px] lg:w-[82px] lg:h-[82px] p-2',
 								currentTheme === 'dark' ? 'border-white' : 'border-main'
@@ -318,6 +319,7 @@ const Home: NextPage = () => {
 							href='https://twitter.com/_RedDxt'
 							target='_blank'
 							rel='noreferrer'
+							title='Twitter'
 							className={clsx(
 								'btn btn-circle bg-transparent border-2 w-[50px] h-[50px] lg:w-[82px] lg:h-[82px] p-2',
 								currentTheme === 'dark' ? 'border-white' : 'border-main'
@@ -333,6 +335,7 @@ const Home: NextPage = () => {
 							href='https://www.linkedin.com/in/mus-ab-olurode-3a70871b4/'
 							target='_blank'
 							rel='noreferrer'
+							title='LinkedIn'
 							className={clsx(
 								'btn btn-circle bg-transparent border-2 w-[50px] h-[50px] lg:w-[82px] lg:h-[82px] p-2',
 								currentTheme === 'dark' ? 'border-white' : 'border-main'
@@ -348,6 +351,7 @@ const Home: NextPage = () => {
 							href='https://github.com/musab-olurode'
 							target='_blank'
 							rel='noreferrer'
+							title='GitHub'
 							className={clsx(
 								'btn btn-circle bg-transparent border-2 w-[50px] h-[50px] lg:w-[82px] lg:h-[82px] p-2',
 								currentTheme === 'dark' ? 'border-white' : 'border-main'

@@ -1,7 +1,7 @@
 import { MenuIcon } from '@heroicons/react/solid';
 import clsx from 'clsx';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { UnderlineSmallIcon } from './icons/underline-small';
 
 interface NavProps {
@@ -15,6 +15,53 @@ const Nav: React.FC<NavProps> = ({
 	currentSection,
 	onPressNav,
 }) => {
+	const [indicatorPosition, setIndicatorPosition] = useState({
+		translate: '',
+		width: 'w-0',
+	});
+
+	const handleNavigationTransition = (
+		section: 'main' | 'about' | 'experience' | 'contact'
+	) => {
+		switch (section) {
+			case 'about':
+				setIndicatorPosition({
+					translate: 'translate-x-[16px]',
+					width: 'w-[112.28px]',
+				});
+				break;
+			case 'experience':
+				setIndicatorPosition({
+					translate: 'translate-x-[160.28px]',
+					width: 'w-[129.83px]',
+				});
+				break;
+			case 'contact':
+				setIndicatorPosition({
+					translate: 'translate-x-[445.66px]',
+					width: 'w-[95px]',
+				});
+				break;
+			default:
+				setIndicatorPosition({
+					translate: '',
+					width: 'w-0',
+				});
+				break;
+		}
+	};
+
+	const handleOnPressNav = (
+		section: 'main' | 'about' | 'experience' | 'contact'
+	) => {
+		handleNavigationTransition(section);
+		onPressNav(section);
+	};
+
+	useEffect(() => {
+		handleNavigationTransition(currentSection);
+	}, [currentSection]);
+
 	return (
 		<div
 			className={clsx(
@@ -25,7 +72,7 @@ const Nav: React.FC<NavProps> = ({
 				<div className='flex-1'>
 					<a
 						className='btn btn-ghost normal-case text-xl md:text-3xl hover:bg-transparent focus:bg-transparent'
-						onClick={() => onPressNav('main')}>
+						onClick={() => handleOnPressNav('main')}>
 						{"Mus'ab"}
 					</a>
 				</div>
@@ -42,7 +89,7 @@ const Nav: React.FC<NavProps> = ({
 							<li>
 								<a
 									className='hover:bg-transparent focus:bg-transparent flex flex-col items-center mt-5'
-									onClick={() => onPressNav('about')}>
+									onClick={() => handleOnPressNav('about')}>
 									About Me
 									{currentSection === 'about' && (
 										<UnderlineSmallIcon
@@ -56,7 +103,7 @@ const Nav: React.FC<NavProps> = ({
 							<li>
 								<a
 									className='hover:bg-transparent focus:bg-transparent flex flex-col items-center mt-5'
-									onClick={() => onPressNav('experience')}>
+									onClick={() => handleOnPressNav('experience')}>
 									Experience
 									{currentSection === 'experience' && (
 										<UnderlineSmallIcon
@@ -77,7 +124,7 @@ const Nav: React.FC<NavProps> = ({
 							<li>
 								<a
 									className='hover:bg-transparent focus:bg-transparent flex flex-col items-center mt-5'
-									onClick={() => onPressNav('contact')}>
+									onClick={() => handleOnPressNav('contact')}>
 									Contact
 									{currentSection === 'contact' && (
 										<UnderlineSmallIcon
@@ -91,33 +138,27 @@ const Nav: React.FC<NavProps> = ({
 						</ul>
 					</div>
 
-					<ul className='menu menu-horizontal p-0 text-2xl hidden lg:flex'>
+					<ul className='menu menu-horizontal p-0 text-2xl hidden lg:flex relative'>
+						<UnderlineSmallIcon
+							className={clsx(
+								'absolute bottom-0 transition-all',
+								indicatorPosition.translate,
+								indicatorPosition.width,
+								currentTheme === 'light' ? 'text-main' : 'text-white'
+							)}
+						/>
 						<li>
 							<a
 								className='hover:bg-transparent focus:bg-transparent flex flex-col items-center mt-5'
-								onClick={() => onPressNav('about')}>
+								onClick={() => handleOnPressNav('about')}>
 								About Me
-								{currentSection === 'about' && (
-									<UnderlineSmallIcon
-										className={clsx(
-											currentTheme === 'light' ? 'text-main' : 'text-white'
-										)}
-									/>
-								)}
 							</a>
 						</li>
 						<li>
 							<a
 								className='hover:bg-transparent focus:bg-transparent flex flex-col items-center mt-5'
-								onClick={() => onPressNav('experience')}>
+								onClick={() => handleOnPressNav('experience')}>
 								Experience
-								{currentSection === 'experience' && (
-									<UnderlineSmallIcon
-										className={clsx(
-											currentTheme === 'light' ? 'text-main' : 'text-white'
-										)}
-									/>
-								)}
 							</a>
 						</li>
 						<li>
@@ -130,15 +171,8 @@ const Nav: React.FC<NavProps> = ({
 						<li>
 							<a
 								className='hover:bg-transparent focus:bg-transparent flex flex-col items-center mt-5'
-								onClick={() => onPressNav('contact')}>
+								onClick={() => handleOnPressNav('contact')}>
 								Contact
-								{currentSection === 'contact' && (
-									<UnderlineSmallIcon
-										className={clsx(
-											currentTheme === 'light' ? 'text-main' : 'text-white'
-										)}
-									/>
-								)}
 							</a>
 						</li>
 					</ul>
