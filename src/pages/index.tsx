@@ -13,7 +13,7 @@ import TwitterIcon from '../components/icons/twitter';
 import LinkedInIcon from '../components/icons/linked-in';
 import GithubIcon from '../components/icons/github';
 import MoonIcon from '../components/icons/moon';
-import { InView, useInView } from 'react-intersection-observer';
+import { InView } from 'react-intersection-observer';
 import Head from 'next/head';
 
 const Home: NextPage = () => {
@@ -22,8 +22,8 @@ const Home: NextPage = () => {
 		'main' | 'about' | 'experience' | 'contact'
 	>('main');
 	const [currentTab, setCurrentTab] = useState<
-		'montech' | 'scrapays' | 'binary'
-	>('scrapays');
+		'studio14' | 'montech' | 'scrapays' | 'binary'
+	>('studio14');
 
 	const mainRef = useRef<HTMLDivElement>(null);
 	const aboutRef = useRef<HTMLDivElement>(null);
@@ -67,7 +67,9 @@ const Home: NextPage = () => {
 		}
 	};
 
-	const handleOnChangeTab = (tab: 'montech' | 'scrapays' | 'binary') => {
+	const handleOnChangeTab = (
+		tab: 'montech' | 'scrapays' | 'binary' | 'studio14'
+	) => {
 		setCurrentTab(tab);
 	};
 
@@ -196,6 +198,14 @@ const Home: NextPage = () => {
 							<a
 								className={clsx(
 									'tab lg:border-l-2 lg:border-b-0 tab-bordered text-lg lg:text-4xl py-2 lg:py-5 h-auto flex-grow w-full',
+									currentTab === 'studio14' ? ' tab-active' : ''
+								)}
+								onClick={() => handleOnChangeTab('studio14')}>
+								Studio 14
+							</a>
+							<a
+								className={clsx(
+									'tab lg:border-l-2 lg:border-b-0 tab-bordered text-lg lg:text-4xl py-2 lg:py-5 h-auto flex-grow w-full',
 									currentTab === 'scrapays' ? ' tab-active' : ''
 								)}
 								onClick={() => handleOnChangeTab('scrapays')}>
@@ -218,6 +228,36 @@ const Home: NextPage = () => {
 								The Binary Agency
 							</a>
 						</div>
+						{currentTab === 'studio14' && (
+							<div className='flex-grow lg:pl-20'>
+								<p className='text-lg lg:text-4xl font-bold'>
+									Frontend Developer @ Studio 14
+								</p>
+								<p className='text-md md:text-2xl md:mt-5 mb-7'>
+									February 2022 - July 2022
+								</p>
+								<ul className='text-md md:text-2xl list-disc list-inside flex flex-col md:gap-y-10'>
+									<li>
+										Crafting stunning and immersive frontend applications that
+										exude sophistication and embrace dynamic interactivity.
+									</li>
+									<li>
+										Harnessing the power of modern frameworks and libraries to
+										build visually striking and functionally robust frontend
+										applications.
+									</li>
+									<li>
+										Analyzing and interpreting intricate Figma designs to create
+										visually captivating HTML templates for WordPress
+										applications.
+									</li>
+									<li>
+										Combining artistic creativity with technical expertise to
+										craft visually captivating and engaging user interfaces.
+									</li>
+								</ul>
+							</div>
+						)}
 						{currentTab === 'montech' && (
 							<div className='flex-grow lg:pl-20'>
 								<p className='text-lg lg:text-4xl font-bold'>
@@ -244,7 +284,7 @@ const Home: NextPage = () => {
 									Full-stack Developer @ Scrapays Technologies
 								</p>
 								<p className='text-md md:text-2xl md:mt-5 mb-7'>
-									January 2020 - Present
+									January 2020 - December 2022
 								</p>
 								<ul className='text-md md:text-2xl list-disc list-inside flex flex-col md:gap-y-10'>
 									<li>
@@ -332,7 +372,7 @@ const Home: NextPage = () => {
 							/>
 						</a>
 						<a
-							href='https://www.linkedin.com/in/mus-ab-olurode-3a70871b4/'
+							href='https://www.linkedin.com/in/musab-olurode/'
 							target='_blank'
 							rel='noreferrer'
 							title='LinkedIn'

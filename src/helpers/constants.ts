@@ -1,4 +1,5 @@
 import TypescriptImg from '../../public/typescript.png';
+import JavascriptImg from '../../public/javascript.png';
 import NodeJsImg from '../../public/nodejs.png';
 import NestJsImg from '../../public/nestjs.png';
 import ReactJsImg from '../../public/react.png';
@@ -31,10 +32,16 @@ export const skills: {
 		application: ['montech', 'scrapays', 'binary'],
 	},
 	{
+		image: JavascriptImg,
+		name: 'Javascript',
+		alt: 'javascript',
+		application: ['scrapays', 'studio-14'],
+	},
+	{
 		image: NodeJsImg,
 		name: 'NodeJS',
 		alt: 'node js',
-		application: ['montech', 'scrapays', 'binary'],
+		application: ['montech', 'scrapays', 'binary', 'studio-14'],
 	},
 	{
 		image: NestJsImg,
@@ -52,7 +59,7 @@ export const skills: {
 		image: TailwindCSSImg,
 		name: 'TailwindCSS',
 		alt: 'tailwind css',
-		application: ['scrapays'],
+		application: ['scrapays', 'studio-14'],
 	},
 	{
 		image: NextJsImg,
@@ -64,13 +71,13 @@ export const skills: {
 		image: HTMLImg,
 		name: 'HTML',
 		alt: 'html',
-		application: ['scrapays', 'binary'],
+		application: ['scrapays', 'binary', 'studio-14'],
 	},
 	{
 		image: CSSImg,
 		name: 'CSS',
 		alt: 'css',
-		application: ['scrapays', 'binary'],
+		application: ['scrapays', 'binary', 'studio-14'],
 	},
 	{
 		image: PHPImg,

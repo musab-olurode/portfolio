@@ -32,15 +32,19 @@ const Print: NextPage = () => {
 				<div className='grid grid-cols-6 h-full'>
 					<div className='col-span-2 bg-gray-100 p-5 relative overflow-hidden'>
 						<div className='absolute w-[30rem] h-[13rem] -top-[1rem] -left-[0rem] overflow-hidden'>
-							<div className='w-[8rem] scale-[4.0]'>
+							<div className='w-32 scale-[4.0]'>
 								<Image src={BlobImg} alt='blob' />
 							</div>
 						</div>
 						<div className='avatar flex justify-center'>
-							<div className='w-40 rounded-full border-8 border-white'>
-								<div className='scale-105'>
-									<Image src={AvatarImg} alt='avatar' />
-								</div>
+							<div className='w-40 aspect-square object-cover rounded-full border-8 border-white'>
+								<Image
+									src={AvatarImg}
+									alt='avatar'
+									width={160}
+									height={160}
+									objectPosition='top'
+								/>
 							</div>
 						</div>
 
@@ -80,7 +84,7 @@ const Print: NextPage = () => {
 							<div className='divider my-2'></div>
 						</div>
 
-						<div className='mt-8'>
+						<div>
 							<div className='text-xl mb-2'>Skills</div>
 							<div className='grid grid-cols-2 gap-y-1 gap-x-2'>
 								{skills.map((skill, index) => (
@@ -147,24 +151,20 @@ const Print: NextPage = () => {
 							<p className='mb-2 text-xl'>Work Experience</p>
 							<div>
 								<div className='text-blue-900'>
-									<span className='font-bold'>Montech Studios</span> - Backend
+									<span className='font-bold'>Studio 14</span> - Frontend
 									Developer
 								</div>
-								<div>FEB 2022 - JUL 2022 | US - REMOTE</div>
+								<div>NOV 2022 - PRESENT | UNITED KINGDOM - REMOTE</div>
 								<ul className='list-disc mt-2 text-sm pl-6'>
+									<li>Building sophisticated frontend applications.</li>
 									<li>
-										Built proof of concepts for existing project concepts.
-									</li>
-									<li>Managed and updated full-fledged web3 applications.</li>
-									<li>
-										Developed and collaborated on applications that leveraged
-										Blockchain technology.
+										Building vanilla HTML templates for WordPress applications.
 									</li>
 								</ul>
 							</div>
 							<div className='flex flex-row gap-x-2 mt-2'>
 								{skills
-									.filter((skill) => skill.application.includes('montech'))
+									.filter((skill) => skill.application.includes('studio-14'))
 									.map((skill, index) => (
 										<div className='w-6 h-6' key={index}>
 											<Image src={skill.image} alt={skill.alt} />
@@ -176,26 +176,40 @@ const Print: NextPage = () => {
 
 						<div className='mt-2'>
 							<div className='text-blue-900'>
+								<span className='font-bold'>Montech Studios</span> - Backend
+								Developer
+							</div>
+							<div>FEB 2022 - JUL 2022 | US - REMOTE</div>
+							<ul className='list-disc mt-2 text-sm pl-6'>
+								<li>Built proof of concepts for existing project concepts.</li>
+								<li>Managed and updated full-fledged web3 applications.</li>
+							</ul>
+						</div>
+						<div className='flex flex-row gap-x-2 mt-2'>
+							{skills
+								.filter((skill) => skill.application.includes('montech'))
+								.map((skill, index) => (
+									<div className='w-6 h-6' key={index}>
+										<Image src={skill.image} alt={skill.alt} />
+									</div>
+								))}
+						</div>
+						<div className='divider'></div>
+
+						<div className='mt-2'>
+							<div className='text-blue-900'>
 								<span className='font-bold'>Scrapays Technologies</span> -
 								Full-stack Developer
 							</div>
-							<div>JAN 2020 - PRESENT | LAGOS, NIGERIA</div>
+							<div>JAN 2020 - DEC 2022 | LAGOS, NIGERIA</div>
 							<ul className='list-disc mt-2 text-sm pl-6'>
-								<li>
-									Managed development milestones from initial steps through
-									final delivery.
-								</li>
 								<li>
 									Consulted with engineering team members to determine system
 									loads and develop improvement plans.
 								</li>
-								<li>Took initial concepts and developed project plans.</li>
 								<li>
 									Developed landing pages, dashboards and online applications
 									using Angular, React, PHP and javascript scripting.
-								</li>
-								<li>
-									Managed whole systems, both server-side and client facing.
 								</li>
 							</ul>
 						</div>
@@ -220,11 +234,6 @@ const Print: NextPage = () => {
 								<li>
 									Reviewed project specifications and designed technology
 									solutions that met or exceeded performance expectations.
-								</li>
-								<li>Took initial concepts and developed project plans.</li>
-								<li>
-									Coordinated with other engineers to evaluate and improve
-									software and hardware interfaces.
 								</li>
 								<li>
 									Orchestrated efficient large-scale software deployments.
