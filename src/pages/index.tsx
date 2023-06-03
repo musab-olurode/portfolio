@@ -234,7 +234,7 @@ const Home: NextPage = () => {
 									Frontend Developer @ Studio 14
 								</p>
 								<p className='text-md md:text-2xl md:mt-5 mb-7'>
-									November 2022 - PRESENT
+									November 2022 - Present
 								</p>
 								<ul className='text-md md:text-2xl list-disc list-inside flex flex-col md:gap-y-10'>
 									<li>
