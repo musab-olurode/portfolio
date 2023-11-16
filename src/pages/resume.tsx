@@ -2,16 +2,16 @@ import type { NextPage } from 'next';
 import Page from '../components/Page';
 import AvatarImg from '../../public/avatar.jpg';
 import Image from 'next/image';
-import {
-	LocationMarkerIcon,
-	MailIcon,
-	PhoneIcon,
-} from '@heroicons/react/solid';
+import { MailIcon } from '@heroicons/react/solid';
 import { interests, languages, skills } from '../helpers/constants';
 import BlobImg from '../../public/blob.svg';
 import Head from 'next/head';
+import clsx from 'clsx';
+import useCurrentTheme from '../hooks/useCurrentTheme';
 
 const Print: NextPage = () => {
+	const [currentTheme] = useCurrentTheme();
+
 	return (
 		<>
 			<Head>
@@ -22,10 +22,13 @@ const Print: NextPage = () => {
 				/>
 			</Head>
 			<a
-				href='https://drive.google.com/file/d/1s3b2eJFmPri2QxJ3ZVHYX20gx0SdpJZX/view?usp=sharing'
+				href={process.env.NEXT_PUBLIC_RESUME_URL}
 				target='_blank'
 				rel='noreferrer'
-				className='link text-blue-900 absolute top-0 right-10'>
+				className={clsx(
+					'link absolute top-0 right-10',
+					currentTheme === 'light' ? 'text-main' : 'text-white'
+				)}>
 				Download PDF
 			</a>
 			<Page>

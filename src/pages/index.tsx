@@ -1,9 +1,6 @@
 import type { NextPage } from 'next';
 import { useEffect, useRef, useState } from 'react';
-import { themeChange } from 'theme-change';
 import clsx from 'clsx';
-import Page from '../components/Page';
-import { getCurrentTheme } from '../helpers';
 import Nav from '../components/Nav';
 import { UnderlineLargeIcon } from '../components/icons/underline-large';
 import ArrowDown from '../components/icons/arrow-down';
@@ -15,9 +12,10 @@ import GithubIcon from '../components/icons/github';
 import MoonIcon from '../components/icons/moon';
 import { InView } from 'react-intersection-observer';
 import Head from 'next/head';
+import useCurrentTheme from '../hooks/useCurrentTheme';
 
 const Home: NextPage = () => {
-	const [currentTheme, setCurrentTheme] = useState<'light' | 'dark'>('dark');
+	const [currentTheme, toggleTheme] = useCurrentTheme();
 	const [currentSection, setCurrentSection] = useState<
 		'main' | 'about' | 'experience' | 'contact'
 	>('main');
@@ -29,11 +27,6 @@ const Home: NextPage = () => {
 	const aboutRef = useRef<HTMLDivElement>(null);
 	const experienceRef = useRef<HTMLDivElement>(null);
 	const contactRef = useRef<HTMLDivElement>(null);
-
-	const toggleTheme = () => {
-		const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-		setCurrentTheme(newTheme);
-	};
 
 	const goToAbout = () => {
 		aboutRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -84,13 +77,6 @@ const Home: NextPage = () => {
 		);
 	}, [currentTheme]);
 
-	useEffect(() => {
-		if (localStorage) {
-			themeChange(false);
-			setCurrentTheme(getCurrentTheme() ?? 'dark');
-		}
-	}, []);
-
 	return (
 		<>
 			<Head>
@@ -116,7 +102,7 @@ const Home: NextPage = () => {
 					<div className='text-3xl lg:text-7xl text-center'>
 						<div className='overflow-hidden'>
 							<p className='mb-8 animate-slide-in'>
-								Hi!, I’m <br /> Mus&apos;ab Olurode
+								Hi!, I’m <br /> Mus&apos;ab Olurode, a
 							</p>
 						</div>
 						<InView
