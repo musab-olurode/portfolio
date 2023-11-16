@@ -22,6 +22,20 @@ module.exports = {
 					900: '#000000',
 				},
 			},
+			animation: {
+				'slide-in': 'slide-in 0.5s ease-in-out',
+				'slide-in-x': 'slide-in-x 0.5s ease-in-out',
+			},
+			keyframes: {
+				'slide-in': {
+					'0%': { transform: 'translateY(100%)' },
+					'100%': { transform: 'translateY(0)' },
+				},
+				'slide-in-x': {
+					'0%': { transform: 'translateX(-300%)' },
+					'100%': { transform: 'translateX(0)' },
+				},
+			},
 		},
 	},
 	plugins: [require('daisyui')],

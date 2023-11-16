@@ -38,7 +38,7 @@ const Nav: React.FC<NavProps> = ({
 				break;
 			case 'contact':
 				setIndicatorPosition({
-					translate: 'translate-x-[445.66px]',
+					translate: 'translate-x-[322.66px]',
 					width: 'w-[95px]',
 				});
 				break;
@@ -115,13 +115,6 @@ const Nav: React.FC<NavProps> = ({
 								</a>
 							</li>
 							<li>
-								<Link href='/resume'>
-									<a className='hover:bg-transparent focus:bg-transparent flex flex-col items-center mt-5'>
-										Résumé
-									</a>
-								</Link>
-							</li>
-							<li>
 								<a
 									className='hover:bg-transparent focus:bg-transparent flex flex-col items-center mt-5'
 									onClick={() => handleOnPressNav('contact')}>
@@ -134,6 +127,13 @@ const Nav: React.FC<NavProps> = ({
 										/>
 									)}
 								</a>
+							</li>
+							<li>
+								<Link href='/resume'>
+									<a className='hover:bg-transparent focus:bg-transparent flex flex-col items-center mt-5'>
+										Résumé
+									</a>
+								</Link>
 							</li>
 						</ul>
 					</div>
@@ -162,18 +162,18 @@ const Nav: React.FC<NavProps> = ({
 							</a>
 						</li>
 						<li>
-							<Link href='/resume'>
-								<a className='hover:bg-transparent focus:bg-transparent flex flex-col items-center mt-5'>
-									Résumé
-								</a>
-							</Link>
-						</li>
-						<li>
 							<a
 								className='hover:bg-transparent focus:bg-transparent flex flex-col items-center mt-5'
 								onClick={() => handleOnPressNav('contact')}>
 								Contact
 							</a>
+						</li>
+						<li>
+							<Link href='/resume'>
+								<a className='hover:bg-transparent focus:bg-transparent flex flex-col items-center mt-5'>
+									Résumé
+								</a>
+							</Link>
 						</li>
 					</ul>
 				</div>

@@ -73,7 +73,7 @@ const Home: NextPage = () => {
 		setCurrentTab(tab);
 	};
 
-	const styleScrollBar = () => {
+	useEffect(() => {
 		document.documentElement.style.setProperty(
 			'--scrollbar-background',
 			`${currentTheme === 'light' ? 'white' : '#080b16'}`
@@ -82,10 +82,6 @@ const Home: NextPage = () => {
 			'--scrollbar-thumb-background',
 			`${currentTheme === 'dark' ? 'white' : '#080b16'}`
 		);
-	};
-
-	useEffect(() => {
-		styleScrollBar();
 	}, [currentTheme]);
 
 	useEffect(() => {
@@ -118,29 +114,34 @@ const Home: NextPage = () => {
 					ref={mainRef}
 					className='h-screen container mx-auto flex items-center justify-center snap-center px-2 md:px-0'>
 					<div className='text-3xl lg:text-7xl text-center'>
-						<p className='mb-8'>
-							Hi!, I’m <br /> Mus&apos;ab Olurode
-						</p>
+						<div className='overflow-hidden'>
+							<p className='mb-8 animate-slide-in'>
+								Hi!, I’m <br /> Mus&apos;ab Olurode
+							</p>
+						</div>
 						<InView
+							className='overflow-hidden'
 							onChange={(inView) => handleOnVisibilityChanged(inView, 'main')}>
-							<p className='font-bold mb-8'>Full Stack Developer</p>
+							<p className='font-bold mb-8 animate-slide-in'>
+								Full Stack Developer
+							</p>
 						</InView>
 						<div className='flex flex-col justify-center items-center'>
 							<UnderlineLargeIcon
 								className={clsx(
-									'w-2/3 mx-auto lg:w-auto lg:mx-0',
+									'w-2/3 mx-auto lg:w-auto lg:mx-0 animate-slide-in-x delay-1000',
 									currentTheme === 'dark' ? 'text-white' : 'text-main'
 								)}
 							/>
 							<div
 								className={clsx(
-									'cursor-pointer rounded-full border-2 py-10 px-12 mt-16',
+									'cursor-pointer rounded-full border-2 py-10 px-12 mt-16 animate-bounce delay-1000',
 									currentTheme === 'dark' ? 'border-white' : 'border-main'
 								)}
 								onClick={goToAbout}>
 								<ArrowDown
 									className={clsx(
-										'w-4 h-8 lg:w-auto lg:h-auto',
+										'w-4 h-8 lg:w-auto lg:h-auto animate-slide-in delay-1000',
 										currentTheme === 'dark' ? 'text-white' : 'text-main'
 									)}
 								/>
@@ -171,14 +172,14 @@ const Home: NextPage = () => {
 						<span>Gamer</span>
 					</div>
 					<p className='text-md md:text-2xl mt-12'>
-						I am Mus&apos;ab Olurode, a full-stack developer with over 4+ years
-						of production-level software development experience. <br />
-						<br />I have spent over 4 years working on both the server and
-						client sides of different applications. I have also spent the time
-						and more collaborating on multiple mobile and web frontend and
-						backend projects with frameworks including Ionic, Angular, React,
-						Vuejs, Flutter, Laravel and Nodejs. My experience here has given me
-						the opportunity to build my teamwork and time management skills.
+						I am Mus&apos;ab Olurode, a dedicated full-stack developer with an
+						extensive background in software development, encompassing over 4
+						years of hands-on experience in the field. Throughout my career,
+						I&apos;ve honed my skills across both server and client-side
+						development, contributing to a diverse array of projects. These
+						experiences have not only broadened my technical expertise but have
+						also nurtured my adaptability, allowing me to swiftly grasp new
+						concepts and technologies as required.
 					</p>
 				</section>
 
@@ -295,7 +296,6 @@ const Home: NextPage = () => {
 										Consulted with engineering team members to determine system
 										loads and develop improvement plans.
 									</li>
-									<li>Took initial concepts and developed project plans.</li>
 									<li>
 										Developed landing pages, dashboards and online applications
 										using Angular, React, PHP and javascript scripting.
@@ -345,7 +345,7 @@ const Home: NextPage = () => {
 							href='mailto:olurodemusab@gmail.com'
 							title='Email'
 							className={clsx(
-								'btn btn-circle bg-transparent border-2 w-[50px] h-[50px] lg:w-[82px] lg:h-[82px] p-2',
+								'btn btn-circle bg-transparent border-2 w-[50px] h-[50px] lg:w-[82px] lg:h-[82px] p-2 hover:-translate-y-3',
 								currentTheme === 'dark' ? 'border-white' : 'border-main'
 							)}>
 							<MailIcon
@@ -361,7 +361,7 @@ const Home: NextPage = () => {
 							rel='noreferrer'
 							title='Twitter'
 							className={clsx(
-								'btn btn-circle bg-transparent border-2 w-[50px] h-[50px] lg:w-[82px] lg:h-[82px] p-2',
+								'btn btn-circle bg-transparent border-2 w-[50px] h-[50px] lg:w-[82px] lg:h-[82px] p-2 hover:-translate-y-3',
 								currentTheme === 'dark' ? 'border-white' : 'border-main'
 							)}>
 							<TwitterIcon
@@ -377,7 +377,7 @@ const Home: NextPage = () => {
 							rel='noreferrer'
 							title='LinkedIn'
 							className={clsx(
-								'btn btn-circle bg-transparent border-2 w-[50px] h-[50px] lg:w-[82px] lg:h-[82px] p-2',
+								'btn btn-circle bg-transparent border-2 w-[50px] h-[50px] lg:w-[82px] lg:h-[82px] p-2 hover:-translate-y-3',
 								currentTheme === 'dark' ? 'border-white' : 'border-main'
 							)}>
 							<LinkedInIcon
@@ -393,7 +393,7 @@ const Home: NextPage = () => {
 							rel='noreferrer'
 							title='GitHub'
 							className={clsx(
-								'btn btn-circle bg-transparent border-2 w-[50px] h-[50px] lg:w-[82px] lg:h-[82px] p-2',
+								'btn btn-circle bg-transparent border-2 w-[50px] h-[50px] lg:w-[82px] lg:h-[82px] p-2 hover:-translate-y-3',
 								currentTheme === 'dark' ? 'border-white' : 'border-main'
 							)}>
 							<GithubIcon

@@ -51,12 +51,6 @@ const Print: NextPage = () => {
 						<div className='mt-8'>
 							<div className='text-xl mb-2'>Contact</div>
 							<div className='flex flex-row items-end'>
-								<PhoneIcon className='w-6 h-5 mr-2' />
-								<a className='link text-blue-700' href='tel:+2348101340291'>
-									+2348101340291
-								</a>
-							</div>
-							<div className='flex flex-row items-end'>
 								<MailIcon className='w-6 h-5 mr-2' />
 								<a
 									className='link text-blue-700 text-sm'
@@ -64,25 +58,9 @@ const Print: NextPage = () => {
 									olurodemusab@gmail.com
 								</a>
 							</div>
-							<div className='flex flex-row'>
-								<LocationMarkerIcon className='w-6 h-5 mr-2' />
-								<span className='text-blue-700'>Ilorin, Nigeria</span>
-							</div>
 						</div>
 
-						<div className='mt-8'>
-							<div className='text-xl mb-2'>Education</div>
-							<div className='flex flex-row items-end'>2019 - Present</div>
-							<div className='flex flex-row items-end'>
-								<span className='text-blue-700 text-lg font-bold'>
-									Computer Science
-								</span>
-							</div>
-							<div className='flex flex-row items-end'>
-								<span className=''>University of Ilorin</span>
-							</div>
-							<div className='divider my-2'></div>
-						</div>
+						<div className='divider my-2'></div>
 
 						<div>
 							<div className='text-xl mb-2'>Skills</div>
@@ -133,17 +111,16 @@ const Print: NextPage = () => {
 						<div className='mt-4'>
 							<p className='mb-2 text-xl'>About</p>
 							Well-qualified{' '}
-							<span className='font-bold'>full-stack web developer</span>{' '}
-							familiar with a wide range of programming utilities and languages
-							with excellent technical abilities offering over{' '}
+							<span className='font-bold'>full-stack developer</span> familiar
+							with a wide range of programming utilities and languages with
+							excellent technical abilities offering over{' '}
 							<span className='font-bold'>4+ years</span> of related experience.
-							Proven experience developing consumer-focused web-apps using{' '}
+							Proven experience developing consumer-focused apps using{' '}
 							<span className='font-bold'>Typescript</span>,{' '}
 							<span className='font-bold'>React</span>,{' '}
 							<span className='font-bold'>Next.js</span>,{' '}
 							<span className='font-bold'>Nodejs</span>,{' '}
-							<span className='font-bold'>HTML</span>,{' '}
-							<span className='font-bold'>CSS</span>, and{' '}
+							<span className='font-bold'>React Native</span>, and{' '}
 							<span className='font-bold'>PHP (Laravel)</span>.
 						</div>
 
@@ -154,7 +131,7 @@ const Print: NextPage = () => {
 									<span className='font-bold'>Studio 14</span> - Frontend
 									Developer
 								</div>
-								<div>NOV 2022 - PRESENT | UNITED KINGDOM - REMOTE</div>
+								<div>AUG 2022 - PRESENT | UNITED KINGDOM - REMOTE</div>
 								<ul className='list-disc mt-2 text-sm pl-6'>
 									<li>Building sophisticated frontend applications.</li>
 									<li>
@@ -166,7 +143,7 @@ const Print: NextPage = () => {
 								{skills
 									.filter((skill) => skill.application.includes('studio-14'))
 									.map((skill, index) => (
-										<div className='w-6 h-6' key={index}>
+										<div title={skill.name} className='w-6 h-6' key={index}>
 											<Image src={skill.image} alt={skill.alt} />
 										</div>
 									))}
@@ -181,7 +158,9 @@ const Print: NextPage = () => {
 							</div>
 							<div>FEB 2022 - JUL 2022 | US - REMOTE</div>
 							<ul className='list-disc mt-2 text-sm pl-6'>
-								<li>Built proof of concepts for existing project concepts.</li>
+								<li>
+									Built proof of concepts for existing project specifications.
+								</li>
 								<li>Managed and updated full-fledged web3 applications.</li>
 							</ul>
 						</div>
@@ -189,7 +168,7 @@ const Print: NextPage = () => {
 							{skills
 								.filter((skill) => skill.application.includes('montech'))
 								.map((skill, index) => (
-									<div className='w-6 h-6' key={index}>
+									<div title={skill.name} className='w-6 h-6' key={index}>
 										<Image src={skill.image} alt={skill.alt} />
 									</div>
 								))}
@@ -201,15 +180,15 @@ const Print: NextPage = () => {
 								<span className='font-bold'>Scrapays Technologies</span> -
 								Full-stack Developer
 							</div>
-							<div>JAN 2020 - DEC 2022 | LAGOS, NIGERIA</div>
+							<div>JAN 2020 - AUG 2022 | LAGOS, NIGERIA</div>
 							<ul className='list-disc mt-2 text-sm pl-6'>
 								<li>
-									Consulted with engineering team members to determine system
-									loads and develop improvement plans.
+									Led the development of the company&apos;s flagship product as
+									a principal engineer.
 								</li>
 								<li>
-									Developed landing pages, dashboards and online applications
-									using Angular, React, PHP and javascript scripting.
+									Developed mobile apps, landing pages, dashboards and IOT
+									applications for the company&apos;s product.
 								</li>
 							</ul>
 						</div>
@@ -217,7 +196,7 @@ const Print: NextPage = () => {
 							{skills
 								.filter((skill) => skill.application.includes('scrapays'))
 								.map((skill, index) => (
-									<div className='w-6 h-6' key={index}>
+									<div title={skill.name} className='w-6 h-6' key={index}>
 										<Image src={skill.image} alt={skill.alt} />
 									</div>
 								))}
@@ -229,14 +208,14 @@ const Print: NextPage = () => {
 								<span className='font-bold'>The Binary Agency</span> - Software
 								Engineer
 							</div>
-							<div>FEB 2018 - JAN 2020 | ILORIN, NIGERIA</div>
+							<div>JAN 2019 - JAN 2020 | ILORIN, NIGERIA</div>
 							<ul className='list-disc mt-2 text-sm pl-6'>
 								<li>
-									Reviewed project specifications and designed technology
-									solutions that met or exceeded performance expectations.
+									Built and maintained web applications for multiple clients.
 								</li>
 								<li>
-									Orchestrated efficient large-scale software deployments.
+									Reviewed project specifications and developed solutions to
+									meet the requirements.
 								</li>
 							</ul>
 						</div>
@@ -244,7 +223,7 @@ const Print: NextPage = () => {
 							{skills
 								.filter((skill) => skill.application.includes('binary'))
 								.map((skill, index) => (
-									<div className='w-6 h-6' key={index}>
+									<div title={skill.name} className='w-6 h-6' key={index}>
 										<Image src={skill.image} alt={skill.alt} />
 									</div>
 								))}
