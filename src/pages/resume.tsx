@@ -18,7 +18,7 @@ const Print: NextPage = () => {
 				<title>Mus&apos;ab Olurode - Full Stack Developer</title>
 				<meta
 					name='description'
-					content='Experienced full-stack developer with over 4+ years of professional experience'
+					content='Experienced full-stack developer with over 5 years of professional experience'
 				/>
 			</Head>
 			<a
@@ -117,7 +117,7 @@ const Print: NextPage = () => {
 							<span className='font-bold'>full-stack developer</span> familiar
 							with a wide range of programming utilities and languages with
 							excellent technical abilities offering over{' '}
-							<span className='font-bold'>4+ years</span> of related experience.
+							<span className='font-bold'>5 years</span> of related experience.
 							Proven experience developing consumer-focused apps using{' '}
 							<span className='font-bold'>Typescript</span>,{' '}
 							<span className='font-bold'>React</span>,{' '}

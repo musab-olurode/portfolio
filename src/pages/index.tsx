@@ -83,7 +83,7 @@ const Home: NextPage = () => {
 				<title>Mus&apos;ab Olurode - Full Stack Developer</title>
 				<meta
 					name='description'
-					content='Experienced full-stack developer with over 4+ years of professional experience'
+					content='Experienced full-stack developer with over 5 years of professional experience'
 				/>
 			</Head>
 			<Nav
@@ -157,9 +157,9 @@ const Home: NextPage = () => {
 						<span>Bibliophile</span>
 						<span>Gamer</span>
 					</div>
-					<p className='text-md md:text-2xl mt-12'>
+					<p className='text-md md:text-2xl mt-12 text-center lg:text-left'>
 						I am Mus&apos;ab Olurode, a dedicated full-stack developer with an
-						extensive background in software development, encompassing over 4
+						extensive background in software development, encompassing over 5
 						years of hands-on experience in the field. Throughout my career,
 						I&apos;ve honed my skills across both server and client-side
 						development, contributing to a diverse array of projects. These
@@ -180,8 +180,8 @@ const Home: NextPage = () => {
 							Work Experience
 						</p>
 					</InView>
-					<div className='flex flex-col lg:flex-row lg:min-h-[504px]'>
-						<div className='tabs mb-4 lg:mb-0 flex-col lg:items-start h-full lg:shrink-0'>
+					<div className='flex flex-col lg:flex-row min-h-[428px] lg:min-h-[504px]'>
+						<div className='tabs mb-4 lg:mb-0 flex-col lg:items-start lg:h-full lg:shrink-0'>
 							<a
 								className={clsx(
 									'tab lg:border-l-2 lg:border-b-0 tab-bordered text-lg lg:text-4xl py-2 lg:py-5 h-auto flex-grow w-full',
@@ -217,101 +217,71 @@ const Home: NextPage = () => {
 						</div>
 						{currentTab === 'studio14' && (
 							<div className='flex-grow lg:pl-20'>
-								<p className='text-lg lg:text-4xl font-bold'>
+								<p className='text-lg lg:text-4xl font-bold text-center lg:text-left'>
 									Frontend Developer @ Studio 14
 								</p>
-								<p className='text-md md:text-2xl md:mt-5 mb-7'>
+								<p className='text-md md:text-2xl md:mt-5 mb-7 text-center lg:text-left'>
 									November 2022 - Present
 								</p>
-								<ul className='text-md md:text-2xl list-disc list-inside flex flex-col md:gap-y-10'>
+								<ul className='text-md md:text-2xl list-disc list-outside pl-4 flex flex-col md:gap-y-10'>
+									<li>Building sophisticated frontend applications.</li>
 									<li>
-										Crafting stunning and immersive frontend applications that
-										exude sophistication and embrace dynamic interactivity.
-									</li>
-									<li>
-										Harnessing the power of modern frameworks and libraries to
-										build visually striking and functionally robust frontend
-										applications.
-									</li>
-									<li>
-										Analyzing and interpreting intricate Figma designs to create
-										visually captivating HTML templates for WordPress
-										applications.
-									</li>
-									<li>
-										Combining artistic creativity with technical expertise to
-										craft visually captivating and engaging user interfaces.
+										Building vanilla HTML templates for WordPress applications.
 									</li>
 								</ul>
 							</div>
 						)}
 						{currentTab === 'montech' && (
 							<div className='flex-grow lg:pl-20'>
-								<p className='text-lg lg:text-4xl font-bold'>
+								<p className='text-lg lg:text-4xl font-bold text-center lg:text-left'>
 									Backend Developer @ Montech Studios
 								</p>
-								<p className='text-md md:text-2xl md:mt-5 mb-7'>
+								<p className='text-md md:text-2xl md:mt-5 mb-7 text-center lg:text-left'>
 									February 2022 - July 2022
 								</p>
-								<ul className='text-md md:text-2xl list-disc list-inside flex flex-col md:gap-y-10'>
+								<ul className='text-md md:text-2xl list-disc list-outside pl-4 flex flex-col md:gap-y-10'>
 									<li>
-										Built proof of concepts for existing project concepts.
+										Built proof of concepts for existing project specifications.
 									</li>
 									<li>Managed and updated full-fledged web3 applications.</li>
-									<li>
-										Developed and collaborated on applications that leveraged
-										Blockchain technology.
-									</li>
 								</ul>
 							</div>
 						)}
 						{currentTab === 'scrapays' && (
 							<div className='flex-grow lg:pl-20'>
-								<p className='text-lg lg:text-4xl font-bold'>
+								<p className='text-lg lg:text-4xl font-bold text-center lg:text-left'>
 									Full-stack Developer @ Scrapays Technologies
 								</p>
-								<p className='text-md md:text-2xl md:mt-5 mb-7'>
+								<p className='text-md md:text-2xl md:mt-5 mb-7 text-center lg:text-left'>
 									January 2020 - December 2022
 								</p>
-								<ul className='text-md md:text-2xl list-disc list-inside flex flex-col md:gap-y-10'>
+								<ul className='text-md md:text-2xl list-disc list-outside pl-4 flex flex-col md:gap-y-10'>
 									<li>
-										Managed development milestones from initial steps through
-										final delivery.
+										Led the development of the company&apos;s flagship product
+										as a principal engineer.
 									</li>
 									<li>
-										Consulted with engineering team members to determine system
-										loads and develop improvement plans.
-									</li>
-									<li>
-										Developed landing pages, dashboards and online applications
-										using Angular, React, PHP and javascript scripting.
-									</li>
-									<li>
-										Managed whole systems, both server-side and client facing.
+										Developed mobile apps, landing pages, dashboards and IOT
+										applications for the company&apos;s product.
 									</li>
 								</ul>
 							</div>
 						)}
 						{currentTab === 'binary' && (
 							<div className='flex-grow lg:pl-20'>
-								<p className='text-lg lg:text-4xl font-bold'>
+								<p className='text-lg lg:text-4xl font-bold text-center lg:text-left'>
 									Software Engineer @ The Binary Agency
 								</p>
-								<p className='text-md md:text-2xl md:mt-5 mb-7'>
-									February 2018 - January 2020
+								<p className='text-md md:text-2xl md:mt-5 mb-7 text-center lg:text-left'>
+									February 2019 - January 2020
 								</p>
-								<ul className='text-md md:text-2xl list-disc list-inside flex flex-col md:gap-y-10'>
+								<ul className='text-md md:text-2xl list-disc list-outside pl-4 flex flex-col md:gap-y-10'>
 									<li>
-										Reviewed project specifications and designed technology
-										solutions that met or exceeded performance expectations.
-									</li>
-									<li>Took initial concepts and developed project plans.</li>
-									<li>
-										Coordinated with other engineers to evaluate and improve
-										software and hardware interfaces.
+										Built and maintained web applications for multiple clients.
 									</li>
 									<li>
-										Orchestrated efficient large-scale software deployments.
+										Reviewed project specifications and developed solutions to
+										meet the requirements.
 									</li>
 								</ul>
 							</div>
@@ -396,7 +366,7 @@ const Home: NextPage = () => {
 					data-theme={currentTheme == 'dark' ? 'light' : 'dark'}
 					data-toggle-theme='dark,light'
 					className={clsx(
-						'btn btn-circle fixed right-5 bottom-10 lg:right-10 flex justify-center items-center w-[48px] h-[30px] lg:w-[82px] lg:h-[82px]',
+						'btn btn-circle fixed right-5 bottom-10 lg:right-10 flex justify-center items-center w-[48px] h-[30px] lg:w-[82px] lg:h-[82px] animate-slide-in-right',
 						currentTheme == 'dark' ? 'bg-white hover:bg-[#C7C7C7]' : 'bg-main'
 					)}
 					onClick={toggleTheme}>

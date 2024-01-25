@@ -68,7 +68,7 @@ const Nav: React.FC<NavProps> = ({
 				'fixed [width:calc(100%-7px)] z-50',
 				currentTheme === 'light' ? 'bg-white' : 'bg-main'
 			)}>
-			<div className='navbar container mx-auto lg:-mt-5'>
+			<div className='navbar container mx-auto lg:-mt-5 animate-slide-in-top'>
 				<div className='flex-1'>
 					<a
 						className='btn btn-ghost normal-case text-xl md:text-3xl hover:bg-transparent focus:bg-transparent'
