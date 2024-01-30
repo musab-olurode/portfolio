@@ -1,13 +1,13 @@
 import type { NextPage } from 'next';
-import Page from '../components/Page';
-import AvatarImg from '../../public/avatar.jpg';
+import Page from '../../components/Page';
+import AvatarImg from '../../../public/avatar.jpg';
 import Image from 'next/image';
 import { MailIcon } from '@heroicons/react/solid';
-import { interests, languages, skills } from '../helpers/constants';
-import BlobImg from '../../public/blob.svg';
+import { interests, languages, skills } from '../../helpers/constants';
+import BlobImg from '../../../public/blob.svg';
 import Head from 'next/head';
 import clsx from 'clsx';
-import useCurrentTheme from '../hooks/useCurrentTheme';
+import useCurrentTheme from '../../hooks/useCurrentTheme';
 
 const Print: NextPage = () => {
 	const [currentTheme] = useCurrentTheme();
