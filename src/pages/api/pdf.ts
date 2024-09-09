@@ -1,11 +1,10 @@
 import { NextApiHandler } from 'next';
 import puppeteer from 'puppeteer';
 
-const Handler: NextApiHandler = async (_req, res) => {
+const Handler: NextApiHandler = async (req, res) => {
 	const browser = await puppeteer.launch();
 	const page = await browser.newPage();
-
-	await page.goto('http://localhost:3000/print', {
+	await page.goto(`http://${req.headers.host}/resume`, {
 		waitUntil: ['networkidle2'],
 	});
 	await page.emulateMediaType('print');
