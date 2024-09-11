@@ -13,6 +13,7 @@ import MoonIcon from '../components/icons/moon';
 import { InView } from 'react-intersection-observer';
 import Head from 'next/head';
 import useCurrentTheme from '../hooks/useCurrentTheme';
+import { cn } from '../helpers';
 
 const Home: NextPage = () => {
 	const [currentTheme, toggleTheme] = useCurrentTheme();
@@ -157,7 +158,7 @@ const Home: NextPage = () => {
 						<span>Bibliophile</span>
 						<span>Gamer</span>
 					</div>
-					<p className='text-md md:text-2xl mt-12 text-center lg:text-left'>
+					<p className='text-md md:text-2xl mt-12 lg:text-left'>
 						I am Mus&apos;ab Olurode, a dedicated full-stack developer with an
 						extensive background in software development, encompassing over 5
 						years of hands-on experience in the field. Throughout my career,
@@ -183,7 +184,7 @@ const Home: NextPage = () => {
 					<div className='flex flex-col lg:flex-row min-h-[428px] lg:min-h-[504px]'>
 						<div className='tabs mb-4 lg:mb-0 flex-col lg:items-start lg:h-full lg:shrink-0'>
 							<a
-								className={clsx(
+								className={cn(
 									'tab lg:border-l-2 lg:border-b-0 tab-bordered text-lg lg:text-4xl py-2 lg:py-5 h-auto flex-grow w-full',
 									currentTab === 'studio14' ? ' tab-active' : ''
 								)}
@@ -191,7 +192,7 @@ const Home: NextPage = () => {
 								Studio 14
 							</a>
 							<a
-								className={clsx(
+								className={cn(
 									'tab lg:border-l-2 lg:border-b-0 tab-bordered text-lg lg:text-4xl py-2 lg:py-5 h-auto flex-grow w-full',
 									currentTab === 'scrapays' ? ' tab-active' : ''
 								)}
@@ -199,7 +200,7 @@ const Home: NextPage = () => {
 								Scrapays Technologies
 							</a>
 							<a
-								className={clsx(
+								className={cn(
 									'tab lg:border-l-2 lg:border-b-0 tab-bordered text-lg lg:text-4xl py-2 lg:py-5 h-auto flex-grow w-full',
 									currentTab === 'montech' ? ' tab-active' : ''
 								)}
@@ -207,7 +208,7 @@ const Home: NextPage = () => {
 								Montech Studios
 							</a>
 							<a
-								className={clsx(
+								className={cn(
 									'tab lg:border-l-2 lg:border-b-0 tab-bordered text-lg lg:text-4xl py-2 lg:py-5 h-auto flex-grow w-full',
 									currentTab === 'binary' ? ' tab-active' : ''
 								)}
@@ -215,12 +216,18 @@ const Home: NextPage = () => {
 								The Binary Agency
 							</a>
 						</div>
-						{currentTab === 'studio14' && (
-							<div className='flex-grow lg:pl-20'>
-								<p className='text-lg lg:text-4xl font-bold text-center lg:text-left'>
+						<div className='relative flex-grow overflow-hidden'>
+							<div
+								className={cn(
+									'flex-grow lg:pl-20 absolute top-0 left-0 opacity-0 -translate-x-40 transition-[opacity_transform]',
+									'duration-300 lg:translate-x-40',
+									currentTab === 'studio14' &&
+										'opacity-100 translate-x-0 lg:translate-x-0'
+								)}>
+								<p className='text-lg lg:text-4xl font-bold'>
 									Frontend Developer @ Studio 14
 								</p>
-								<p className='text-md md:text-2xl md:mt-5 mb-7 text-center lg:text-left'>
+								<p className='text-md md:text-2xl md:mt-5 mb-7'>
 									November 2022 - Present
 								</p>
 								<ul className='text-md md:text-2xl list-disc list-outside pl-4 flex flex-col md:gap-y-10'>
@@ -230,13 +237,17 @@ const Home: NextPage = () => {
 									</li>
 								</ul>
 							</div>
-						)}
-						{currentTab === 'montech' && (
-							<div className='flex-grow lg:pl-20'>
-								<p className='text-lg lg:text-4xl font-bold text-center lg:text-left'>
+							<div
+								className={cn(
+									'flex-grow lg:pl-20 absolute top-0 left-0 opacity-0 -translate-x-40 transition-[opacity_transform]',
+									'duration-300 lg:translate-x-40',
+									currentTab === 'montech' &&
+										'opacity-100 translate-x-0 lg:translate-x-0'
+								)}>
+								<p className='text-lg lg:text-4xl font-bold'>
 									Backend Developer @ Montech Studios
 								</p>
-								<p className='text-md md:text-2xl md:mt-5 mb-7 text-center lg:text-left'>
+								<p className='text-md md:text-2xl md:mt-5 mb-7'>
 									February 2022 - July 2022
 								</p>
 								<ul className='text-md md:text-2xl list-disc list-outside pl-4 flex flex-col md:gap-y-10'>
@@ -246,13 +257,17 @@ const Home: NextPage = () => {
 									<li>Managed and updated full-fledged web3 applications.</li>
 								</ul>
 							</div>
-						)}
-						{currentTab === 'scrapays' && (
-							<div className='flex-grow lg:pl-20'>
-								<p className='text-lg lg:text-4xl font-bold text-center lg:text-left'>
+							<div
+								className={cn(
+									'flex-grow lg:pl-20 absolute top-0 left-0 opacity-0 -translate-x-40 transition-[opacity_transform]',
+									'duration-300 lg:translate-x-40',
+									currentTab === 'scrapays' &&
+										'opacity-100 translate-x-0 lg:translate-x-0'
+								)}>
+								<p className='text-lg lg:text-4xl font-bold'>
 									Full-stack Developer @ Scrapays Technologies
 								</p>
-								<p className='text-md md:text-2xl md:mt-5 mb-7 text-center lg:text-left'>
+								<p className='text-md md:text-2xl md:mt-5 mb-7'>
 									January 2020 - December 2022
 								</p>
 								<ul className='text-md md:text-2xl list-disc list-outside pl-4 flex flex-col md:gap-y-10'>
@@ -266,13 +281,17 @@ const Home: NextPage = () => {
 									</li>
 								</ul>
 							</div>
-						)}
-						{currentTab === 'binary' && (
-							<div className='flex-grow lg:pl-20'>
-								<p className='text-lg lg:text-4xl font-bold text-center lg:text-left'>
+							<div
+								className={cn(
+									'flex-grow lg:pl-20 absolute top-0 left-0 opacity-0 -translate-x-40 transition-[opacity_transform]',
+									'duration-300 lg:translate-x-40',
+									currentTab === 'binary' &&
+										'opacity-100 translate-x-0 lg:translate-x-0'
+								)}>
+								<p className='text-lg lg:text-4xl font-bold'>
 									Software Engineer @ The Binary Agency
 								</p>
-								<p className='text-md md:text-2xl md:mt-5 mb-7 text-center lg:text-left'>
+								<p className='text-md md:text-2xl md:mt-5 mb-7'>
 									February 2019 - January 2020
 								</p>
 								<ul className='text-md md:text-2xl list-disc list-outside pl-4 flex flex-col md:gap-y-10'>
@@ -285,7 +304,7 @@ const Home: NextPage = () => {
 									</li>
 								</ul>
 							</div>
-						)}
+						</div>
 					</div>
 				</section>
 
@@ -301,12 +320,12 @@ const Home: NextPage = () => {
 							href='mailto:olurodemusab@gmail.com'
 							title='Email'
 							className={clsx(
-								'btn btn-circle bg-transparent border-2 w-[50px] h-[50px] lg:w-[82px] lg:h-[82px] p-2 hover:-translate-y-3',
+								'btn btn-circle bg-transparent border-2 w-[50px] h-[50px] lg:w-[82px] lg:h-[82px] p-2 group',
 								currentTheme === 'dark' ? 'border-white' : 'border-main'
 							)}>
 							<MailIcon
 								className={clsx(
-									'w-5 h-5 lg:w-auto lg:h-auto',
+									'w-5 h-5 lg:w-auto lg:h-auto transition-colors group-hover:text-white',
 									currentTheme === 'dark' ? 'text-white' : 'text-main'
 								)}
 							/>
@@ -317,12 +336,12 @@ const Home: NextPage = () => {
 							rel='noreferrer'
 							title='Twitter'
 							className={clsx(
-								'btn btn-circle bg-transparent border-2 w-[50px] h-[50px] lg:w-[82px] lg:h-[82px] p-2 hover:-translate-y-3',
+								'btn btn-circle bg-transparent border-2 w-[50px] h-[50px] lg:w-[82px] lg:h-[82px] p-2 group',
 								currentTheme === 'dark' ? 'border-white' : 'border-main'
 							)}>
 							<TwitterIcon
 								className={clsx(
-									'w-5 h-5 lg:w-auto lg:h-auto',
+									'w-5 h-5 lg:w-auto lg:h-auto transition-colors group-hover:text-white',
 									currentTheme === 'dark' ? 'text-white' : 'text-main'
 								)}
 							/>
@@ -333,12 +352,12 @@ const Home: NextPage = () => {
 							rel='noreferrer'
 							title='LinkedIn'
 							className={clsx(
-								'btn btn-circle bg-transparent border-2 w-[50px] h-[50px] lg:w-[82px] lg:h-[82px] p-2 hover:-translate-y-3',
+								'btn btn-circle bg-transparent border-2 w-[50px] h-[50px] lg:w-[82px] lg:h-[82px] p-2 group',
 								currentTheme === 'dark' ? 'border-white' : 'border-main'
 							)}>
 							<LinkedInIcon
 								className={clsx(
-									'w-5 h-5 lg:w-auto lg:h-auto',
+									'w-5 h-5 lg:w-auto lg:h-auto transition-colors group-hover:text-white',
 									currentTheme === 'dark' ? 'text-white' : 'text-main'
 								)}
 							/>
@@ -349,12 +368,12 @@ const Home: NextPage = () => {
 							rel='noreferrer'
 							title='GitHub'
 							className={clsx(
-								'btn btn-circle bg-transparent border-2 w-[50px] h-[50px] lg:w-[82px] lg:h-[82px] p-2 hover:-translate-y-3',
+								'btn btn-circle bg-transparent border-2 w-[50px] h-[50px] lg:w-[82px] lg:h-[82px] p-2 group',
 								currentTheme === 'dark' ? 'border-white' : 'border-main'
 							)}>
 							<GithubIcon
 								className={clsx(
-									'w-5 h-5 lg:w-auto lg:h-auto',
+									'w-5 h-5 lg:w-auto lg:h-auto transition-colors group-hover:text-white',
 									currentTheme === 'dark' ? 'text-white' : 'text-main'
 								)}
 							/>
@@ -366,15 +385,22 @@ const Home: NextPage = () => {
 					data-theme={currentTheme == 'dark' ? 'light' : 'dark'}
 					data-toggle-theme='dark,light'
 					className={clsx(
-						'btn btn-circle fixed right-5 bottom-10 lg:right-10 flex justify-center items-center w-[48px] h-[30px] lg:w-[82px] lg:h-[82px] animate-slide-in-right',
+						'btn btn-circle fixed right-5 bottom-10 lg:right-10 flex justify-center items-center w-[48px] h-[30px] lg:w-[82px] lg:h-[82px]',
 						currentTheme == 'dark' ? 'bg-white hover:bg-[#C7C7C7]' : 'bg-main'
 					)}
 					onClick={toggleTheme}>
-					{currentTheme == 'dark' ? (
-						<SunIcon className='h-[22px] w-[22px] lg:h-auto lg:w-auto' />
-					) : (
-						<MoonIcon className='h-[22px] w-[22px] lg:h-auto lg:w-auto' />
-					)}
+					<SunIcon
+						className={cn(
+							'absolute h-[22px] w-[22px] lg:h-auto lg:w-auto -rotate-90 scale-0 transition-transform',
+							currentTheme == 'dark' && 'rotate-0 scale-100'
+						)}
+					/>
+					<MoonIcon
+						className={cn(
+							'absolute h-[22px] w-[22px] lg:h-auto lg:w-auto rotate-90 scale-0 transition-transform',
+							currentTheme == 'light' && 'rotate-0 scale-100'
+						)}
+					/>
 				</button>
 			</div>
 		</>

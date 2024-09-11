@@ -3,7 +3,6 @@ import Page from '../../components/Page';
 import Head from 'next/head';
 import clsx from 'clsx';
 import useCurrentTheme from '../../hooks/useCurrentTheme';
-import Link from 'next/link';
 
 const Print: NextPage = () => {
 	const [currentTheme] = useCurrentTheme();
@@ -18,11 +17,9 @@ const Print: NextPage = () => {
 				/>
 			</Head>
 			<a
-				// href={process.env.NEXT_PUBLIC_RESUME_URL}
-				href='/api/pdf'
-				// target='_blank'
-				// rel='noreferrer'
-				download='musab_olurode_resume.pdf'
+				href={process.env.NEXT_PUBLIC_RESUME_URL}
+				target='_blank'
+				rel='noreferrer'
 				className={clsx(
 					'link absolute top-0 right-10',
 					currentTheme === 'light' ? 'text-main' : 'text-white'
@@ -49,9 +46,9 @@ const Print: NextPage = () => {
 							github
 						</a>
 						<div className='w-px border border-black mx-5'></div>
-						<Link href='/'>
-							<a className='link text-sm'>website</a>
-						</Link>
+						<a className='link text-sm' href='https://www.musabolurode.dev'>
+							website
+						</a>
 					</div>
 
 					<div className='mt-8'>
@@ -139,15 +136,11 @@ const Print: NextPage = () => {
 							Backend - Typescript, Node.js, NestJS, Docker, Laravel, Go,
 							Firebase
 						</li>
-						{/* <li>
-							Frontend - React, Typescript, HTML5, CSS3, Javascript, Styled
-							Components, Next.js, React Native, TailwindCSS, React Native
-						</li> */}
 						<li>
 							Frontend - Typescript, React, Next.js, React Native, TailwindCSS,
 							React Native, Graphql
 						</li>
-						<li>Databases - MongoDB, MySQL, PostgreSQL, Firebase Firsetore</li>
+						<li>Databases - MongoDB, MySQL, PostgreSQL, Firebase Firestore</li>
 					</ul>
 
 					<p className='mt-8 mb-2 font-black text-xl'>EDUCATION</p>
