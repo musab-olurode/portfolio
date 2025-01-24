@@ -84,7 +84,7 @@ const Home: NextPage = () => {
 				<title>Mus&apos;ab Olurode - Full Stack Developer</title>
 				<meta
 					name='description'
-					content='Experienced full-stack developer with over 5 years of professional experience'
+					content='Experienced full-stack developer with over 6 years of professional experience'
 				/>
 			</Head>
 			<Nav
@@ -160,7 +160,7 @@ const Home: NextPage = () => {
 					</div>
 					<p className='text-md md:text-2xl mt-12 lg:text-left'>
 						I am Mus&apos;ab Olurode, a dedicated full-stack developer with an
-						extensive background in software development, encompassing over 5
+						extensive background in software development, encompassing over 6
 						years of hands-on experience in the field. Throughout my career,
 						I&apos;ve honed my skills across both server and client-side
 						development, contributing to a diverse array of projects. These

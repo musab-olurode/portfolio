@@ -129,11 +129,18 @@ const Nav: React.FC<NavProps> = ({
 								</a>
 							</li>
 							<li>
-								<Link href='/resume'>
-									<a className='hover:bg-transparent focus:bg-transparent flex flex-col items-center mt-5'>
+								<Link href='https://drive.google.com/file/d/1YBtiNajPR-IbyLBbYoewpiQnP9rZqFK3/view?usp=drive_link'>
+									<a
+										className='hover:bg-transparent focus:bg-transparent flex flex-col items-center mt-5'
+										target='_blank'>
 										Résumé
 									</a>
 								</Link>
+								{/* <Link href='/resume'>
+									<a className='hover:bg-transparent focus:bg-transparent flex flex-col items-center mt-5'>
+										Résumé
+									</a>
+								</Link> */}
 							</li>
 						</ul>
 					</div>
@@ -169,11 +176,18 @@ const Nav: React.FC<NavProps> = ({
 							</a>
 						</li>
 						<li>
-							<Link href='/resume'>
-								<a className='hover:bg-transparent focus:bg-transparent flex flex-col items-center mt-5'>
+							<Link href='https://drive.google.com/file/d/1YBtiNajPR-IbyLBbYoewpiQnP9rZqFK3/view?usp=drive_link'>
+								<a
+									className='hover:bg-transparent focus:bg-transparent flex flex-col items-center mt-5'
+									target='_blank'>
 									Résumé
 								</a>
 							</Link>
+							{/* <Link href='/resume'>
+									<a className='hover:bg-transparent focus:bg-transparent flex flex-col items-center mt-5'>
+										Résumé
+									</a>
+								</Link> */}
 						</li>
 					</ul>
 				</div>
