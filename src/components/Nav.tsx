@@ -10,19 +10,13 @@ interface NavProps {
 	onPressNav: (section: 'main' | 'about' | 'experience' | 'contact') => void;
 }
 
-const Nav: React.FC<NavProps> = ({
-	currentTheme,
-	currentSection,
-	onPressNav,
-}) => {
+const Nav: React.FC<NavProps> = ({ currentTheme, currentSection, onPressNav }) => {
 	const [indicatorPosition, setIndicatorPosition] = useState({
 		translate: '',
 		width: 'w-0',
 	});
 
-	const handleNavigationTransition = (
-		section: 'main' | 'about' | 'experience' | 'contact'
-	) => {
+	const handleNavigationTransition = (section: 'main' | 'about' | 'experience' | 'contact') => {
 		switch (section) {
 			case 'about':
 				setIndicatorPosition({
@@ -51,9 +45,7 @@ const Nav: React.FC<NavProps> = ({
 		}
 	};
 
-	const handleOnPressNav = (
-		section: 'main' | 'about' | 'experience' | 'contact'
-	) => {
+	const handleOnPressNav = (section: 'main' | 'about' | 'experience' | 'contact') => {
 		handleNavigationTransition(section);
 		onPressNav(section);
 	};
@@ -63,11 +55,7 @@ const Nav: React.FC<NavProps> = ({
 	}, [currentSection]);
 
 	return (
-		<div
-			className={clsx(
-				'fixed [width:calc(100%-7px)] z-50',
-				currentTheme === 'light' ? 'bg-white' : 'bg-main'
-			)}>
+		<div className={clsx('fixed [width:calc(100%-7px)] z-50', currentTheme === 'light' ? 'bg-white' : 'bg-main')}>
 			<div className='navbar container mx-auto lg:-mt-5 animate-slide-in-top'>
 				<div className='flex-1'>
 					<a
@@ -92,11 +80,7 @@ const Nav: React.FC<NavProps> = ({
 									onClick={() => handleOnPressNav('about')}>
 									About Me
 									{currentSection === 'about' && (
-										<UnderlineSmallIcon
-											className={clsx(
-												currentTheme === 'light' ? 'text-main' : 'text-white'
-											)}
-										/>
+										<UnderlineSmallIcon className={clsx(currentTheme === 'light' ? 'text-main' : 'text-white')} />
 									)}
 								</a>
 							</li>
@@ -106,11 +90,7 @@ const Nav: React.FC<NavProps> = ({
 									onClick={() => handleOnPressNav('experience')}>
 									Experience
 									{currentSection === 'experience' && (
-										<UnderlineSmallIcon
-											className={clsx(
-												currentTheme === 'light' ? 'text-main' : 'text-white'
-											)}
-										/>
+										<UnderlineSmallIcon className={clsx(currentTheme === 'light' ? 'text-main' : 'text-white')} />
 									)}
 								</a>
 							</li>
@@ -120,27 +100,14 @@ const Nav: React.FC<NavProps> = ({
 									onClick={() => handleOnPressNav('contact')}>
 									Contact
 									{currentSection === 'contact' && (
-										<UnderlineSmallIcon
-											className={clsx(
-												currentTheme === 'light' ? 'text-main' : 'text-white'
-											)}
-										/>
+										<UnderlineSmallIcon className={clsx(currentTheme === 'light' ? 'text-main' : 'text-white')} />
 									)}
 								</a>
 							</li>
 							<li>
-								<Link href='https://drive.google.com/file/d/1YBtiNajPR-IbyLBbYoewpiQnP9rZqFK3/view?usp=drive_link'>
-									<a
-										className='hover:bg-transparent focus:bg-transparent flex flex-col items-center mt-5'
-										target='_blank'>
-										Résumé
-									</a>
+								<Link href='/resume'>
+									<a className='hover:bg-transparent focus:bg-transparent flex flex-col items-center mt-5'>Résumé</a>
 								</Link>
-								{/* <Link href='/resume'>
-									<a className='hover:bg-transparent focus:bg-transparent flex flex-col items-center mt-5'>
-										Résumé
-									</a>
-								</Link> */}
 							</li>
 						</ul>
 					</div>
@@ -176,18 +143,9 @@ const Nav: React.FC<NavProps> = ({
 							</a>
 						</li>
 						<li>
-							<Link href='https://drive.google.com/file/d/1YBtiNajPR-IbyLBbYoewpiQnP9rZqFK3/view?usp=drive_link'>
-								<a
-									className='hover:bg-transparent focus:bg-transparent flex flex-col items-center mt-5'
-									target='_blank'>
-									Résumé
-								</a>
+							<Link href='/resume'>
+								<a className='hover:bg-transparent focus:bg-transparent flex flex-col items-center mt-5'>Résumé</a>
 							</Link>
-							{/* <Link href='/resume'>
-									<a className='hover:bg-transparent focus:bg-transparent flex flex-col items-center mt-5'>
-										Résumé
-									</a>
-								</Link> */}
 						</li>
 					</ul>
 				</div>

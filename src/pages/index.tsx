@@ -17,12 +17,8 @@ import { cn } from '../helpers';
 
 const Home: NextPage = () => {
 	const [currentTheme, toggleTheme] = useCurrentTheme();
-	const [currentSection, setCurrentSection] = useState<
-		'main' | 'about' | 'experience' | 'contact'
-	>('main');
-	const [currentTab, setCurrentTab] = useState<
-		'studio14' | 'montech' | 'scrapays' | 'binary'
-	>('studio14');
+	const [currentSection, setCurrentSection] = useState<'main' | 'about' | 'experience' | 'contact'>('main');
+	const [currentTab, setCurrentTab] = useState<'studio14' | 'montech' | 'scrapays' | 'binary'>('studio14');
 
 	const mainRef = useRef<HTMLDivElement>(null);
 	const aboutRef = useRef<HTMLDivElement>(null);
@@ -33,16 +29,11 @@ const Home: NextPage = () => {
 		aboutRef.current?.scrollIntoView({ behavior: 'smooth' });
 	};
 
-	const handleOnVisibilityChanged = (
-		inView: boolean,
-		section: 'main' | 'about' | 'experience' | 'contact'
-	) => {
+	const handleOnVisibilityChanged = (inView: boolean, section: 'main' | 'about' | 'experience' | 'contact') => {
 		inView && setCurrentSection(section);
 	};
 
-	const handlePressNav = (
-		section: 'main' | 'about' | 'experience' | 'contact'
-	) => {
+	const handlePressNav = (section: 'main' | 'about' | 'experience' | 'contact') => {
 		switch (section) {
 			case 'main':
 				mainRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -61,9 +52,7 @@ const Home: NextPage = () => {
 		}
 	};
 
-	const handleOnChangeTab = (
-		tab: 'montech' | 'scrapays' | 'binary' | 'studio14'
-	) => {
+	const handleOnChangeTab = (tab: 'montech' | 'scrapays' | 'binary' | 'studio14') => {
 		setCurrentTab(tab);
 	};
 
@@ -87,11 +76,7 @@ const Home: NextPage = () => {
 					content='Experienced full-stack developer with over 6 years of professional experience'
 				/>
 			</Head>
-			<Nav
-				currentSection={currentSection}
-				currentTheme={currentTheme}
-				onPressNav={handlePressNav}
-			/>
+			<Nav currentSection={currentSection} currentTheme={currentTheme} onPressNav={handlePressNav} />
 			<div
 				className={clsx(
 					'relative snap-y snap-mandatory min-h-screen overflow-y-scroll',
@@ -106,12 +91,8 @@ const Home: NextPage = () => {
 								Hi!, I’m <br /> Mus&apos;ab Olurode, a
 							</p>
 						</div>
-						<InView
-							className='overflow-hidden'
-							onChange={(inView) => handleOnVisibilityChanged(inView, 'main')}>
-							<p className='font-bold mb-8 animate-slide-in'>
-								Full Stack Developer
-							</p>
+						<InView className='overflow-hidden' onChange={(inView) => handleOnVisibilityChanged(inView, 'main')}>
+							<p className='font-bold mb-8 animate-slide-in'>Full Stack Developer</p>
 						</InView>
 						<div className='flex flex-col justify-center items-center'>
 							<UnderlineLargeIcon
@@ -140,18 +121,13 @@ const Home: NextPage = () => {
 				<section
 					className='h-screen container mx-auto flex flex-col justify-center snap-center px-2 md:px-0'
 					ref={aboutRef}>
-					<InView
-						onChange={(inView) => handleOnVisibilityChanged(inView, 'about')}>
-						<p className='text-2xl lg:text-6xl font-bold text-center'>
-							About Me
-						</p>
+					<InView onChange={(inView) => handleOnVisibilityChanged(inView, 'about')}>
+						<p className='text-2xl lg:text-6xl font-bold text-center'>About Me</p>
 					</InView>
 					<div
 						className={clsx(
 							'flex justify-between px-4 border-t-2 border-b-2 py-5 md:py-10 text-md md:text-2xl mt-12',
-							currentTheme === 'dark'
-								? 'border-t-white border-b-white'
-								: 'border-t-main border-b-main'
+							currentTheme === 'dark' ? 'border-t-white border-b-white' : 'border-t-main border-b-main'
 						)}>
 						<span>Developer</span>
 						<span>Freerunner</span>
@@ -159,33 +135,25 @@ const Home: NextPage = () => {
 						<span>Gamer</span>
 					</div>
 					<p className='text-md md:text-2xl mt-12 lg:text-left'>
-						I am Mus&apos;ab Olurode, a dedicated full-stack developer with an
-						extensive background in software development, encompassing over 6
-						years of hands-on experience in the field. Throughout my career,
-						I&apos;ve honed my skills across both server and client-side
-						development, contributing to a diverse array of projects. These
-						experiences have not only broadened my technical expertise but have
-						also nurtured my adaptability, allowing me to swiftly grasp new
-						concepts and technologies as required.
+						I am Mus&apos;ab Olurode, a dedicated full-stack developer with an extensive background in software
+						development, encompassing over 6 years of hands-on experience in the field. Throughout my career, I&apos;ve
+						honed my skills across both server and client-side development, contributing to a diverse array of projects.
+						These experiences have not only broadened my technical expertise but have also nurtured my adaptability,
+						allowing me to swiftly grasp new concepts and technologies as required.
 					</p>
 				</section>
 
 				<section
 					ref={experienceRef}
 					className='h-screen container mx-auto flex flex-col justify-center snap-center px-2 md:px-0'>
-					<InView
-						onChange={(inView) =>
-							handleOnVisibilityChanged(inView, 'experience')
-						}>
-						<p className='text-md md:text-2xl font-bold mb-4 md:mb-14'>
-							Work Experience
-						</p>
+					<InView onChange={(inView) => handleOnVisibilityChanged(inView, 'experience')}>
+						<p className='text-md md:text-2xl font-bold mb-4 md:mb-14'>Work Experience</p>
 					</InView>
 					<div className='flex flex-col lg:flex-row min-h-[428px] lg:min-h-[504px]'>
 						<div className='tabs mb-4 lg:mb-0 flex-col lg:items-start lg:h-full lg:shrink-0'>
 							<a
 								className={cn(
-									'tab lg:border-l-2 lg:border-b-0 tab-bordered text-lg lg:text-4xl py-2 lg:py-5 h-auto flex-grow w-full',
+									'tab lg:border-l-2 lg:border-b-0 tab-bordered text-lg lg:text-4xl py-2 lg:py-5 h-auto flex-grow w-full lg:justify-start lg:pl-10',
 									currentTab === 'studio14' ? ' tab-active' : ''
 								)}
 								onClick={() => handleOnChangeTab('studio14')}>
@@ -193,7 +161,7 @@ const Home: NextPage = () => {
 							</a>
 							<a
 								className={cn(
-									'tab lg:border-l-2 lg:border-b-0 tab-bordered text-lg lg:text-4xl py-2 lg:py-5 h-auto flex-grow w-full',
+									'tab lg:border-l-2 lg:border-b-0 tab-bordered text-lg lg:text-4xl py-2 lg:py-5 h-auto flex-grow w-full lg:justify-start lg:pl-10',
 									currentTab === 'scrapays' ? ' tab-active' : ''
 								)}
 								onClick={() => handleOnChangeTab('scrapays')}>
@@ -201,7 +169,7 @@ const Home: NextPage = () => {
 							</a>
 							<a
 								className={cn(
-									'tab lg:border-l-2 lg:border-b-0 tab-bordered text-lg lg:text-4xl py-2 lg:py-5 h-auto flex-grow w-full',
+									'tab lg:border-l-2 lg:border-b-0 tab-bordered text-lg lg:text-4xl py-2 lg:py-5 h-auto flex-grow w-full lg:justify-start lg:pl-10',
 									currentTab === 'montech' ? ' tab-active' : ''
 								)}
 								onClick={() => handleOnChangeTab('montech')}>
@@ -209,7 +177,7 @@ const Home: NextPage = () => {
 							</a>
 							<a
 								className={cn(
-									'tab lg:border-l-2 lg:border-b-0 tab-bordered text-lg lg:text-4xl py-2 lg:py-5 h-auto flex-grow w-full',
+									'tab lg:border-l-2 lg:border-b-0 tab-bordered text-lg lg:text-4xl py-2 lg:py-5 h-auto flex-grow w-full lg:justify-start lg:pl-10',
 									currentTab === 'binary' ? ' tab-active' : ''
 								)}
 								onClick={() => handleOnChangeTab('binary')}>
@@ -221,39 +189,25 @@ const Home: NextPage = () => {
 								className={cn(
 									'flex-grow lg:pl-20 absolute top-0 left-0 opacity-0 -translate-x-40 transition-[opacity_transform]',
 									'duration-300 lg:translate-x-40',
-									currentTab === 'studio14' &&
-										'opacity-100 translate-x-0 lg:translate-x-0'
+									currentTab === 'studio14' && 'opacity-100 translate-x-0 lg:translate-x-0'
 								)}>
-								<p className='text-lg lg:text-4xl font-bold'>
-									Frontend Developer @ Studio 14
-								</p>
-								<p className='text-md md:text-2xl md:mt-5 mb-7'>
-									November 2022 - Present
-								</p>
+								<p className='text-lg lg:text-4xl font-bold'>Senior Frontend Developer @ Studio 14</p>
+								<p className='text-md md:text-2xl md:mt-5 mb-7'>November 2022 - Present</p>
 								<ul className='text-md md:text-2xl list-disc list-outside pl-4 flex flex-col md:gap-y-10'>
 									<li>Building sophisticated frontend applications.</li>
-									<li>
-										Building vanilla HTML templates for WordPress applications.
-									</li>
+									<li>Building vanilla HTML templates for WordPress applications.</li>
 								</ul>
 							</div>
 							<div
 								className={cn(
 									'flex-grow lg:pl-20 absolute top-0 left-0 opacity-0 -translate-x-40 transition-[opacity_transform]',
 									'duration-300 lg:translate-x-40',
-									currentTab === 'montech' &&
-										'opacity-100 translate-x-0 lg:translate-x-0'
+									currentTab === 'montech' && 'opacity-100 translate-x-0 lg:translate-x-0'
 								)}>
-								<p className='text-lg lg:text-4xl font-bold'>
-									Backend Developer @ Montech Studios
-								</p>
-								<p className='text-md md:text-2xl md:mt-5 mb-7'>
-									February 2022 - July 2022
-								</p>
+								<p className='text-lg lg:text-4xl font-bold'>Backend Developer @ Montech Studios</p>
+								<p className='text-md md:text-2xl md:mt-5 mb-7'>February 2022 - July 2022</p>
 								<ul className='text-md md:text-2xl list-disc list-outside pl-4 flex flex-col md:gap-y-10'>
-									<li>
-										Built proof of concepts for existing project specifications.
-									</li>
+									<li>Built proof of concepts for existing project specifications.</li>
 									<li>Managed and updated full-fledged web3 applications.</li>
 								</ul>
 							</div>
@@ -261,23 +215,15 @@ const Home: NextPage = () => {
 								className={cn(
 									'flex-grow lg:pl-20 absolute top-0 left-0 opacity-0 -translate-x-40 transition-[opacity_transform]',
 									'duration-300 lg:translate-x-40',
-									currentTab === 'scrapays' &&
-										'opacity-100 translate-x-0 lg:translate-x-0'
+									currentTab === 'scrapays' && 'opacity-100 translate-x-0 lg:translate-x-0'
 								)}>
-								<p className='text-lg lg:text-4xl font-bold'>
-									Full-stack Developer @ Scrapays Technologies
-								</p>
-								<p className='text-md md:text-2xl md:mt-5 mb-7'>
-									January 2020 - December 2022
-								</p>
+								<p className='text-lg lg:text-4xl font-bold'>Full-stack Developer @ Scrapays Technologies</p>
+								<p className='text-md md:text-2xl md:mt-5 mb-7'>January 2020 - December 2022</p>
 								<ul className='text-md md:text-2xl list-disc list-outside pl-4 flex flex-col md:gap-y-10'>
+									<li>Led the development of the company&apos;s flagship product as a principal engineer.</li>
 									<li>
-										Led the development of the company&apos;s flagship product
-										as a principal engineer.
-									</li>
-									<li>
-										Developed mobile apps, landing pages, dashboards and IOT
-										applications for the company&apos;s product.
+										Developed mobile apps, landing pages, dashboards and IOT applications for the company&apos;s
+										product.
 									</li>
 								</ul>
 							</div>
@@ -285,23 +231,13 @@ const Home: NextPage = () => {
 								className={cn(
 									'flex-grow lg:pl-20 absolute top-0 left-0 opacity-0 -translate-x-40 transition-[opacity_transform]',
 									'duration-300 lg:translate-x-40',
-									currentTab === 'binary' &&
-										'opacity-100 translate-x-0 lg:translate-x-0'
+									currentTab === 'binary' && 'opacity-100 translate-x-0 lg:translate-x-0'
 								)}>
-								<p className='text-lg lg:text-4xl font-bold'>
-									Software Engineer @ The Binary Agency
-								</p>
-								<p className='text-md md:text-2xl md:mt-5 mb-7'>
-									February 2019 - January 2020
-								</p>
+								<p className='text-lg lg:text-4xl font-bold'>Software Engineer @ The Binary Agency</p>
+								<p className='text-md md:text-2xl md:mt-5 mb-7'>February 2019 - January 2020</p>
 								<ul className='text-md md:text-2xl list-disc list-outside pl-4 flex flex-col md:gap-y-10'>
-									<li>
-										Built and maintained web applications for multiple clients.
-									</li>
-									<li>
-										Reviewed project specifications and developed solutions to
-										meet the requirements.
-									</li>
+									<li>Built and maintained web applications for multiple clients.</li>
+									<li>Reviewed project specifications and developed solutions to meet the requirements.</li>
 								</ul>
 							</div>
 						</div>
@@ -311,8 +247,7 @@ const Home: NextPage = () => {
 				<section
 					ref={contactRef}
 					className='h-screen container mx-auto flex flex-col justify-center items-center snap-center px-2 md:px-0'>
-					<InView
-						onChange={(inView) => handleOnVisibilityChanged(inView, 'contact')}>
+					<InView onChange={(inView) => handleOnVisibilityChanged(inView, 'contact')}>
 						<p className='text-3xl lg:text-7xl'>Contact Me</p>
 					</InView>
 					<div className='flex justify-between mt-16 gap-x-5 lg:gap-x-16'>
