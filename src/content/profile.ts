@@ -19,6 +19,7 @@ export type Project = {
 	imageAlt: string;
 	stack?: string;
 	subsite?: { name: string; url: string };
+	extraImages?: { src: string; alt: string }[];
 };
 
 export type AlsoBuilt = { name: string; kind: string; year: string; url?: string };
@@ -125,6 +126,10 @@ export const projects: Project[] = [
 		image: '/work/canoo-web.webp',
 		imageAlt: 'The canoo.ca home page',
 		stack: 'React Native · Next.js · Node.js · CMS',
+		extraImages: [
+			{ src: '/work/canoo-app-1.webp', alt: "Canoo app listing: what's on this week" },
+			{ src: '/work/canoo-app-2.webp', alt: 'Canoo app listing: explore places' },
+		],
 	},
 	{
 		slug: 'newborn',
