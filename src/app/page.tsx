@@ -1,7 +1,13 @@
+import Figures from '@/components/sections/Figures';
+import Hero from '@/components/sections/Hero';
+
 export default function Home() {
 	return (
-		<main>
-			<h1>Mus&apos;ab Olurode</h1>
-		</main>
+		<>
+			<Hero />
+			<main>
+				<Figures />
+			</main>
+		</>
 	);
 }

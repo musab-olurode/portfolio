@@ -44,3 +44,4 @@ yarn-error.log*
 .taste-skill
 .superpowers
 next-env.d.ts
+scripts/.shot.mjs
