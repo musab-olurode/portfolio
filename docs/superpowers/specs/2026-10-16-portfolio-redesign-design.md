@@ -34,7 +34,7 @@ The core message: **he builds the whole product: app, website and backend.** The
 ## Constraints
 
 - Contact email everywhere: **me@musab.dev** (replaces olurodemusab@gmail.com in every mailto, the footer and the résumé).
-- Deploys on Vercel; keep `@vercel/analytics`.
+- **Hosting moves to Cloudflare** (Mus'ab's decision). See "Decided: hosting".
 - The house style of the `design-taste-frontend` skill (`~/.claude/skills/design-taste-frontend`) applies. Run its `lint.mjs` and `inspect.mjs` gate, then the screenshot critique loop. The direction sheet saved at `.taste-skill/direction.json` came from that skill. The combined direction below overrides its palette and type where they differ.
 - Keep the repo's Prettier config (tabs, single quotes, JSX single quotes, print width 120).
 - Use context7 to check current docs for Next.js, Tailwind and the other libraries during the upgrade (per the user's global instructions).
@@ -43,7 +43,7 @@ The core message: **he builds the whole product: app, website and backend.** The
 
 - Fresh rebuild in this repo on the **latest stable Next.js** (App Router), **React**, **TypeScript** and **Tailwind CSS** (current major, CSS-first config).
 - Remove DaisyUI, `theme-change`, Sass (unless the résumé still needs it; prefer plain CSS/Tailwind), `@heroicons/react`, `react-intersection-observer` (use a tiny IntersectionObserver hook or CSS scroll-driven animation), and the unused tech-logo PNGs and `constants.ts` data.
-- Upgrade ESLint to its current flat config with the Next.js preset. Use the latest `@vercel/analytics`.
+- Upgrade ESLint to its current flat config with the Next.js preset. Remove `@vercel/analytics` (Vercel-only); use Cloudflare Web Analytics instead.
 - Package manager: keep yarn (there is a `yarn.lock`), unless the builder has a strong reason.
 - Fonts via `next/font/google`: **Instrument Serif** (display) and **Geist** (text). Two faces, no more.
 
@@ -69,7 +69,7 @@ The base is the "paper editorial" look (C), borrowing one moment from A and one 
    - Ericc Help Desk: "Admin panel for an NGO help desk; 25% less admin work." · Studio 14 · 2022–25
    - Scrapays: "First version of the recycling platform: web, Android app and real-time IoT tracking." · Scrapays · 2020–22
    Studio 14 projects use the employment span, not invented single years.
-4. **Also built.** A quiet ledger: Gender Lens (advocacy site, Studio 14), Montech (Web3 backends, 10,000+ concurrent users), a wedding website (build; design by Qoreeb Abubakar), and this site (link to GitHub). Hovering a row dims the others. *(My call: no image previews in this list. Rows link only where a public production URL exists: this site links to GitHub; Gender Lens has only a staging URL, so it has no link; Montech and the wedding site have no link.)*
+4. **Also built.** A quiet ledger: Gender Lens (advocacy site, Studio 14), Montech (Web3 backends, 10,000+ concurrent users), a wedding website, Naseeb by Qadr (build; design by Qoreeb Abubakar), and this site (link to GitHub). Hovering a row dims the others. No image previews in this list. Links: wedding website → https://naseeb-by-qadr.pages.dev/; Gender Lens (Plan International Impact Lab) → https://gender-lens-wp.s14staging.uk/ (no separate production site could be found, so Mus'ab chose the staging URL); Montech has no link.
 5. **CV band** (navy/pink). "Seven years, five teams", with each role: company, title, "Remote" plus region, and dates. A **Download the résumé** button links to the PDF.
 6. **Footer.** "Hiring for web, mobile or backend? Write to me." The email **me@musab.dev** set at display size as one mailto link. A small row: GitHub, LinkedIn, X · Résumé (PDF) · year.
 
@@ -118,7 +118,16 @@ The rules: transform and opacity only, everything has a `prefers-reduced-motion`
 
 ## SEO and meta
 
-Domain: **musab.dev** (Mus'ab sets it up in Vercel and redirects musabolurode.dev to it; use `https://musab.dev` for `metadataBase`, the canonical URL, OG URLs and the résumé's Portfolio link). Title "Mus'ab Olurode — Full-stack engineer"; a description using "7+ years, web, mobile and backend"; an Open Graph image (a simple typographic card generated with `next/og` in the site's style); favicon; canonical URL.
+Domain: **musab.dev** (attached to the Cloudflare Worker as a custom domain; musabolurode.dev redirects to it; use `https://musab.dev` for `metadataBase`, the canonical URL, OG URLs and the résumé's Portfolio link). Title "Mus'ab Olurode — Full-stack engineer"; a description using "7+ years, web, mobile and backend"; an Open Graph image (a simple typographic card generated with `next/og` in the site's style); favicon; canonical URL.
+
+## Decided: hosting (Cloudflare)
+
+- The site is fully static: build with Next.js `output: 'export'` to `out/`. Use `images.unoptimized` or pre-optimised images (`next/image` has no optimiser in a static export), a statically generated OG image, and `trailingSlash` set as needed.
+- Deploy to **Cloudflare Workers static assets** (assets only, no Worker script), with a `wrangler.jsonc` holding `name`, `compatibility_date` and `assets: { directory: "./out", not_found_handling: "404-page" }`. Cloudflare's docs currently recommend vinext/OpenNext only for server-rendered Next apps; a static export needs neither.
+- Install `wrangler` as a devDependency (it isn't installed globally), plus `deploy` and `preview` scripts. Mus'ab runs `wrangler login` himself.
+- Custom domains: add musab.dev to the Worker (the domain's DNS must be on Cloudflare). Redirect musabolurode.dev → musab.dev with a Cloudflare redirect rule. Mus'ab does the account and DNS steps in his dashboard; the plan lists them as manual steps.
+- Analytics: Cloudflare Web Analytics (enabled on the zone, or the beacon script).
+- Vercel stays live until Cloudflare is serving musab.dev; then Mus'ab removes the Vercel project.
 
 ## Left to the builder
 
