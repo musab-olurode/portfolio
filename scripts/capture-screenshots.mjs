@@ -45,7 +45,8 @@ await mkdir('public/work', { recursive: true });
 const browser = await chromium.launch();
 const context = await browser.newContext({
 	viewport: { width: 1440, height: 900 },
-	deviceScaleFactor: 1,
+	// Twice the density, so the large copy stays sharp on wide and retina screens.
+	deviceScaleFactor: 2,
 	// Some council sites refuse the headless user agent.
 	userAgent:
 		'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36',
@@ -74,14 +75,23 @@ for (const [slug, url] of targets) {
 	await page.waitForTimeout(1200);
 	const full = await page.screenshot({ fullPage: !SINGLE_SCREEN.has(slug) });
 	const { height = 0 } = await sharp(full).metadata();
-	const png = await sharp(full)
-		.extract({ left: 0, top: 0, width: 1440, height: Math.min(height, MAX_HEIGHT) })
+	const png = await sharp(full, { limitInputPixels: false })
+		.extract({ left: 0, top: 0, width: 2880, height: Math.min(height, MAX_HEIGHT * 2) })
 		.toBuffer();
-	const out = `public/work/${slug}.webp`;
-	const info = await sharp(png).resize({ width: 1200 }).webp({ quality: 78 }).toFile(out);
+	// Two copies: 1200px for most screens, 2400px only for wide or high-density ones (srcset).
+	const small = await sharp(png, { limitInputPixels: false })
+		.resize({ width: 1200 })
+		.webp({ quality: 80 })
+		.toFile(`public/work/${slug}.webp`);
+	const large = await sharp(png, { limitInputPixels: false })
+		.resize({ width: 2400 })
+		.webp({ quality: 74 })
+		.toFile(`public/work/${slug}@2x.webp`);
 
-	sizes[slug] = { width: info.width, height: info.height };
-	console.log(`${out} ${info.width}x${info.height} ${Math.round(info.size / 1024)} KB`);
+	sizes[slug] = { width: small.width, height: small.height };
+	console.log(
+		`${slug} ${small.width}x${small.height} ${Math.round(small.size / 1024)} KB, @2x ${Math.round(large.size / 1024)} KB`
+	);
 	await page.close();
 }
 

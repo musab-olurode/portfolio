@@ -1,9 +1,8 @@
-import Image from 'next/image';
-
 import { panFor } from '@/lib/pan';
 import { type Project, projects } from '@/content/profile';
 
 import ReelVideo from '@/components/ReelVideo';
+import WorkImage from '@/components/WorkImage';
 import WorkIndex from '@/components/WorkIndex';
 
 function Caption({ project }: { project: Project }) {
@@ -54,7 +53,7 @@ function Shot({ project }: { project: Project }): React.JSX.Element {
 			rel='noreferrer'
 			tabIndex={-1}
 			target='_blank'>
-			<Image
+			<WorkImage
 				alt=''
 				className='pan h-auto w-full'
 				height={project.imageSize.height}

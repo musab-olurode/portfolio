@@ -1,9 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 
 import { alsoBuilt } from '@/content/profile';
+
+import WorkImage from '@/components/WorkImage';
 
 const withImages = alsoBuilt.filter((item) => item.image);
 
@@ -21,7 +22,7 @@ export default function AlsoBuilt(): React.JSX.Element {
 						const row = (
 							<>
 								{item.image && (
-									<Image
+									<WorkImage
 										alt=''
 										className='col-span-2 mb-3 aspect-16/10 h-auto w-full bg-step-2 object-cover object-top sm:col-span-3 lg:hidden'
 										height={750}
@@ -72,7 +73,7 @@ export default function AlsoBuilt(): React.JSX.Element {
 				data-testid='also-preview'
 				style={{ '--d': '160ms' } as React.CSSProperties}>
 				{withImages.map((item) => (
-					<Image
+					<WorkImage
 						key={item.name}
 						alt=''
 						className='absolute inset-0 size-full object-cover object-top opacity-0 transition-opacity duration-500 data-active:opacity-100'

@@ -7,7 +7,7 @@
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",
-		"lint": "eslint .",
+		"lint": "eslint . --max-warnings 0",
 		"test": "vitest run",
 		"e2e": "playwright test",
 		"serve": "serve out -l 4173",
