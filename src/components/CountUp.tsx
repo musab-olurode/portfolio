@@ -44,9 +44,17 @@ export default function CountUp({ value, format = defaultFormat }: Props): React
 		};
 	}, [value]);
 
+	// The final value, invisible, fixes the box's width; the counting value sits on top of it,
+	// right-aligned, so nothing after the number moves while it counts.
 	return (
-		<span ref={ref} className='tabular-nums'>
-			{format(shown)}
+		<span ref={ref} className='inline-grid justify-items-end tabular-nums'>
+			<span aria-hidden className='invisible col-start-1 row-start-1'>
+				{format(value)}
+			</span>
+			<span aria-hidden className='col-start-1 row-start-1'>
+				{format(shown)}
+			</span>
+			<span className='sr-only'>{format(value)}</span>
 		</span>
 	);
 }

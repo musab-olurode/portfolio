@@ -14,8 +14,11 @@ export default function Figures(): React.JSX.Element {
 				{figures.teams}&nbsp;teams, {figures.countries}&nbsp;countries.
 			</h2>
 			<p className='reveal max-w-[34ch] text-lead' style={{ '--d': '80ms' } as React.CSSProperties}>
-				The latest, Canoo, has welcomed <CountUp value={figures.canooMembers} />
-				&nbsp;newcomers to Canada. I was the senior engineer on its app, site and backend.
+				The latest, Canoo, has welcomed{' '}
+				<span className='whitespace-nowrap'>
+					<CountUp value={figures.canooMembers} /> newcomers
+				</span>{' '}
+				to Canada. I was the senior engineer on its app, site and backend.
 			</p>
 			<div className='reveal' style={{ '--d': '160ms' } as React.CSSProperties}>
 				<OverlapLine />
