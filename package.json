@@ -11,7 +11,7 @@
 		"test": "vitest run",
 		"e2e": "playwright test",
 		"serve": "serve out -l 4173",
-		"preview": "wrangler dev",
+		"preview": "wrangler dev --local-upstream localhost",
 		"deploy": "npm run build && wrangler deploy",
 		"screenshots": "node scripts/capture-screenshots.mjs",
 		"resume:pdf": "npm run build && node scripts/build-resume-pdf.mjs && npm run build",

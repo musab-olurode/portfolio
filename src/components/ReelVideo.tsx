@@ -12,9 +12,9 @@ interface Props {
 	hideUntilPlaying?: boolean;
 }
 
-/** Wide screens, or desktop-sized retina screens, get the sharper `@2x` copy. */
+/** Wide screens, or desktop-sized retina screens, get the sharper `-2x` copy. */
 const LARGE = '(min-width: 1800px), (min-width: 1024px) and (min-resolution: 1.5dppx)';
-const large = (src: string): string => src.replace(/\.(webm|mp4)$/, '@2x.$1');
+const large = (src: string): string => src.replace(/\.(webm|mp4)$/, '-2x.$1');
 
 /** A silent loop that plays only while on screen, and never under reduced motion. */
 export default function ReelVideo({

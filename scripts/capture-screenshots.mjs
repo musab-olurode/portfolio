@@ -86,11 +86,11 @@ for (const [slug, url] of targets) {
 	const large = await sharp(png, { limitInputPixels: false })
 		.resize({ width: 2400 })
 		.webp({ quality: 74 })
-		.toFile(`public/work/${slug}@2x.webp`);
+		.toFile(`public/work/${slug}-2x.webp`);
 
 	sizes[slug] = { width: small.width, height: small.height };
 	console.log(
-		`${slug} ${small.width}x${small.height} ${Math.round(small.size / 1024)} KB, @2x ${Math.round(large.size / 1024)} KB`
+		`${slug} ${small.width}x${small.height} ${Math.round(small.size / 1024)} KB, -2x ${Math.round(large.size / 1024)} KB`
 	);
 	await page.close();
 }

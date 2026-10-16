@@ -1,9 +1,20 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "musab-dev",
+	"account_id": "7cd5685f4d772c6644059a85238f4cd5",
 	"compatibility_date": "2026-10-16",
+	"main": "worker/index.ts",
 	"assets": {
 		"directory": "./out",
 		"not_found_handling": "404-page",
+		"binding": "ASSETS",
+		// The Worker sees every request first, so it can redirect www and the old domain by hostname.
+		"run_worker_first": true,
 	},
+	"routes": [
+		{ "pattern": "musab.dev", "custom_domain": true },
+		{ "pattern": "www.musab.dev", "custom_domain": true },
+		{ "pattern": "musabolurode.dev", "custom_domain": true },
+		{ "pattern": "www.musabolurode.dev", "custom_domain": true },
+	],
 }

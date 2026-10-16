@@ -10,8 +10,8 @@ test('the hero montage is a silent loop that appears once it plays', async ({ pa
 	const sources = await page.locator(`${reel} source`).evaluateAll((els) => els.map((e) => e.getAttribute('src')));
 
 	expect(sources).toEqual([
-		'/work/projects-reel@2x.webm',
-		'/work/projects-reel@2x.mp4',
+		'/work/projects-reel-2x.webm',
+		'/work/projects-reel-2x.mp4',
 		'/work/projects-reel.webm',
 		'/work/projects-reel.mp4',
 	]);

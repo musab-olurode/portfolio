@@ -29,7 +29,7 @@ for (const reel of REELS) {
 
 	for (const size of /** @type {const} */ (['large', 'small'])) {
 		const scale = `scale=${reel[size]}:flags=lanczos`;
-		const base = `public/work/${reel.name}${size === 'large' ? '@2x' : ''}`;
+		const base = `public/work/${reel.name}${size === 'large' ? '-2x' : ''}`;
 
 		await run('ffmpeg', [
 			'-v',
