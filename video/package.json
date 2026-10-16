@@ -4,10 +4,12 @@
 	"type": "module",
 	"scripts": {
 		"studio": "remotion studio src/index.ts",
-		"render": "remotion render src/index.ts canoo-reel out/canoo-reel.mp4 --codec h264 --crf 24 --pixel-format yuv420p --muted"
+		"render": "remotion render src/index.ts canoo-reel out/canoo-reel.mp4 --codec h264 --crf 24 --pixel-format yuv420p --muted",
+		"render:projects": "remotion render src/index.ts projects-reel out/projects-reel.mp4 --codec h264 --crf 22 --pixel-format yuv420p --muted"
 	},
 	"dependencies": {
 		"@remotion/cli": "^4.0.536",
+		"@remotion/google-fonts": "^4.0.536",
 		"react": "^19.3.1",
 		"react-dom": "^19.3.1",
 		"remotion": "^4.0.536"

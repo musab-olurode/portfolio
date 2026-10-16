@@ -8,16 +8,33 @@ interface Props {
 	poster: string;
 	label: string;
 	className?: string;
+	/** Keep the space empty until the video actually plays, then fade it in. */
+	hideUntilPlaying?: boolean;
 }
 
 /** A silent loop that plays only while on screen, and never under reduced motion. */
-export default function ReelVideo({ webm, mp4, poster, label, className }: Props): React.JSX.Element {
+export default function ReelVideo({
+	webm,
+	mp4,
+	poster,
+	label,
+	className,
+	hideUntilPlaying = false,
+}: Props): React.JSX.Element {
 	const ref = useRef<HTMLVideoElement>(null);
 
 	useEffect(() => {
 		const video = ref.current;
 
 		if (!video || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
+		const reveal = (): void => {
+			delete video.dataset['pending'];
+		};
+
+		if (hideUntilPlaying) {
+			video.dataset['pending'] = '';
+			video.addEventListener('playing', reveal, { once: true });
+		}
 		const observer = new IntersectionObserver(
 			([entry]) => {
 				if (entry?.isIntersecting) {
@@ -33,11 +50,20 @@ export default function ReelVideo({ webm, mp4, poster, label, className }: Props
 
 		return () => {
 			observer.disconnect();
+			video.removeEventListener('playing', reveal);
 		};
-	}, []);
+	}, [hideUntilPlaying]);
 
 	return (
-		<video ref={ref} loop muted playsInline aria-label={label} className={className} poster={poster} preload='none'>
+		<video
+			ref={ref}
+			loop
+			muted
+			playsInline
+			aria-label={label}
+			className={`transition-opacity duration-700 data-pending:opacity-0 ${className ?? ''}`}
+			poster={poster}
+			preload='none'>
 			<source src={webm} type='video/webm' />
 			<source src={mp4} type='video/mp4' />
 		</video>

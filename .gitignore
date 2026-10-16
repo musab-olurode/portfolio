@@ -50,3 +50,4 @@ scripts/.shot.mjs
 /video/node_modules
 /video/out
 /video/public/canoo-web.webm
+/video/public/sites

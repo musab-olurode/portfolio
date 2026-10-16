@@ -45,3 +45,16 @@ in `video/`:
    - `ffmpeg -i video/out/canoo-reel.mp4 -vf scale=864:1080 -c:v libx264 -preset veryslow -crf 30 -pix_fmt yuv420p -movflags +faststart -an public/work/canoo-reel.mp4`
    - `ffmpeg -i video/out/canoo-reel.mp4 -vf scale=864:1080 -c:v libvpx-vp9 -b:v 0 -crf 40 -row-mt 1 -an public/work/canoo-reel.webm`
    - Take the first frame as `public/work/canoo-reel-poster.webp`.
+
+## Regenerating the hero montage
+
+The hero loop (`public/work/projects-reel.{webm,mp4}` and its poster) shows every live project in turn:
+
+1. `node video/scripts/record-sites.mjs`: records a 16:10 scroll of each site into `video/public/sites/` (gitignored),
+   plus `manifest.json` with each clip's scroll start. Edit the `SITES` list there to add or remove a project.
+2. `cd video && npm run render:projects`: renders `video/out/projects-reel.mp4`.
+3. Compress it with the same two ffmpeg commands as the Canoo reel, but `scale=960:600`, `-crf 42` for WebM and
+   `-crf 31` for MP4. Then take a frame at 0.4 s as `public/work/projects-reel-poster.webp`.
+
+`npm run screenshots` (from the repo root) re-captures the full-page work screenshots and the also-built previews. It
+needs `npm run preview` running, for the "This site" preview.

@@ -52,6 +52,13 @@ export const profile = {
 	yearsLabel: '7+ years',
 } as const;
 
+export const heroReel = {
+	webm: '/work/projects-reel.webm',
+	mp4: '/work/projects-reel.mp4',
+	poster: '/work/projects-reel-poster.webp',
+	label: 'Screen recordings of every live project, one after another',
+};
+
 export const figures = { since: 2019, teams: 5, countries: 4, canooMembers: 1_000_000 } as const;
 
 export const summary =

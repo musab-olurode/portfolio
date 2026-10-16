@@ -1,5 +1,6 @@
-import { profile } from '@/content/profile';
+import { heroReel, profile } from '@/content/profile';
 
+import ReelVideo from '@/components/ReelVideo';
 import ThemeToggle from '@/components/ThemeToggle';
 
 export default function Hero(): React.JSX.Element {
@@ -32,6 +33,10 @@ export default function Hero(): React.JSX.Element {
 					<span>{last}</span>
 				</span>
 			</h1>
+
+			<div className='order-last mt-12 aspect-16/10 w-full bg-ground lg:order-0 lg:mt-8 lg:ml-auto lg:w-[42%]'>
+				<ReelVideo hideUntilPlaying className='size-full object-cover' {...heroReel} />
+			</div>
 
 			<div className='hero-rise mt-auto grid grid-cols-1 gap-8 pt-16 lg:grid-cols-12 lg:items-end lg:gap-6'>
 				<p className='max-w-[30ch] text-lead lg:col-span-6'>{profile.promise}</p>
