@@ -57,7 +57,7 @@
 		background: var(--ground);
 		color: var(--ink);
 		font-family: var(--font-text);
-		font-size: 1.0625rem;
+		font-size: 1rem;
 		line-height: 1.55;
 		font-variant-numeric: lining-nums;
 	}
@@ -71,6 +71,39 @@
 		outline: 2px solid currentColor;
 		outline-offset: 3px;
 	}
+}
+
+/* Type scale: six steps. */
+@utility text-display-xl {
+	font-family: var(--font-display);
+	font-size: clamp(84px, 34vw, 140px);
+	line-height: 0.88;
+	letter-spacing: -0.03em;
+
+	@media (width >= 48rem) {
+		/* Instrument Serif sets the name about five ems wide: fill the measure exactly. */
+		font-size: min(calc((100vw - 4rem) / 5), 300px);
+	}
+}
+
+@utility text-display {
+	font-family: var(--font-display);
+	font-size: clamp(40px, 9vw, 136px);
+	line-height: 0.92;
+	letter-spacing: -0.03em;
+}
+
+@utility text-heading {
+	font-family: var(--font-display);
+	font-size: clamp(40px, 3.6vw, 56px);
+	line-height: 1;
+	letter-spacing: -0.01em;
+}
+
+@utility text-lead {
+	font-family: var(--font-display);
+	font-size: clamp(24px, 2.5vw, 36px);
+	line-height: 1.12;
 }
 
 @utility link-underline {
@@ -167,9 +200,23 @@
 	scale: 1.04;
 }
 
+/* The one moving picture: each screenshot drifts slowly down its own page. */
+@keyframes pan {
+	to {
+		translate: 0 -16.6%;
+	}
+}
+
+@media (width >= 64rem) {
+	.pan {
+		animation: pan 18s ease-in-out infinite alternate;
+	}
+}
+
 @media (prefers-reduced-motion: reduce) {
 	.mask-line > span,
-	.hero-rise {
+	.hero-rise,
+	.pan {
 		animation: none;
 	}
 

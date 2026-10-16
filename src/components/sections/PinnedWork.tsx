@@ -1,10 +1,11 @@
 import Image from 'next/image';
+import WorkIndex from '@/components/WorkIndex';
 import { projects, type Project } from '@/content/profile';
 
 function Caption({ project }: { project: Project }) {
 	return (
-		<div className='reveal max-w-[30rem]'>
-			<h3 className='font-display text-[clamp(40px,4vw,60px)] leading-none'>
+		<div className='reveal max-w-[34rem]'>
+			<h3 className='text-heading'>
 				<a href={project.url} target='_blank' rel='noreferrer' className='link-underline'>
 					{project.name}
 				</a>
@@ -26,69 +27,62 @@ function Caption({ project }: { project: Project }) {
 	);
 }
 
-function Shot({ project, className, sizes }: { project: Project; className: string; sizes: string }) {
+function Shot({ project }: { project: Project }) {
 	return (
-		<a href={project.url} target='_blank' rel='noreferrer' tabIndex={-1} aria-hidden className={`block overflow-hidden bg-step-2 ${className}`}>
-			<Image src={project.image} alt='' width={1200} height={1800} sizes={sizes} className='reveal reveal-img h-full w-full object-cover object-top' />
+		<a
+			href={project.url}
+			target='_blank'
+			rel='noreferrer'
+			tabIndex={-1}
+			aria-hidden
+			className='reveal reveal-img bg-step-2 block aspect-[16/10] overflow-hidden lg:aspect-[4/5]'>
+			<Image src={project.image} alt='' width={1200} height={1800} sizes='(min-width: 1024px) 42vw, 100vw' className='pan h-auto w-full' />
 		</a>
 	);
 }
 
 export default function PinnedWork() {
 	return (
-		<section id='work' aria-labelledby='work-heading' className='bg-step relative'>
+		<section id='work' aria-labelledby='work-heading' className='bg-step px-4 py-28 sm:px-8 lg:py-0'>
 			<h2 id='work-heading' className='sr-only'>
 				Selected work
 			</h2>
-
-			{/* Desktop: the title stays pinned while each project passes beneath it. */}
-			<div className='hidden lg:block'>
-				<div className='pointer-events-none sticky top-0 z-10 -mb-[100svh] h-svh px-8 pt-[10svh] text-white mix-blend-difference' aria-hidden>
-					<p className='font-display text-[clamp(96px,12.6vw,200px)] leading-[0.9] tracking-[-0.03em]'>
-						Web, mobile
-						<br />
-						and backend.
-					</p>
+			<div className='lg:grid lg:grid-cols-12 lg:gap-6'>
+				{/* The title stays pinned in its own column while the projects pass beside it. */}
+				<div className='lg:col-span-6'>
+					<div className='lg:sticky lg:top-0 lg:flex lg:h-svh lg:flex-col lg:justify-center'>
+						<p className='reveal text-display' aria-hidden>
+							Web, mobile
+							<br />
+							and backend.
+						</p>
+						<WorkIndex items={projects.map(({ slug, name }) => ({ slug, name }))} />
+					</div>
 				</div>
-				{projects.map((project) => (
-					<article key={project.slug} className='relative grid h-svh grid-cols-12 gap-6 px-8 pb-[8svh]'>
-						<div className='col-span-4 self-end' data-reveal-group>
-							<Caption project={project} />
-						</div>
-						<div className='relative col-span-5 col-start-8 self-center'>
-							<Shot project={project} className='aspect-[4/5] h-[74svh] w-auto' sizes='(min-width: 1024px) 40vw, 100vw' />
+				<div className='mt-16 flex flex-col gap-24 lg:col-span-5 lg:col-start-8 lg:mt-0 lg:gap-32 lg:py-[16svh]'>
+					{projects.map((project) => (
+						<article key={project.slug} id={`work-${project.slug}`} className='flex scroll-mt-[12svh] flex-col gap-6'>
+							<Shot project={project} />
 							{project.extraImages && (
-								<div className='absolute -bottom-[6svh] -left-[34%] flex gap-3'>
-									{project.extraImages.map((img) => (
+								<div className='grid grid-cols-2 gap-4'>
+									{project.extraImages.map((img, i) => (
 										<Image
 											key={img.src}
 											src={img.src}
 											alt={img.alt}
 											width={860}
 											height={1864}
-											sizes='12vw'
-											className='reveal reveal-img h-[40svh] w-auto'
-											style={{ '--d': '160ms' } as React.CSSProperties}
+											sizes='(min-width: 1024px) 20vw, 50vw'
+											className='reveal reveal-img h-auto w-full'
+											style={{ '--d': `${80 + i * 80}ms` } as React.CSSProperties}
 										/>
 									))}
 								</div>
 							)}
-						</div>
-					</article>
-				))}
-			</div>
-
-			{/* Phones and tablets: a plain stacked list. */}
-			<div className='flex flex-col gap-20 px-4 py-24 sm:px-8 lg:hidden'>
-				<p className='reveal font-display text-[clamp(52px,13vw,104px)] leading-[0.92] tracking-[-0.03em]' aria-hidden>
-					Web, mobile and backend.
-				</p>
-				{projects.map((project) => (
-					<article key={project.slug} className='flex flex-col gap-6'>
-						<Shot project={project} className='aspect-[16/10] w-full' sizes='100vw' />
-						<Caption project={project} />
-					</article>
-				))}
+							<Caption project={project} />
+						</article>
+					))}
+				</div>
 			</div>
 		</section>
 	);

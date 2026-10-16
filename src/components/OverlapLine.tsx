@@ -14,7 +14,7 @@ export default function OverlapLine() {
 	}, []);
 
 	return (
-		<p className='text-lg sm:text-xl' aria-live='off'>
+		<p className='text-lg' aria-live='off'>
 			<span className='bg-step-2 inline-block px-4 py-3'>
 				It&apos;s <time className='tabular-nums'>{overlap?.myTime ?? '—:—'}</time> in my working day (GMT+1).
 			</span>{' '}

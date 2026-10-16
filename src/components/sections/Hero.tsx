@@ -22,7 +22,7 @@ export default function Hero() {
 				</span>
 			</nav>
 
-			<h1 className='font-display mt-10 text-[clamp(84px,34vw,140px)] leading-[0.88] tracking-[-0.03em] md:mt-6 md:text-[clamp(96px,19.2vw,300px)] md:whitespace-nowrap'>
+			<h1 className='text-display-xl mt-10 md:mt-6 md:whitespace-nowrap'>
 				<span className='mask-line'>
 					<span>{first}</span>
 				</span>{' '}
@@ -31,9 +31,9 @@ export default function Hero() {
 				</span>
 			</h1>
 
-			<div className='hero-rise mt-auto grid grid-cols-1 gap-8 pt-16 md:grid-cols-12 md:items-end md:gap-6'>
-				<p className='font-display text-[clamp(30px,3.1vw,46px)] leading-[1.08] md:col-span-6'>{profile.promise}</p>
-				<dl className='grid grid-cols-2 gap-6 text-base md:col-span-4 md:col-start-8'>
+			<div className='hero-rise mt-auto grid grid-cols-1 gap-8 pt-16 lg:grid-cols-12 lg:items-end lg:gap-6'>
+				<p className='text-lead max-w-[30ch] lg:col-span-6'>{profile.promise}</p>
+				<dl className='grid max-w-xl grid-cols-2 gap-6 text-base lg:col-span-4 lg:col-start-8'>
 					<div>
 						<dt className='font-medium'>Now</dt>
 						<dd>{profile.now}</dd>
@@ -43,7 +43,7 @@ export default function Hero() {
 						<dd>{profile.stackShort}</dd>
 					</div>
 				</dl>
-				<div className='md:col-span-1 md:col-start-12 md:justify-self-end'>
+				<div className='lg:col-span-1 lg:col-start-12 lg:justify-self-end'>
 					<a href={`mailto:${profile.email}`} className='btn whitespace-nowrap'>
 						Hire me
 					</a>

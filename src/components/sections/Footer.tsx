@@ -4,10 +4,10 @@ export default function Footer() {
 	const [user, domain] = profile.email.split('@');
 	return (
 		<footer className='flex min-h-[70svh] flex-col px-4 pt-20 pb-8 sm:px-8'>
-			<p className='reveal text-xl sm:text-2xl'>Hiring for web, mobile or backend? Write to me.</p>
+			<p className='reveal text-lead'>Hiring for web, mobile or backend? Write to me.</p>
 			<a
 				href={`mailto:${profile.email}`}
-				className='reveal font-display mt-auto pt-20 text-[clamp(64px,16vw,260px)] leading-[0.9] tracking-[-0.03em] no-underline transition-opacity hover:opacity-80'>
+				className='reveal font-display mt-auto pt-20 text-[clamp(64px,16vw,96px)] leading-[0.9] tracking-[-0.03em] no-underline transition-opacity hover:opacity-80 md:text-[min(calc((100vw-4rem)/5),300px)]'>
 				{user}
 				<wbr />@{domain}
 			</a>

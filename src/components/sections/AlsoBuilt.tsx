@@ -3,7 +3,7 @@ import { alsoBuilt } from '@/content/profile';
 export default function AlsoBuilt() {
 	return (
 		<section aria-labelledby='also-heading' className='px-4 py-28 sm:px-8 lg:py-40 lg:pl-[22vw]'>
-			<h2 id='also-heading' className='reveal mb-8 text-2xl font-medium'>
+			<h2 id='also-heading' className='reveal text-lead mb-8'>
 				Also built
 			</h2>
 			<ul className='reveal group/list max-w-3xl text-lg' style={{ '--d': '80ms' } as React.CSSProperties}>
