@@ -24,6 +24,7 @@ export interface Project {
 	imageAlt: string;
 	stack?: string;
 	subsite?: { name: string; url: string };
+	app?: { name: string; store: string; url: string };
 	reel?: { webm: string; mp4: string; poster: string; label: string };
 }
 
@@ -207,6 +208,17 @@ export const projects: Project[] = [
 		image: '/work/scrapays.webp',
 		imageSize: workImages.scrapays,
 		imageAlt: 'The Scrapays home page',
+		app: {
+			name: 'Scrapays Agent',
+			store: 'Google Play',
+			url: 'https://play.google.com/store/apps/details?id=com.scrapays.agent',
+		},
+		reel: {
+			webm: '/work/scrapays-reel.webm',
+			mp4: '/work/scrapays-reel.mp4',
+			poster: '/work/scrapays-reel-poster.webp',
+			label: 'Screen recording: the scrapays.com website scrolling, then the Scrapays Agent Android app as it is today',
+		},
 	},
 ];
 

@@ -33,6 +33,19 @@ describe('profile content', () => {
 		expect(projects.find((p) => p.slug === 'newborn')?.subsite?.url).toBe('https://pansaa.newborntoolkit.org/');
 	});
 
+	test('shows the Scrapays Android app alongside the website', () => {
+		const scrapays = projects.find((p) => p.slug === 'scrapays')!;
+
+		expect(scrapays.app).toEqual({
+			name: 'Scrapays Agent',
+			store: 'Google Play',
+			url: 'https://play.google.com/store/apps/details?id=com.scrapays.agent',
+		});
+		expect(scrapays.reel?.webm).toBe('/work/scrapays-reel.webm');
+		// The store screenshots show the app as it is now, not as first shipped.
+		expect(scrapays.reel?.label).toMatch(/today/i);
+	});
+
 	test('credits the Canoo team', () => {
 		const line = projects.find((p) => p.slug === 'canoo')!.line;
 

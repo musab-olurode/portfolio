@@ -49,5 +49,5 @@ scripts/.shot.mjs
 # video
 /video/node_modules
 /video/out
-/video/public/canoo-web.*
+/video/public/*-web.*
 /video/public/sites

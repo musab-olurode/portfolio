@@ -34,11 +34,13 @@ Everything visual is built in code. Run these from the repo root:
 1. **Screenshots:** with `npm run preview` running (for the "This site" preview), run `npm run screenshots`. It
    re-captures the full-page work screenshots and the also-built previews at 2× density, writing a 1200px and a 2400px
    (`-2x`) copy of each and updating `src/content/work-images.json`.
-2. **Footage:** `node video/scripts/record-canoo.mjs` and `node video/scripts/record-sites.mjs [slug ...]`. These
-   capture each site frame by frame (lossless screenshots of a scripted, eased scroll, not a screencast) into
-   `video/public/` (gitignored). Edit the `SITES` list in `record-sites.mjs` to add or remove a project.
-3. **Render:** `cd video && npm install && npm run render && npm run render:projects` writes `video/out/canoo-reel.mp4`
-   (1440×1800) and `video/out/projects-reel.mp4` (1920×1200). Use `npm run studio` to preview them.
+2. **Footage:** `node video/scripts/record-panels.mjs [canoo|scrapays]` and
+   `node video/scripts/record-sites.mjs [slug ...]`. These capture each site frame by frame (lossless screenshots of a
+   scripted, eased scroll, not a screencast) into `video/public/` (gitignored). Edit the `SITES` list in
+   `record-sites.mjs` to add or remove a project.
+3. **Render:** `cd video && npm install && npm run render && npm run render:scrapays && npm run render:projects` writes
+   `video/out/canoo-reel.mp4` and `video/out/scrapays-reel.mp4` (1440×1800) and `video/out/projects-reel.mp4`
+   (1920×1200). Use `npm run studio` to preview them.
 4. **Encode:** `node video/scripts/encode.mjs` writes a large (`-2x`) and a small copy of each reel as WebM and MP4,
    plus the posters, into `public/work/`. The page sends the large copy only to wide (≥1800px) or desktop retina
    screens.

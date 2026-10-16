@@ -2,25 +2,42 @@ import { expect, test } from '@playwright/test';
 
 const reel = '#work-canoo video';
 
-test('the Canoo panel has a silent looping reel with a poster', async ({ page }) => {
+for (const slug of ['canoo', 'scrapays']) {
+	test(`the ${slug} panel has a silent looping reel with a poster`, async ({ page }) => {
+		await page.goto('/');
+		const video = page.locator(`#work-${slug} video`);
+
+		await expect(video).toHaveAttribute('poster', `/work/${slug}-reel-poster.webp`);
+		await expect(video).toHaveAttribute('preload', 'none');
+		expect(await video.evaluate((v: HTMLVideoElement) => v.muted && v.loop && v.playsInline)).toBe(true);
+		const sources = await page
+			.locator(`#work-${slug} video source`)
+			.evaluateAll((els) => els.map((e) => e.getAttribute('src')));
+
+		expect(sources).toEqual([
+			`/work/${slug}-reel-2x.webm`,
+			`/work/${slug}-reel-2x.mp4`,
+			`/work/${slug}-reel.webm`,
+			`/work/${slug}-reel.mp4`,
+		]);
+		const media = await page
+			.locator(`#work-${slug} video source`)
+			.evaluateAll((els) => els.map((e) => e.getAttribute('media')));
+
+		expect(media[0]).toContain('min-resolution');
+		expect(media[2]).toBeNull();
+
+		const poster = await page.request.get(`/work/${slug}-reel-poster.webp`);
+
+		expect(poster.status()).toBe(200);
+	});
+}
+
+test('the Scrapays panel links its Android app on Google Play', async ({ page }) => {
 	await page.goto('/');
-	const video = page.locator(reel);
+	const link = page.locator('#work-scrapays').getByRole('link', { name: /Scrapays Agent/ });
 
-	await expect(video).toHaveAttribute('poster', '/work/canoo-reel-poster.webp');
-	await expect(video).toHaveAttribute('preload', 'none');
-	expect(await video.evaluate((v: HTMLVideoElement) => v.muted && v.loop && v.playsInline)).toBe(true);
-	const sources = await page.locator(`${reel} source`).evaluateAll((els) => els.map((e) => e.getAttribute('src')));
-
-	expect(sources).toEqual([
-		'/work/canoo-reel-2x.webm',
-		'/work/canoo-reel-2x.mp4',
-		'/work/canoo-reel.webm',
-		'/work/canoo-reel.mp4',
-	]);
-	const media = await page.locator(`${reel} source`).evaluateAll((els) => els.map((e) => e.getAttribute('media')));
-
-	expect(media[0]).toContain('min-resolution');
-	expect(media[2]).toBeNull();
+	await expect(link).toHaveAttribute('href', 'https://play.google.com/store/apps/details?id=com.scrapays.agent');
 });
 
 test('the reel plays only once it is in view', async ({ page }) => {

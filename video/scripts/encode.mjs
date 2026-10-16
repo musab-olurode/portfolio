@@ -15,6 +15,13 @@ const REELS = [
 		quality: { large: { webm: '36', mp4: '27' }, small: { webm: '38', mp4: '29' } },
 	},
 	{
+		name: 'scrapays-reel',
+		large: '1440:1800',
+		small: '864:1080',
+		posterAt: '0',
+		quality: { large: { webm: '36', mp4: '27' }, small: { webm: '38', mp4: '29' } },
+	},
+	{
 		// Ten busy pages compress less well; trade a little detail for weight.
 		name: 'projects-reel',
 		large: '1920:1200',
@@ -24,7 +31,10 @@ const REELS = [
 	},
 ];
 
-for (const reel of REELS) {
+// Pass reel names to encode only those, e.g. `node video/scripts/encode.mjs scrapays-reel`.
+const only = process.argv.slice(2);
+
+for (const reel of REELS.filter((r) => only.length === 0 || only.includes(r.name))) {
 	const input = `video/out/${reel.name}.mp4`;
 
 	for (const size of /** @type {const} */ (['large', 'small'])) {

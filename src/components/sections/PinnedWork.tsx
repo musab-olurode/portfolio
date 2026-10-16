@@ -26,6 +26,14 @@ function Caption({ project }: { project: Project }) {
 					</a>
 				</p>
 			)}
+			{project.app && (
+				<p className='mt-2'>
+					App:{' '}
+					<a className='underline underline-offset-4' href={project.app.url} rel='noreferrer' target='_blank'>
+						{project.app.name} on {project.app.store}
+					</a>
+				</p>
+			)}
 		</div>
 	);
 }

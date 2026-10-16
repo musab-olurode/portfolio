@@ -15,25 +15,28 @@ export const FPS = 30;
 export const DURATION = 14 * FPS;
 
 // The capture starts on the first frame of the scroll.
-const WEB_START = 0;
 const WEB_END = Math.round(8.5 * FPS);
 const LOOP_FADE = FPS;
-const CANOO_BLACK = '#000000';
 
 const ease = { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' } as const;
 
-function Web(): React.JSX.Element {
-	return (
-		<OffthreadVideo
-			muted
-			src={staticFile('canoo-web.mp4')}
-			style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-			trimBefore={WEB_START}
-		/>
-	);
+export interface PanelReelProps extends Record<string, unknown> {
+	/** Scroll recording of the website, in `public/`. */
+	web: string;
+	/** Two app screens, in `public/`, shown side by side after the website. */
+	apps: [string, string];
+	/** Background behind the app screens. */
+	background: string;
+	/** Height of each app screen in px; the frame is 1440×1800. */
+	appHeight: number;
+	appRadius: number;
 }
 
-function Phone({ src, delay }: { src: string; delay: number }): React.JSX.Element {
+function Web({ src }: { src: string }): React.JSX.Element {
+	return <OffthreadVideo muted src={staticFile(src)} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />;
+}
+
+function Screen({ src, delay, height, radius }: { src: string; delay: number; height: number; radius: number }) {
 	const frame = useCurrentFrame();
 	const { fps } = useVideoConfig();
 	const enter = spring({ frame: frame - delay, fps, config: { damping: 200 } });
@@ -43,8 +46,8 @@ function Phone({ src, delay }: { src: string; delay: number }): React.JSX.Elemen
 		<Img
 			src={staticFile(src)}
 			style={{
-				height: 1387,
-				borderRadius: 48,
+				height,
+				borderRadius: radius,
 				opacity: enter,
 				transform: `translateY(${(1 - enter) * 160 + drift}px)`,
 			}}
@@ -52,43 +55,36 @@ function Phone({ src, delay }: { src: string; delay: number }): React.JSX.Elemen
 	);
 }
 
-function App(): React.JSX.Element {
-	return (
-		<AbsoluteFill
-			style={{
-				background: CANOO_BLACK,
-				alignItems: 'center',
-				justifyContent: 'center',
-				flexDirection: 'row',
-				gap: 54,
-			}}>
-			<Phone delay={6} src='canoo-app-1.webp' />
-			<Phone delay={16} src='canoo-app-2.webp' />
-		</AbsoluteFill>
-	);
-}
-
-/** A silent loop for the Canoo panel: the real website scrolling, then the app. */
-export function CanooReel(): React.JSX.Element {
+/** A silent loop for a project panel: the real website scrolling, then two app screens. */
+export function PanelReel({ web, apps, background, appHeight, appRadius }: PanelReelProps): React.JSX.Element {
 	const frame = useCurrentFrame();
 	const appIn = interpolate(frame, [WEB_END - 15, WEB_END + 15], [0, 1], ease);
 	const loopIn = interpolate(frame, [DURATION - LOOP_FADE, DURATION], [0, 1], ease);
 
 	return (
-		<AbsoluteFill style={{ background: CANOO_BLACK }}>
+		<AbsoluteFill style={{ background }}>
 			<Sequence durationInFrames={WEB_END + 15}>
-				<Web />
+				<Web src={web} />
 			</Sequence>
 			<Sequence from={WEB_END - 15}>
-				<AbsoluteFill style={{ opacity: appIn }}>
-					<App />
+				<AbsoluteFill
+					style={{
+						opacity: appIn,
+						background,
+						alignItems: 'center',
+						justifyContent: 'center',
+						flexDirection: 'row',
+						gap: 54,
+					}}>
+					<Screen delay={6} height={appHeight} radius={appRadius} src={apps[0]} />
+					<Screen delay={16} height={appHeight} radius={appRadius} src={apps[1]} />
 				</AbsoluteFill>
 			</Sequence>
 			{/* Fade back to the opening frame so the loop has no seam. */}
 			<Sequence from={DURATION - LOOP_FADE}>
 				<AbsoluteFill style={{ opacity: loopIn }}>
 					<Freeze frame={0}>
-						<Web />
+						<Web src={web} />
 					</Freeze>
 				</AbsoluteFill>
 			</Sequence>
