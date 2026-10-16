@@ -5,7 +5,8 @@ const HOUR = 3_600_000;
 const WORK_START = 9;
 const WORK_END = 17;
 
-export type Overlap = { myTime: string; overlapHours: number; visitorPlace: string | null };
+/** `overlapHours` is null when the visitor's zone is unknown or hidden (invalid, UTC, Etc/*). */
+export type Overlap = { myTime: string; overlapHours: number | null; visitorPlace: string | null };
 
 function isValidZone(tz: string | undefined): tz is string {
 	if (!tz) return false;
@@ -35,14 +36,20 @@ function zoneParts(now: Date, tz: string) {
 	return { year: get('year'), month: get('month') - 1, day: get('day'), hour: get('hour'), minute: get('minute'), offset };
 }
 
+const isHiddenZone = (tz: string) => tz === 'UTC' || tz.startsWith('Etc/') || !tz.includes('/');
+
 function placeFromZone(tz: string): string | null {
-	if (tz === MY_TZ || tz === 'UTC' || tz.startsWith('Etc/') || !tz.includes('/')) return null;
+	if (tz === MY_TZ || isHiddenZone(tz)) return null;
 	return tz.split('/').pop()!.replace(/_/g, ' ');
 }
 
 export function getOverlap(now: Date, visitorTz: string | undefined): Overlap {
-	const tz = isValidZone(visitorTz) ? visitorTz : 'UTC';
 	const mine = zoneParts(now, MY_TZ);
+	const pad = (n: number) => String(n).padStart(2, '0');
+	const myTime = `${pad(mine.hour)}:${pad(mine.minute)}`;
+	if (!isValidZone(visitorTz) || isHiddenZone(visitorTz)) return { myTime, overlapHours: null, visitorPlace: null };
+
+	const tz = visitorTz;
 	const theirs = zoneParts(now, tz);
 
 	const day = Date.UTC(theirs.year, theirs.month, theirs.day);
@@ -52,15 +59,11 @@ export function getOverlap(now: Date, visitorTz: string | undefined): Overlap {
 	const myEnd = day + WORK_END * HOUR - mine.offset;
 	const shared = Math.min(theirEnd, myEnd) - Math.max(theirStart, myStart);
 
-	const pad = (n: number) => String(n).padStart(2, '0');
-	return {
-		myTime: `${pad(mine.hour)}:${pad(mine.minute)}`,
-		overlapHours: Math.max(0, Math.floor(shared / HOUR)),
-		visitorPlace: tz === visitorTz ? placeFromZone(tz) : null,
-	};
+	return { myTime, overlapHours: Math.max(0, Math.floor(shared / HOUR)), visitorPlace: placeFromZone(tz) };
 }
 
 export function overlapSentence(o: Overlap): string {
+	if (o.overlapHours === null) return 'I work 09:00–17:00 GMT+1 and shift my hours to meet the team.';
 	if (o.overlapHours === 0) return "Our workdays don't overlap, but I shift my hours to meet the team.";
 	if (o.overlapHours === WORK_END - WORK_START && o.visitorPlace === null) return "We'd share the whole workday.";
 	const hours = `${o.overlapHours} hour${o.overlapHours === 1 ? '' : 's'}`;

@@ -16,7 +16,7 @@ const resumeProjects = projects.filter((p) => ['canoo', 'newborn', 'scrapays'].i
 export default function Resume() {
 	return (
 		<div className='min-h-svh bg-white py-0 font-sans text-black sm:bg-neutral-100 sm:py-10 print:bg-white print:py-0'>
-			<a href={profile.resumePdf} className='absolute top-3 right-6 text-sm text-black underline print:hidden'>
+			<a href={profile.resumePdf} className='absolute top-3 right-6 z-10 text-sm text-black underline print:hidden'>
 				Download PDF
 			</a>
 			<main className={styles.page}>

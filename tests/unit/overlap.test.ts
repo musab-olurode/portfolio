@@ -23,14 +23,13 @@ describe('getOverlap', () => {
 		expect(la.visitorPlace).toBe('Los Angeles');
 	});
 
-	test('an invalid or missing zone falls back to UTC without a place', () => {
-		for (const tz of ['Not/AZone', undefined]) {
-			expect(getOverlap(now, tz)).toEqual({ myTime: '14:20', overlapHours: 7, visitorPlace: null });
+	test('an unknown, invalid or hidden zone makes no overlap claim', () => {
+		for (const tz of ['Not/AZone', undefined, 'UTC', 'Etc/GMT']) {
+			expect(getOverlap(now, tz)).toEqual({ myTime: '14:20', overlapHours: null, visitorPlace: null });
 		}
 	});
 
-	test('UTC and my own zone have no place name', () => {
-		expect(getOverlap(now, 'UTC').visitorPlace).toBeNull();
+	test('my own zone has no place name', () => {
 		expect(getOverlap(now, MY_TZ).visitorPlace).toBeNull();
 	});
 });
@@ -48,6 +47,12 @@ describe('overlapSentence', () => {
 	test('handles no overlap', () => {
 		expect(overlapSentence({ myTime: '14:20', overlapHours: 0, visitorPlace: 'Tokyo' })).toBe(
 			"Our workdays don't overlap, but I shift my hours to meet the team."
+		);
+	});
+
+	test('states my hours when the visitor zone is unknown', () => {
+		expect(overlapSentence({ myTime: '14:20', overlapHours: null, visitorPlace: null })).toBe(
+			'I work 09:00–17:00 GMT+1 and shift my hours to meet the team.'
 		);
 	});
 
