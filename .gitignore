@@ -36,3 +36,11 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# tooling
+/test-results
+/playwright-report
+.wrangler
+.taste-skill
+.superpowers
+next-env.d.ts

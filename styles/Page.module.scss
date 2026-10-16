@@ -1,9 +1,0 @@
-.page {
-	@apply m-auto bg-white relative w-[210mm] min-h-[297mm] text-black py-14;
-	@apply print:py-0 shadow-lg print:shadow-none border border-gray-100 print:border-none;
-}
-
-@page {
-	size: A4;
-	margin: 15mm 0;
-}
