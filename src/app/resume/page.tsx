@@ -4,10 +4,24 @@ import { competencies, education, profile, projects, roles, skills, softSkills, 
 
 import styles from './resume.module.css';
 
+const title = "Mus'ab Olurode — Résumé";
+const description = 'Résumé of Mus’ab Olurode, full-stack engineer with 7+ years of experience.';
+
 export const metadata: Metadata = {
-	title: "Mus'ab Olurode — Résumé",
-	description: 'Résumé of Mus’ab Olurode, full-stack engineer with 7+ years of experience.',
+	title,
+	description,
 	alternates: { canonical: '/resume' },
+	// A nested openGraph replaces the root one entirely, so it restates every field, the card included.
+	openGraph: {
+		title,
+		description,
+		url: '/resume',
+		siteName: "Mus'ab Olurode",
+		locale: 'en_GB',
+		type: 'profile',
+		images: [{ url: '/opengraph-image.jpg', width: 1200, height: 630, alt: "Mus'ab Olurode, full-stack engineer" }],
+	},
+	twitter: { card: 'summary_large_image', creator: '@_RedDxt', title, description },
 };
 
 const heading = 'text-lg font-bold text-[#003366] border-b border-gray-300 mb-3';

@@ -11,19 +11,41 @@ const geist = Geist({ weight: ['400', '500'], subsets: ['latin'], variable: '--f
 
 const description = 'Full-stack engineer with 7+ years building web apps, mobile apps and the backends behind them.';
 
+const title = "Mus'ab Olurode — Full-stack engineer";
+
 export const metadata: Metadata = {
 	metadataBase: new URL(profile.site),
-	title: "Mus'ab Olurode — Full-stack engineer",
+	title,
 	description,
+	applicationName: profile.name,
+	authors: [{ name: profile.name, url: profile.site }],
+	creator: profile.name,
+	keywords: [
+		'full-stack engineer',
+		'senior engineer',
+		'TypeScript',
+		'React',
+		'Next.js',
+		'React Native',
+		'Node.js',
+		'NestJS',
+		'remote',
+	],
 	alternates: { canonical: '/' },
+	formatDetection: { telephone: false, address: false, email: false },
 	openGraph: {
-		title: "Mus'ab Olurode — Full-stack engineer",
+		title,
 		description,
 		url: '/',
-		siteName: "Mus'ab Olurode",
-		type: 'website',
+		siteName: profile.name,
+		locale: 'en_GB',
+		type: 'profile',
+		firstName: "Mus'ab",
+		lastName: 'Olurode',
+		username: 'musab-olurode',
 	},
-	twitter: { card: 'summary_large_image', creator: '@_RedDxt' },
+	twitter: { card: 'summary_large_image', creator: '@_RedDxt', title, description },
+	robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {
