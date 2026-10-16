@@ -14,8 +14,8 @@ import {
 export const FPS = 30;
 export const DURATION = 14 * FPS;
 
-// The recording spends its first ~6 s loading; the scroll starts just after.
-const WEB_START = Math.round(5.6 * FPS);
+// The capture starts on the first frame of the scroll.
+const WEB_START = 0;
 const WEB_END = Math.round(8.5 * FPS);
 const LOOP_FADE = FPS;
 const CANOO_BLACK = '#000000';
@@ -26,7 +26,7 @@ function Web(): React.JSX.Element {
 	return (
 		<OffthreadVideo
 			muted
-			src={staticFile('canoo-web.webm')}
+			src={staticFile('canoo-web.mp4')}
 			style={{ width: '100%', height: '100%', objectFit: 'cover' }}
 			trimBefore={WEB_START}
 		/>
@@ -37,16 +37,16 @@ function Phone({ src, delay }: { src: string; delay: number }): React.JSX.Elemen
 	const frame = useCurrentFrame();
 	const { fps } = useVideoConfig();
 	const enter = spring({ frame: frame - delay, fps, config: { damping: 200 } });
-	const drift = interpolate(frame, [0, DURATION - WEB_END], [0, -40], ease);
+	const drift = interpolate(frame, [0, DURATION - WEB_END], [0, -53], ease);
 
 	return (
 		<Img
 			src={staticFile(src)}
 			style={{
-				height: 1040,
-				borderRadius: 36,
+				height: 1387,
+				borderRadius: 48,
 				opacity: enter,
-				transform: `translateY(${(1 - enter) * 120 + drift}px)`,
+				transform: `translateY(${(1 - enter) * 160 + drift}px)`,
 			}}
 		/>
 	);
@@ -60,7 +60,7 @@ function App(): React.JSX.Element {
 				alignItems: 'center',
 				justifyContent: 'center',
 				flexDirection: 'row',
-				gap: 40,
+				gap: 54,
 			}}>
 			<Phone delay={6} src='canoo-app-1.webp' />
 			<Phone delay={16} src='canoo-app-2.webp' />

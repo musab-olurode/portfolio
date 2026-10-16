@@ -19,4 +19,18 @@ test.describe('on a 3440px ultrawide', () => {
 		await img.scrollIntoViewIfNeeded();
 		await expect.poll(() => img.evaluate((el: HTMLImageElement) => el.currentSrc)).toMatch(/@2x\.webp$/);
 	});
+
+	test('the hero montage plays the large copy', async ({ page }) => {
+		await page.goto('/');
+		const video = page.locator('header video');
+
+		await expect.poll(() => video.evaluate((el: HTMLVideoElement) => el.currentSrc)).toMatch(/projects-reel@2x\.webm$/);
+	});
+});
+
+test('a laptop screen gets the small montage', async ({ page }) => {
+	await page.goto('/');
+	const video = page.locator('header video');
+
+	await expect.poll(() => video.evaluate((el: HTMLVideoElement) => el.currentSrc)).toMatch(/projects-reel\.webm$/);
 });

@@ -12,6 +12,10 @@ interface Props {
 	hideUntilPlaying?: boolean;
 }
 
+/** Wide screens, or desktop-sized retina screens, get the sharper `@2x` copy. */
+const LARGE = '(min-width: 1800px), (min-width: 1024px) and (min-resolution: 1.5dppx)';
+const large = (src: string): string => src.replace(/\.(webm|mp4)$/, '@2x.$1');
+
 /** A silent loop that plays only while on screen, and never under reduced motion. */
 export default function ReelVideo({
 	webm,
@@ -64,6 +68,8 @@ export default function ReelVideo({
 			className={`transition-opacity duration-700 data-pending:opacity-0 ${className ?? ''}`}
 			poster={poster}
 			preload='none'>
+			<source media={LARGE} src={large(webm)} type='video/webm' />
+			<source media={LARGE} src={large(mp4)} type='video/mp4' />
 			<source src={webm} type='video/webm' />
 			<source src={mp4} type='video/mp4' />
 		</video>

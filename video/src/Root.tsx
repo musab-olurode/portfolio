@@ -9,17 +9,17 @@ export const Root = (): React.JSX.Element => (
 			component={CanooReel}
 			durationInFrames={DURATION}
 			fps={FPS}
-			height={1350}
+			height={1800}
 			id='canoo-reel'
-			width={1080}
+			width={1440}
 		/>
 		<Composition
 			component={ProjectsReel}
 			durationInFrames={PROJECTS_DURATION}
 			fps={PROJECTS_FPS}
-			height={800}
+			height={1200}
 			id='projects-reel'
-			width={1280}
+			width={1920}
 		/>
 	</>
 );

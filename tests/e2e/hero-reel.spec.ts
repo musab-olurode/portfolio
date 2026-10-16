@@ -9,7 +9,16 @@ test('the hero montage is a silent loop that appears once it plays', async ({ pa
 	expect(await video.evaluate((v: HTMLVideoElement) => v.muted && v.loop && v.playsInline)).toBe(true);
 	const sources = await page.locator(`${reel} source`).evaluateAll((els) => els.map((e) => e.getAttribute('src')));
 
-	expect(sources).toEqual(['/work/projects-reel.webm', '/work/projects-reel.mp4']);
+	expect(sources).toEqual([
+		'/work/projects-reel@2x.webm',
+		'/work/projects-reel@2x.mp4',
+		'/work/projects-reel.webm',
+		'/work/projects-reel.mp4',
+	]);
+	const media = await page.locator(`${reel} source`).evaluateAll((els) => els.map((e) => e.getAttribute('media')));
+
+	expect(media[0]).toContain('min-resolution');
+	expect(media[2]).toBeNull();
 	await expect.poll(() => video.evaluate((v: HTMLVideoElement) => v.paused)).toBe(false);
 	await expect.poll(() => video.evaluate((v) => getComputedStyle(v).opacity)).toBe('1');
 });

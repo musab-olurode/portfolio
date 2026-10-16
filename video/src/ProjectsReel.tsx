@@ -24,10 +24,10 @@ function Footage({ clip }: { clip: Clip }): React.JSX.Element {
 	return (
 		<OffthreadVideo
 			muted
-			src={staticFile(`sites/${clip.slug}.webm`)}
+			src={staticFile(`sites/${clip.slug}.mp4`)}
 			style={{ width: '100%', height: '100%', objectFit: 'cover' }}
 			// Start a beat into the scroll so every clip opens already moving.
-			trimBefore={Math.round((clip.scrollStart + 0.3) * PROJECTS_FPS)}
+			trimBefore={Math.round((clip.scrollStart + 0.2) * PROJECTS_FPS)}
 		/>
 	);
 }
@@ -37,13 +37,13 @@ function Label({ name }: { name: string }): React.JSX.Element {
 		<div
 			style={{
 				position: 'absolute',
-				left: 28,
-				bottom: 28,
-				padding: '12px 18px',
+				left: 42,
+				bottom: 42,
+				padding: '18px 27px',
 				background: '#141414',
 				color: '#f3f3f0',
 				fontFamily,
-				fontSize: 26,
+				fontSize: 39,
 				fontWeight: 500,
 				letterSpacing: '-0.01em',
 			}}>

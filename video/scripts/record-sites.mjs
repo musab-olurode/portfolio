@@ -1,8 +1,10 @@
-// Records a short 16:10 scroll through each live project for the hero montage.
-// Writes video/public/sites/<slug>.webm and video/public/sites/manifest.json (scroll start per clip).
-import { mkdir, readdir, rename, rm, writeFile } from 'node:fs/promises';
+// Captures a short 16:10 scroll through each live project for the hero montage, frame by frame.
+// Writes video/public/sites/<slug>.mp4 and video/public/sites/manifest.json.
+import { mkdir, rm, writeFile } from 'node:fs/promises';
 
 import { chromium } from '@playwright/test';
+
+import { captureScroll, preparePage } from './scroll-frames.mjs';
 
 const SITES = [
 	['canoo', 'Canoo', 'https://canoo.ca/'],
@@ -17,59 +19,35 @@ const SITES = [
 	['naseeb', 'Naseeb by Qadr', 'https://naseeb-by-qadr.pages.dev/'],
 ];
 const OUT = 'video/public/sites';
-const SIZE = { width: 1280, height: 800 };
-const SCROLL_SECONDS = 3;
+const VIEWPORT = { width: 1280, height: 800 };
 
-await rm(OUT, { recursive: true, force: true });
+const only = process.argv.slice(2);
+
+if (!only.length) await rm(OUT, { recursive: true, force: true });
 await mkdir(OUT, { recursive: true });
 const browser = await chromium.launch();
-const manifest = [];
+const context = await browser.newContext({
+	viewport: VIEWPORT,
+	deviceScaleFactor: 1.5, // 1920×1200 frames.
+	userAgent:
+		'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36',
+});
 
-for (const [slug, name, url] of SITES) {
-	const dir = `${OUT}/tmp-${slug}`;
-	const context = await browser.newContext({
-		viewport: SIZE,
-		recordVideo: { dir, size: SIZE },
-		userAgent:
-			'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36',
-	});
+for (const [slug, , url] of SITES.filter(([slug]) => !only.length || only.includes(slug))) {
 	const page = await context.newPage();
-	const t0 = Date.now();
 
-	await page.goto(url, { waitUntil: 'networkidle', timeout: 60_000 }).catch(() => undefined);
-	for (const label of [/^(reject|decline)( all)?/i, /^(close|dismiss|got it|ok)$/i]) {
-		const button = page.getByRole('button', { name: label }).first();
-
-		if (await button.isVisible().catch(() => false)) await button.click({ timeout: 2000 }).catch(() => undefined);
-	}
-	// Some sites' CSP blocks injected <style> tags; inline styles from script still apply.
-	await page.evaluate(() => {
-		document.documentElement.style.setProperty('scroll-behavior', 'auto', 'important');
-		document.documentElement.style.setProperty('scrollbar-width', 'none');
-	});
-	await page.waitForTimeout(1200);
-	const scrollStart = (Date.now() - t0) / 1000;
-
-	await page.evaluate(
-		async ({ distance, frames }) => {
-			const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2);
-
-			for (let i = 0; i <= frames; i++) {
-				window.scrollTo(0, distance * ease(i / frames));
-				await new Promise((resolve) => requestAnimationFrame(resolve));
-			}
-		},
-		{ distance: SIZE.height * 1.2, frames: SCROLL_SECONDS * 60 }
-	);
-	await page.waitForTimeout(600);
-	await context.close();
-	const [file] = await readdir(dir);
-
-	await rename(`${dir}/${file}`, `${OUT}/${slug}.webm`);
-	await rm(dir, { recursive: true, force: true });
-	manifest.push({ slug, name, scrollStart });
-	console.log(`${slug} scroll starts at ${scrollStart.toFixed(2)}s`);
+	await preparePage(page, url);
+	await captureScroll(page, { out: `${OUT}/${slug}.mp4`, frames: 90, distance: VIEWPORT.height * 1.2 });
+	await page.close();
+	console.log(`captured ${slug}`);
 }
 
 await browser.close();
-await writeFile(`${OUT}/manifest.json`, `${JSON.stringify(manifest, null, '\t')}\n`);
+await writeFile(
+	`${OUT}/manifest.json`,
+	`${JSON.stringify(
+		SITES.map(([slug, name]) => ({ slug, name, scrollStart: 0 })),
+		null,
+		'\t'
+	)}\n`
+);

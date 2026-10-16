@@ -32,29 +32,19 @@ The site is a static Next.js export (`out/`) served by an assets-only Cloudflare
 After changing anything in `src/content/profile.ts` that appears on the résumé, run `npm run resume:pdf` before
 deploying so the PDF matches.
 
-## Regenerating the Canoo reel
+## Regenerating the screenshots and reels
 
-The silent loop in the Canoo panel (`public/work/canoo-reel.{webm,mp4}` and its poster) is built in code with Remotion
-in `video/`:
+Everything visual is built in code. Run these from the repo root:
 
-1. `node video/scripts/record-canoo.mjs`: records a fresh 4:5 scroll through canoo.ca into `video/public/canoo-web.webm`
-   (gitignored).
-2. `cd video && npm install && npm run render`: renders `video/out/canoo-reel.mp4` (14 s, 1080×1350, no audio).
-   `npm run studio` previews it.
-3. From the repo root, compress for the web:
-   - `ffmpeg -i video/out/canoo-reel.mp4 -vf scale=864:1080 -c:v libx264 -preset veryslow -crf 30 -pix_fmt yuv420p -movflags +faststart -an public/work/canoo-reel.mp4`
-   - `ffmpeg -i video/out/canoo-reel.mp4 -vf scale=864:1080 -c:v libvpx-vp9 -b:v 0 -crf 40 -row-mt 1 -an public/work/canoo-reel.webm`
-   - Take the first frame as `public/work/canoo-reel-poster.webp`.
-
-## Regenerating the hero montage
-
-The hero loop (`public/work/projects-reel.{webm,mp4}` and its poster) shows every live project in turn:
-
-1. `node video/scripts/record-sites.mjs`: records a 16:10 scroll of each site into `video/public/sites/` (gitignored),
-   plus `manifest.json` with each clip's scroll start. Edit the `SITES` list there to add or remove a project.
-2. `cd video && npm run render:projects`: renders `video/out/projects-reel.mp4`.
-3. Compress it with the same two ffmpeg commands as the Canoo reel, but `scale=960:600`, `-crf 42` for WebM and
-   `-crf 31` for MP4. Then take a frame at 0.4 s as `public/work/projects-reel-poster.webp`.
-
-`npm run screenshots` (from the repo root) re-captures the full-page work screenshots and the also-built previews. It
-needs `npm run preview` running, for the "This site" preview.
+1. **Screenshots:** with `npm run preview` running (for the "This site" preview), run `npm run screenshots`. It
+   re-captures the full-page work screenshots and the also-built previews at 2× density, writing a 1200px and a 2400px
+   (`@2x`) copy of each and updating `src/content/work-images.json`.
+2. **Footage:** `node video/scripts/record-canoo.mjs` and `node video/scripts/record-sites.mjs [slug ...]`. These
+   capture each site frame by frame (lossless screenshots of a scripted, eased scroll, not a screencast) into
+   `video/public/` (gitignored). Edit the `SITES` list in `record-sites.mjs` to add or remove a project.
+3. **Render:** `cd video && npm install && npm run render && npm run render:projects` writes `video/out/canoo-reel.mp4`
+   (1440×1800) and `video/out/projects-reel.mp4` (1920×1200). Use `npm run studio` to preview them.
+4. **Encode:** `node video/scripts/encode.mjs` writes a large (`@2x`) and a small copy of each reel as WebM and MP4,
+   plus the posters, into `public/work/`. The page sends the large copy only to wide (≥1800px) or desktop retina
+   screens.
+5. **Link-preview card:** `node scripts/build-og.mjs` re-renders `src/app/opengraph-image.jpg` from the headshot.
