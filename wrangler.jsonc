@@ -4,6 +4,8 @@
 	"account_id": "7cd5685f4d772c6644059a85238f4cd5",
 	"compatibility_date": "2026-10-16",
 	"main": "worker/index.ts",
+	// Keep the *.workers.dev address as a preview alongside the custom domains.
+	"workers_dev": true,
 	"assets": {
 		"directory": "./out",
 		"not_found_handling": "404-page",
