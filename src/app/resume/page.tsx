@@ -92,7 +92,6 @@ export default function Resume(): React.JSX.Element {
 						<h2 className={heading}>EDUCATION</h2>
 						<div className='flex justify-between'>
 							<h3 className='font-bold text-[#800000]'>{education.school}</h3>
-							<span className='text-sm italic'>{education.dates}</span>
 						</div>
 						<p className='text-sm italic'>{education.degree}</p>
 					</section>

@@ -206,15 +206,22 @@
 }
 
 /* The one moving picture: each screenshot drifts slowly down its own page. */
+/* Each full-page capture scrolls to its own bottom (see lib/pan.ts), holds, and scrolls back. */
 @keyframes pan {
-	to {
-		translate: 0 -16.6%;
+	0%,
+	8% {
+		translate: 0 0;
+	}
+
+	92%,
+	100% {
+		translate: 0 var(--pan-end, 0);
 	}
 }
 
 @media (width >= 64rem) {
 	.pan {
-		animation: pan 18s ease-in-out infinite alternate;
+		animation: pan var(--pan-duration, 0s) ease-in-out infinite alternate;
 	}
 }
 

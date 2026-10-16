@@ -1,5 +1,6 @@
 import Image from 'next/image';
 
+import { panFor } from '@/lib/pan';
 import { type Project, projects } from '@/content/profile';
 
 import ReelVideo from '@/components/ReelVideo';
@@ -30,6 +31,12 @@ function Caption({ project }: { project: Project }) {
 	);
 }
 
+function panStyle(project: Project): React.CSSProperties | undefined {
+	const pan = panFor(project.imageSize);
+
+	return pan ? ({ '--pan-end': pan.end, '--pan-duration': pan.duration } as React.CSSProperties) : undefined;
+}
+
 function Shot({ project }: { project: Project }): React.JSX.Element {
 	if (project.reel) {
 		return (
@@ -50,10 +57,11 @@ function Shot({ project }: { project: Project }): React.JSX.Element {
 			<Image
 				alt=''
 				className='pan h-auto w-full'
-				height={1800}
+				height={project.imageSize.height}
 				sizes='(min-width: 1024px) 42vw, 100vw'
 				src={project.image}
-				width={1200}
+				style={panStyle(project)}
+				width={project.imageSize.width}
 			/>
 		</a>
 	);

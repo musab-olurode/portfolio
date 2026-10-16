@@ -1,3 +1,7 @@
+import type { ImageSize } from '@/lib/pan';
+
+import workImages from './work-images.json' with { type: 'json' };
+
 export interface Role {
 	company: string;
 	title: string;
@@ -16,6 +20,7 @@ export interface Project {
 	years: string;
 	url: string;
 	image: string;
+	imageSize: ImageSize;
 	imageAlt: string;
 	stack?: string;
 	subsite?: { name: string; url: string };
@@ -27,6 +32,7 @@ export interface AlsoBuilt {
 	kind: string;
 	year: string;
 	url?: string;
+	image?: string;
 }
 
 export const profile = {
@@ -129,6 +135,7 @@ export const projects: Project[] = [
 		years: '2025–now',
 		url: 'https://canoo.ca/',
 		image: '/work/canoo-web.webp',
+		imageSize: workImages['canoo-web'],
 		imageAlt: 'The canoo.ca home page',
 		stack: 'React Native · Next.js · Node.js · CMS',
 		reel: {
@@ -146,6 +153,7 @@ export const projects: Project[] = [
 		years: '2022–25',
 		url: 'https://newborntoolkit.org/',
 		image: '/work/newborn.webp',
+		imageSize: workImages.newborn,
 		imageAlt: 'The Newborn Toolkit home page',
 		subsite: { name: 'PANSAA', url: 'https://pansaa.newborntoolkit.org/' },
 	},
@@ -157,6 +165,7 @@ export const projects: Project[] = [
 		years: '2022–25',
 		url: 'https://cematchmaker.com/',
 		image: '/work/cematchmaker.webp',
+		imageSize: workImages.cematchmaker,
 		imageAlt: 'The CEMatchMaker home page',
 	},
 	{
@@ -167,6 +176,7 @@ export const projects: Project[] = [
 		years: '2022–25',
 		url: 'https://worldkite.co.uk/',
 		image: '/work/worldkite.webp',
+		imageSize: workImages.worldkite,
 		imageAlt: 'The WorldKite home page',
 	},
 	{
@@ -177,6 +187,7 @@ export const projects: Project[] = [
 		years: '2022–25',
 		url: 'https://ericchelpdesk.org/',
 		image: '/work/ericc.webp',
+		imageSize: workImages.ericc,
 		imageAlt: 'The Ericc Help Desk home page',
 	},
 	{
@@ -187,6 +198,7 @@ export const projects: Project[] = [
 		years: '2020–22',
 		url: 'https://scrapays.com/',
 		image: '/work/scrapays.webp',
+		imageSize: workImages.scrapays,
 		imageAlt: 'The Scrapays home page',
 	},
 ];
@@ -197,21 +209,30 @@ export const alsoBuilt: AlsoBuilt[] = [
 		kind: 'Wedding website, design by Qoreeb Abubakar',
 		year: '2025',
 		url: 'https://naseeb-by-qadr.pages.dev/',
+		image: '/work/naseeb.webp',
 	},
 	{
 		name: 'Sandwell Business Growth',
 		kind: 'Council business-support site, Studio 14',
 		year: '2023',
 		url: 'https://www.sandwell.gov.uk/SBG/',
+		image: '/work/sandwell.webp',
 	},
 	{
 		name: 'Gender Lens',
 		kind: 'Impact investing site for Plan International, Studio 14',
 		year: '2023',
 		url: 'https://gender-lens-wp.s14staging.uk/',
+		image: '/work/gender-lens.webp',
 	},
 	{ name: 'Montech', kind: 'Web3 backends, 10,000+ concurrent users', year: '2022' },
-	{ name: 'This site', kind: 'Next.js, on GitHub', year: '2026', url: 'https://github.com/musab-olurode/portfolio' },
+	{
+		name: 'This site',
+		kind: 'Next.js, on GitHub',
+		year: '2026',
+		url: 'https://github.com/musab-olurode/portfolio',
+		image: '/work/this-site.webp',
+	},
 ];
 
 export const skills: string[] = [
@@ -256,5 +277,4 @@ export const softSkills =
 export const education = {
 	school: 'University of Ilorin',
 	degree: 'B.Sc. Computer Science',
-	dates: 'Sep 2019 – Aug 2024',
 };

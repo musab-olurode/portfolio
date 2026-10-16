@@ -16,6 +16,14 @@ test('résumé header carries no location markers', async ({ page }) => {
 	expect(html).not.toMatch(/\+234|Kwara|gmail/);
 });
 
+test('education shows no years', async ({ page }) => {
+	await page.goto('/resume');
+	const education = page.locator('section', { has: page.getByRole('heading', { name: 'EDUCATION' }) });
+
+	await expect(education).toContainText('University of Ilorin');
+	await expect(education).not.toContainText(/20\d\d/);
+});
+
 test('the PDF is served', async ({ request }) => {
 	const res = await request.get('/musab-olurode-resume.pdf');
 

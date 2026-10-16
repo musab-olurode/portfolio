@@ -4,7 +4,10 @@ const hiddenCount = (page: Page) =>
 	page.evaluate(
 		() =>
 			[...document.querySelectorAll('main h2, main h3, main p, main img, header h1 span')].filter(
-				(el) => el.getClientRects().length > 0 && Number(getComputedStyle(el).opacity) < 1
+				(el) =>
+					el.getClientRects().length > 0 &&
+					!el.closest('[aria-hidden="true"]') &&
+					Number(getComputedStyle(el).opacity) < 1
 			).length
 	);
 
