@@ -1,5 +1,113 @@
 @import 'tailwindcss';
 
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+:root {
+	--ground: #f3f3f0;
+	--ink: #141414;
+	--soft: #4a4a46;
+	--step: #e9e9e4;
+	--step-2: #e4e4df;
+	--accent: #0f5c3f;
+	--accent-ink: #ffffff;
+	--band: #1a2039;
+	--band-ink: #f9a3c0;
+	--band-soft: #b9879c;
+	color-scheme: light;
+}
+
+[data-theme='dark'] {
+	--ground: #1a2039;
+	--ink: #f9a3c0;
+	--soft: #b9879c;
+	--step: #212846;
+	--step-2: #283055;
+	--accent: #f9a3c0;
+	--accent-ink: #1a2039;
+	--band: #212846;
+	color-scheme: dark;
+}
+
+@theme inline {
+	--color-ground: var(--ground);
+	--color-ink: var(--ink);
+	--color-soft: var(--soft);
+	--color-step: var(--step);
+	--color-step-2: var(--step-2);
+	--color-accent: var(--accent);
+	--color-accent-ink: var(--accent-ink);
+	--color-band: var(--band);
+	--color-band-ink: var(--band-ink);
+	--color-band-soft: var(--band-soft);
+	--font-display: var(--font-instrument-serif), Georgia, serif;
+	--font-text: var(--font-geist), system-ui, sans-serif;
+	--ease-out-strong: cubic-bezier(0.2, 0, 0, 1);
+}
+
+@layer base {
+	html {
+		background: var(--ground);
+		color: var(--ink);
+		-webkit-font-smoothing: antialiased;
+		text-rendering: optimizeLegibility;
+	}
+
+	body {
+		margin: 0;
+		background: var(--ground);
+		color: var(--ink);
+		font-family: var(--font-text);
+		font-size: 1.0625rem;
+		line-height: 1.55;
+		font-variant-numeric: lining-nums;
+	}
+
+	::selection {
+		background: var(--ink);
+		color: var(--ground);
+	}
+
+	:focus-visible {
+		outline: 2px solid currentColor;
+		outline-offset: 3px;
+	}
+}
+
+@utility link-underline {
+	text-decoration-line: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.3em;
+	text-decoration-color: transparent;
+	transition: text-decoration-color 200ms, text-underline-offset 200ms var(--ease-out-strong);
+
+	&:hover,
+	&:focus-visible {
+		text-decoration-color: currentColor;
+		text-underline-offset: 0.18em;
+	}
+}
+
+@utility btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 3.25rem;
+	padding-inline: 1.5rem;
+	background: var(--accent);
+	color: var(--accent-ink);
+	font-weight: 500;
+	text-decoration: none;
+	transition: scale 150ms var(--ease-out-strong), opacity 150ms;
+
+	&:hover {
+		opacity: 0.9;
+	}
+
+	&:active {
+		scale: 0.97;
+	}
+}
+
 ::view-transition-old(root),
 ::view-transition-new(root) {
 	animation: none;
