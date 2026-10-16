@@ -1,4 +1,5 @@
 import { describe, expect, test } from 'vitest';
+
 import { getOverlap, MY_TZ, overlapSentence } from '@/lib/overlap';
 
 const now = new Date('2026-10-16T13:20:00Z');
@@ -19,6 +20,7 @@ describe('getOverlap', () => {
 	test('Tokyo and Los Angeles share nothing', () => {
 		expect(getOverlap(now, 'Asia/Tokyo').overlapHours).toBe(0);
 		const la = getOverlap(now, 'America/Los_Angeles');
+
 		expect(la.overlapHours).toBe(0);
 		expect(la.visitorPlace).toBe('Los Angeles');
 	});

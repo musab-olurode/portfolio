@@ -42,6 +42,7 @@
 	--font-display: var(--font-instrument-serif), Georgia, serif;
 	--font-text: var(--font-geist), system-ui, sans-serif;
 	--ease-out-strong: cubic-bezier(0.2, 0, 0, 1);
+	--leading-display: 0.9;
 }
 
 @layer base {
@@ -111,7 +112,9 @@
 	text-decoration-thickness: 1px;
 	text-underline-offset: 0.3em;
 	text-decoration-color: transparent;
-	transition: text-decoration-color 200ms, text-underline-offset 200ms var(--ease-out-strong);
+	transition:
+		text-decoration-color 200ms,
+		text-underline-offset 200ms var(--ease-out-strong);
 
 	&:hover,
 	&:focus-visible {
@@ -130,7 +133,9 @@
 	color: var(--accent-ink);
 	font-weight: 500;
 	text-decoration: none;
-	transition: scale 150ms var(--ease-out-strong), opacity 150ms;
+	transition:
+		scale 150ms var(--ease-out-strong),
+		opacity 150ms;
 
 	&:hover {
 		opacity: 0.9;

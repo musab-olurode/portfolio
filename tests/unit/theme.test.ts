@@ -1,11 +1,12 @@
 // @vitest-environment jsdom
 import { afterEach, describe, expect, test, vi } from 'vitest';
+
 import { resolveTheme, switchTheme, THEME_KEY } from '@/lib/theme';
 
 afterEach(() => {
 	vi.restoreAllMocks();
 	localStorage.clear();
-	delete document.documentElement.dataset.theme;
+	delete document.documentElement.dataset['theme'];
 });
 
 describe('resolveTheme', () => {
@@ -24,7 +25,7 @@ describe('resolveTheme', () => {
 describe('switchTheme', () => {
 	test('applies and stores the theme without view transitions', async () => {
 		await switchTheme('dark', { x: 0, y: 0 });
-		expect(document.documentElement.dataset.theme).toBe('dark');
+		expect(document.documentElement.dataset['theme']).toBe('dark');
 		expect(localStorage.getItem(THEME_KEY)).toBe('dark');
 	});
 
@@ -33,6 +34,6 @@ describe('switchTheme', () => {
 			throw new Error('blocked');
 		});
 		await switchTheme('dark', { x: 0, y: 0 });
-		expect(document.documentElement.dataset.theme).toBe('dark');
+		expect(document.documentElement.dataset['theme']).toBe('dark');
 	});
 });

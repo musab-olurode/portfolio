@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
+
 import { competencies, education, profile, projects, roles, skills, softSkills, summary } from '@/content/profile';
+
 import styles from './resume.module.css';
 
 export const metadata: Metadata = {
@@ -13,27 +15,31 @@ const link = 'text-blue-600 underline';
 
 const resumeProjects = projects.filter((p) => ['canoo', 'newborn', 'scrapays'].includes(p.slug));
 
-export default function Resume() {
+export default function Resume(): React.JSX.Element {
 	return (
 		<div className='min-h-svh bg-white py-0 font-sans text-black sm:bg-neutral-100 sm:py-10 print:bg-white print:py-0'>
-			<a href={profile.resumePdf} className='absolute top-3 right-6 z-10 text-sm text-black underline print:hidden'>
+			<a className='absolute top-3 right-6 z-10 text-sm text-black underline print:hidden' href={profile.resumePdf}>
 				Download PDF
 			</a>
-			<main className={styles.page}>
+			<main className={styles['page']}>
 				<div className='space-y-6 px-8'>
 					<header className='space-y-2 text-center'>
 						<h1 className='text-2xl font-bold text-[#003366] uppercase'>{profile.name}</h1>
 						<p className='text-sm'>
-							Remote (GMT+1) | <a href={`mailto:${profile.email}`} className={link}>{profile.email}</a> |{' '}
-							<a href={profile.links.linkedin} className={link}>
+							Remote (GMT+1) |{' '}
+							<a className={link} href={`mailto:${profile.email}`}>
+								{profile.email}
+							</a>{' '}
+							|{' '}
+							<a className={link} href={profile.links.linkedin}>
 								LinkedIn Profile
 							</a>{' '}
 							|{' '}
-							<a href={profile.links.github} className={link}>
+							<a className={link} href={profile.links.github}>
 								Github
 							</a>{' '}
 							|{' '}
-							<a href={profile.site} className={link}>
+							<a className={link} href={profile.site}>
 								Portfolio
 							</a>
 						</p>
@@ -96,15 +102,15 @@ export default function Resume() {
 						<ul className='ml-4 list-outside list-disc space-y-2 text-sm'>
 							{resumeProjects.map((p) => (
 								<li key={p.slug}>
-									<a href={p.url} className={`${link} font-bold`}>
+									<a className={`${link} font-bold`} href={p.url}>
 										{p.name}:
 									</a>{' '}
 									{p.line}
 								</li>
 							))}
 							<li>
-								<span className='font-bold text-[#800000]'>More Studio 14 work:</span> CEMatchMaker,
-								WorldKite, Ericc Help Desk, Gender Lens and Sandwell Business Growth.
+								<span className='font-bold text-[#800000]'>More Studio 14 work:</span> CEMatchMaker, WorldKite, Ericc
+								Help Desk, Gender Lens and Sandwell Business Growth.
 							</li>
 						</ul>
 					</section>

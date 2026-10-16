@@ -1,7 +1,9 @@
 import type { Metadata, Viewport } from 'next';
 import { Geist, Instrument_Serif } from 'next/font/google';
-import { profile } from '@/content/profile';
+
 import { themeInitScript } from '@/lib/theme';
+import { profile } from '@/content/profile';
+
 import './globals.css';
 
 const serif = Instrument_Serif({ weight: '400', subsets: ['latin'], variable: '--font-instrument-serif' });
@@ -14,7 +16,13 @@ export const metadata: Metadata = {
 	title: "Mus'ab Olurode — Full-stack engineer",
 	description,
 	alternates: { canonical: '/' },
-	openGraph: { title: "Mus'ab Olurode — Full-stack engineer", description, url: '/', siteName: "Mus'ab Olurode", type: 'website' },
+	openGraph: {
+		title: "Mus'ab Olurode — Full-stack engineer",
+		description,
+		url: '/',
+		siteName: "Mus'ab Olurode",
+		type: 'website',
+	},
 	twitter: { card: 'summary_large_image', creator: '@_RedDxt' },
 };
 
@@ -25,11 +33,11 @@ export const viewport: Viewport = {
 	],
 };
 
-const beaconToken = process.env.NEXT_PUBLIC_CF_BEACON_TOKEN;
+const beaconToken = process.env['NEXT_PUBLIC_CF_BEACON_TOKEN'];
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: React.ReactNode }): React.JSX.Element {
 	return (
-		<html lang='en' className={`${serif.variable} ${geist.variable}`} suppressHydrationWarning>
+		<html suppressHydrationWarning className={`${serif.variable} ${geist.variable}`} lang='en'>
 			<head>
 				<script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
 			</head>
@@ -38,8 +46,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				{beaconToken && (
 					<script
 						defer
-						src='https://static.cloudflareinsights.com/beacon.min.js'
 						data-cf-beacon={JSON.stringify({ token: beaconToken })}
+						src='https://static.cloudflareinsights.com/beacon.min.js'
 					/>
 				)}
 			</body>

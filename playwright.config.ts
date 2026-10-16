@@ -9,7 +9,7 @@ export default defineConfig({
 	webServer: {
 		command: 'npm run build && npm run serve',
 		url: 'http://localhost:4173',
-		reuseExistingServer: !process.env.CI,
+		reuseExistingServer: !process.env['CI'],
 		timeout: 180_000,
 	},
 });

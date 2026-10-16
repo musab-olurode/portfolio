@@ -1,6 +1,6 @@
-import { expect, test } from '@playwright/test';
+import { expect, type Page, test } from '@playwright/test';
 
-const hiddenCount = (page: import('@playwright/test').Page) =>
+const hiddenCount = (page: Page) =>
 	page.evaluate(
 		() =>
 			[...document.querySelectorAll('main h2, main h3, main p, main img, header h1 span')].filter(
@@ -21,9 +21,13 @@ test.describe('with reduced motion', () => {
 	test.use({ reducedMotion: 'reduce' });
 	test('nothing stays hidden after scrolling', async ({ page }) => {
 		await page.goto('/');
-		await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+		await page.evaluate(() => {
+			window.scrollTo(0, document.body.scrollHeight);
+		});
 		await page.waitForTimeout(300);
-		await page.evaluate(() => window.scrollTo(0, 0));
+		await page.evaluate(() => {
+			window.scrollTo(0, 0);
+		});
 		await page.waitForTimeout(300);
 		expect(await hiddenCount(page)).toBe(0);
 	});
@@ -32,6 +36,7 @@ test.describe('with reduced motion', () => {
 test('sections reveal as they scroll into view', async ({ page }) => {
 	await page.goto('/');
 	const heading = page.locator('#cv-heading');
+
 	await expect(heading).toHaveAttribute('data-reveal', '');
 	await expect(heading).not.toHaveAttribute('data-shown', '');
 	await heading.scrollIntoViewIfNeeded();

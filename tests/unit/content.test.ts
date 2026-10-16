@@ -1,4 +1,5 @@
 import { describe, expect, test } from 'vitest';
+
 import { alsoBuilt, profile, projects, roles, summary } from '@/content/profile';
 
 const byName = (name: string) => alsoBuilt.find((a) => a.name.includes(name));
@@ -11,6 +12,7 @@ describe('profile content', () => {
 	test('shows senior titles for ICC and Studio 14', () => {
 		expect(roles.find((r) => r.company.startsWith('Institute'))?.title).toBe('Senior Full Stack Engineer');
 		const studio = roles.find((r) => r.company === 'Studio 14');
+
 		expect(studio?.title).toBe('Senior Frontend Developer');
 		expect(studio?.start).toBe('Aug 2022');
 		expect(studio?.end).toBe('Jul 2025');
@@ -33,6 +35,7 @@ describe('profile content', () => {
 
 	test('credits the Canoo team', () => {
 		const line = projects.find((p) => p.slug === 'canoo')!.line;
+
 		expect(line).toMatch(/senior engineer on the team/i);
 		expect(line).not.toMatch(/^I built Canoo/);
 	});

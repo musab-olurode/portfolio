@@ -1,4 +1,4 @@
-export type Role = {
+export interface Role {
 	company: string;
 	title: string;
 	type: string;
@@ -6,9 +6,9 @@ export type Role = {
 	start: string;
 	end: string;
 	bullets: string[];
-};
+}
 
-export type Project = {
+export interface Project {
 	slug: 'canoo' | 'newborn' | 'cematchmaker' | 'worldkite' | 'ericc' | 'scrapays';
 	name: string;
 	line: string;
@@ -20,9 +20,14 @@ export type Project = {
 	stack?: string;
 	subsite?: { name: string; url: string };
 	extraImages?: { src: string; alt: string }[];
-};
+}
 
-export type AlsoBuilt = { name: string; kind: string; year: string; url?: string };
+export interface AlsoBuilt {
+	name: string;
+	kind: string;
+	year: string;
+	url?: string;
+}
 
 export const profile = {
 	name: "Mus'ab Olurode",
@@ -185,9 +190,24 @@ export const projects: Project[] = [
 ];
 
 export const alsoBuilt: AlsoBuilt[] = [
-	{ name: 'Naseeb by Qadr', kind: 'Wedding website, design by Qoreeb Abubakar', year: '2025', url: 'https://naseeb-by-qadr.pages.dev/' },
-	{ name: 'Sandwell Business Growth', kind: 'Council business-support site, Studio 14', year: '2023', url: 'https://www.sandwell.gov.uk/SBG/' },
-	{ name: 'Gender Lens', kind: "Impact investing site for Plan International, Studio 14", year: '2023', url: 'https://gender-lens-wp.s14staging.uk/' },
+	{
+		name: 'Naseeb by Qadr',
+		kind: 'Wedding website, design by Qoreeb Abubakar',
+		year: '2025',
+		url: 'https://naseeb-by-qadr.pages.dev/',
+	},
+	{
+		name: 'Sandwell Business Growth',
+		kind: 'Council business-support site, Studio 14',
+		year: '2023',
+		url: 'https://www.sandwell.gov.uk/SBG/',
+	},
+	{
+		name: 'Gender Lens',
+		kind: 'Impact investing site for Plan International, Studio 14',
+		year: '2023',
+		url: 'https://gender-lens-wp.s14staging.uk/',
+	},
 	{ name: 'Montech', kind: 'Web3 backends, 10,000+ concurrent users', year: '2022' },
 	{ name: 'This site', kind: 'Next.js, on GitHub', year: '2026', url: 'https://github.com/musab-olurode/portfolio' },
 ];

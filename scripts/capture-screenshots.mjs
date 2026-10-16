@@ -1,6 +1,7 @@
 // Captures the live project sites into public/work/<slug>.webp.
 // Usage: npm run screenshots [-- slug ...]
 import { mkdir } from 'node:fs/promises';
+
 import { chromium } from '@playwright/test';
 import sharp from 'sharp';
 
@@ -20,8 +21,9 @@ const CLOSE = /^(close|dismiss|no thanks|ok|got it|accept)$/i;
 async function dismissBanners(page) {
 	for (const pattern of [DECLINE, CLOSE]) {
 		const button = page.getByRole('button', { name: pattern }).first();
+
 		if (await button.isVisible().catch(() => false)) {
-			await button.click({ timeout: 2000 }).catch(() => {});
+			await button.click({ timeout: 2000 }).catch(() => undefined);
 			await page.waitForTimeout(600);
 		}
 	}
@@ -36,6 +38,7 @@ const context = await browser.newContext({ viewport: { width: 1440, height: 1800
 
 for (const [slug, url] of targets) {
 	const page = await context.newPage();
+
 	try {
 		await page.goto(url, { waitUntil: 'networkidle', timeout: 60_000 });
 	} catch {
@@ -46,6 +49,7 @@ for (const [slug, url] of targets) {
 	const png = await page.screenshot({ clip: { x: 0, y: 0, width: 1440, height: 1800 } });
 	const out = `public/work/${slug}.webp`;
 	const info = await sharp(png).resize({ width: 1200 }).webp({ quality: 80 }).toFile(out);
+
 	console.log(`${out} ${Math.round(info.size / 1024)} KB`);
 	await page.close();
 }

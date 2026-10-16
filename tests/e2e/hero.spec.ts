@@ -10,6 +10,7 @@ test.describe('hero', () => {
 
 	test('logs no errors or hydration warnings', async ({ page }) => {
 		const messages: string[] = [];
+
 		page.on('console', (m) => (m.type() === 'error' || /hydrat/i.test(m.text())) && messages.push(m.text()));
 		await page.goto('/');
 		await page.waitForTimeout(500);

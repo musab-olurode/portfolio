@@ -1,9 +1,11 @@
-import ThemeToggle from '@/components/ThemeToggle';
 import { profile } from '@/content/profile';
 
-export default function Hero() {
+import ThemeToggle from '@/components/ThemeToggle';
+
+export default function Hero(): React.JSX.Element {
 	const [first, last] = profile.name.split(' ');
 	const [tagRole, tagWhere] = profile.tagline.split(' · ');
+
 	return (
 		<header className='flex min-h-svh flex-col px-4 pt-6 pb-10 sm:px-8 sm:pt-7 sm:pb-12'>
 			<nav aria-label='Main' className='flex items-baseline justify-between gap-6 text-base'>
@@ -12,17 +14,17 @@ export default function Hero() {
 					<span className='hidden sm:inline'> · {tagWhere}</span>
 				</span>
 				<span className='flex items-baseline gap-6 sm:gap-7'>
-					<a href='#work' className='link-underline'>
+					<a className='link-underline' href='#work'>
 						Work
 					</a>
-					<a href='#cv' className='link-underline'>
+					<a className='link-underline' href='#cv'>
 						CV
 					</a>
 					<ThemeToggle />
 				</span>
 			</nav>
 
-			<h1 className='text-display-xl mt-10 md:mt-6 md:whitespace-nowrap'>
+			<h1 className='mt-10 text-display-xl md:mt-6 md:whitespace-nowrap'>
 				<span className='mask-line'>
 					<span>{first}</span>
 				</span>{' '}
@@ -32,7 +34,7 @@ export default function Hero() {
 			</h1>
 
 			<div className='hero-rise mt-auto grid grid-cols-1 gap-8 pt-16 lg:grid-cols-12 lg:items-end lg:gap-6'>
-				<p className='text-lead max-w-[30ch] lg:col-span-6'>{profile.promise}</p>
+				<p className='max-w-[30ch] text-lead lg:col-span-6'>{profile.promise}</p>
 				<dl className='grid max-w-xl grid-cols-2 gap-6 text-base lg:col-span-4 lg:col-start-8'>
 					<div>
 						<dt className='font-medium'>Now</dt>
@@ -44,7 +46,7 @@ export default function Hero() {
 					</div>
 				</dl>
 				<div className='lg:col-span-1 lg:col-start-12 lg:justify-self-end'>
-					<a href={`mailto:${profile.email}`} className='btn whitespace-nowrap'>
+					<a className='btn whitespace-nowrap' href={`mailto:${profile.email}`}>
 						Hire me
 					</a>
 				</div>
