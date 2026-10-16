@@ -4,6 +4,7 @@ import Figures from '@/components/sections/Figures';
 import Footer from '@/components/sections/Footer';
 import Hero from '@/components/sections/Hero';
 import PinnedWork from '@/components/sections/PinnedWork';
+import Reveal from '@/components/Reveal';
 
 export default function Home() {
 	return (
@@ -16,6 +17,7 @@ export default function Home() {
 				<CvBand />
 			</main>
 			<Footer />
+			<Reveal />
 		</>
 	);
 }

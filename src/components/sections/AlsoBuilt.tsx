@@ -3,10 +3,10 @@ import { alsoBuilt } from '@/content/profile';
 export default function AlsoBuilt() {
 	return (
 		<section aria-labelledby='also-heading' className='px-4 py-28 sm:px-8 lg:py-40 lg:pl-[22vw]'>
-			<h2 id='also-heading' className='mb-8 text-2xl font-medium'>
+			<h2 id='also-heading' className='reveal mb-8 text-2xl font-medium'>
 				Also built
 			</h2>
-			<ul className='group/list max-w-3xl text-lg'>
+			<ul className='reveal group/list max-w-3xl text-lg' style={{ '--d': '80ms' } as React.CSSProperties}>
 				{alsoBuilt.map((item) => {
 					const row = (
 						<>

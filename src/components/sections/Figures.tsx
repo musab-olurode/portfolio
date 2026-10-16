@@ -10,7 +10,7 @@ export default function Figures() {
 			<h2 id='figures-heading' className='sr-only'>
 				In numbers
 			</h2>
-			<p className='font-display text-soft max-w-[22ch] text-[clamp(34px,4.6vw,68px)] leading-[1.1] md:max-w-none'>
+			<p className='reveal font-display text-soft max-w-[22ch] text-[clamp(34px,4.6vw,68px)] leading-[1.1] md:max-w-none'>
 				Since <Fig>{figures.since}</Fig> I have shipped for <Fig>{figures.teams}&nbsp;teams</Fig> in{' '}
 				<Fig>{figures.countries}&nbsp;countries</Fig>. The latest, Canoo, has welcomed{' '}
 				<Fig>
@@ -19,7 +19,9 @@ export default function Figures() {
 				</Fig>{' '}
 				to Canada, with me as the senior engineer on its app, site and backend.
 			</p>
-			<OverlapLine />
+			<div className='reveal' style={{ '--d': '120ms' } as React.CSSProperties}>
+				<OverlapLine />
+			</div>
 		</section>
 	);
 }

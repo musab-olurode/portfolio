@@ -3,7 +3,7 @@ import { projects, type Project } from '@/content/profile';
 
 function Caption({ project }: { project: Project }) {
 	return (
-		<div className='max-w-[30rem]'>
+		<div className='reveal max-w-[30rem]'>
 			<h3 className='font-display text-[clamp(40px,4vw,60px)] leading-none'>
 				<a href={project.url} target='_blank' rel='noreferrer' className='link-underline'>
 					{project.name}
@@ -29,7 +29,7 @@ function Caption({ project }: { project: Project }) {
 function Shot({ project, className, sizes }: { project: Project; className: string; sizes: string }) {
 	return (
 		<a href={project.url} target='_blank' rel='noreferrer' tabIndex={-1} aria-hidden className={`block overflow-hidden bg-step-2 ${className}`}>
-			<Image src={project.image} alt='' width={1200} height={1800} sizes={sizes} className='reveal-img h-full w-full object-cover object-top' />
+			<Image src={project.image} alt='' width={1200} height={1800} sizes={sizes} className='reveal reveal-img h-full w-full object-cover object-top' />
 		</a>
 	);
 }
@@ -67,7 +67,8 @@ export default function PinnedWork() {
 											width={860}
 											height={1864}
 											sizes='12vw'
-											className='reveal-img h-[40svh] w-auto'
+											className='reveal reveal-img h-[40svh] w-auto'
+											style={{ '--d': '160ms' } as React.CSSProperties}
 										/>
 									))}
 								</div>
@@ -79,7 +80,7 @@ export default function PinnedWork() {
 
 			{/* Phones and tablets: a plain stacked list. */}
 			<div className='flex flex-col gap-20 px-4 py-24 sm:px-8 lg:hidden'>
-				<p className='font-display text-[clamp(52px,13vw,104px)] leading-[0.92] tracking-[-0.03em]' aria-hidden>
+				<p className='reveal font-display text-[clamp(52px,13vw,104px)] leading-[0.92] tracking-[-0.03em]' aria-hidden>
 					Web, mobile and backend.
 				</p>
 				{projects.map((project) => (
