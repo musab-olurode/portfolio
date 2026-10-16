@@ -34,3 +34,21 @@ test.describe('with reduced motion', () => {
 		await expect(video).toHaveAttribute('poster', '/work/projects-reel-poster.webp');
 	});
 });
+
+for (const viewport of [
+	{ width: 1440, height: 900 },
+	{ width: 2000, height: 820 },
+	{ width: 1280, height: 720 },
+]) {
+	test.describe(`desktop ${viewport.width}×${viewport.height}`, () => {
+		test.use({ viewport });
+		test('the whole hero row, Hire me included, stays above the fold', async ({ page }) => {
+			await page.goto('/');
+			const button = (await page.getByRole('link', { name: 'Hire me' }).boundingBox())!;
+			const video = (await page.locator(reel).boundingBox())!;
+
+			expect(button.y + button.height).toBeLessThanOrEqual(viewport.height);
+			expect(video.y + video.height).toBeLessThanOrEqual(button.y);
+		});
+	});
+}
