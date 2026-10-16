@@ -93,7 +93,7 @@ Delete: `src/pages/**`, `src/components/{Nav,Page}.tsx`, `src/components/icons/*
 - Produces:
 ```ts
 export type Role = { company: string; title: string; type: string; region: string; start: string; end: string; bullets: string[] };
-export type Project = { slug: 'canoo' | 'cematchmaker' | 'worldkite' | 'ericc' | 'scrapays'; name: string; line: string; org: string; years: string; url: string; image: string; imageAlt: string; stack?: string };
+export type Project = { slug: 'canoo' | 'newborn' | 'cematchmaker' | 'worldkite' | 'ericc' | 'scrapays'; name: string; line: string; org: string; years: string; url: string; image: string; imageAlt: string; stack?: string; subsite?: { name: string; url: string } };
 export type AlsoBuilt = { name: string; kind: string; year: string; url?: string };
 export const profile: { name: string; tagline: string; promise: string; now: string; stackShort: string; email: 'me@musab.dev'; site: 'https://musab.dev'; links: { github: string; linkedin: string; x: string }; resumePdf: '/musab-olurode-resume.pdf'; yearsLabel: '7+ years' };
 export const figures: { since: 2019; teams: 5; countries: 4; canooMembers: 1_000_000 };
@@ -110,7 +110,7 @@ export const summary: string;      // résumé professional summary
   - `profile.email === 'me@musab.dev'`
   - `roles.find(r => r.company.startsWith('Institute')).title === 'Senior Full Stack Engineer'`; Studio 14 `=== 'Senior Frontend Developer'`, `start 'Aug 2022'`, `end 'Jul 2025'`
   - `roles.map(r => r.company)` equals the five companies in order
-  - `projects.map(p => p.slug)` equals `['canoo','cematchmaker','worldkite','ericc','scrapays']`
+  - `projects.map(p => p.slug)` equals `['canoo','newborn','cematchmaker','worldkite','ericc','scrapays']`; newborn `subsite.url === 'https://pansaa.newborntoolkit.org/'`; Sandwell `url === 'https://www.sandwell.gov.uk/SBG/'`
   - the Canoo `line` matches `/senior engineer on the team/i` and not `/^I built Canoo/`
   - for `[profile.tagline, profile.promise, profile.now, summary]`, none matches `/Ilorin|Nigeria|Kwara|\+234/`
   - `JSON.stringify({profile, roles, projects, summary})` does not match `/6 years|olurodemusab@gmail\.com/`
@@ -200,14 +200,14 @@ export const summary: string;      // résumé professional summary
 ### Task 7: Project screenshots
 
 **Files:**
-- Create: `scripts/capture-screenshots.mjs`, `public/work/{canoo-web,canoo-app-1,canoo-app-2,cematchmaker,worldkite,ericc,scrapays}.webp`, `public/work/SOURCES.md`
+- Create: `scripts/capture-screenshots.mjs`, `public/work/{canoo-web,canoo-app-1,canoo-app-2,newborn,cematchmaker,worldkite,ericc,scrapays}.webp`, `public/work/SOURCES.md`
 
 **Interfaces:**
 - Produces: the image paths referenced by `projects[].image` (Task 2): `/work/<slug>.webp`, with Canoo using `/work/canoo-web.webp` plus `canoo-app-1/2` for the app.
-- The script uses Playwright Chromium at 1440×1800 (desktop), waits for `networkidle` plus 1.5 s, dismisses cookie banners by clicking the most privacy-preserving option (reject/decline) when one is found, and writes PNG to a tmp folder. Convert to WebP at quality 80, 1200px wide, with `sharp` (a dev dependency) inside the same script. URLs: `https://canoo.ca/`, `https://cematchmaker.com/`, `https://worldkite.co.uk/`, `https://ericchelpdesk.org/`, `https://scrapays.com/`.
+- The script uses Playwright Chromium at 1440×1800 (desktop), waits for `networkidle` plus 1.5 s, dismisses cookie banners by clicking the most privacy-preserving option (reject/decline) when one is found, and writes PNG to a tmp folder. Convert to WebP at quality 80, 1200px wide, with `sharp` (a dev dependency) inside the same script. URLs: `https://canoo.ca/`, `https://newborntoolkit.org/`, `https://cematchmaker.com/`, `https://worldkite.co.uk/`, `https://ericchelpdesk.org/`, `https://scrapays.com/`.
 - Canoo app: take two screenshots from its public App Store or Google Play listing (no member data) and record the source URLs in `SOURCES.md`. If neither listing can be fetched, show only `canoo-web` and say so in the final report.
 
-- [ ] **Step 1:** Run `npm run screenshots`. Expected: 5 WebP files of 150–600 KB each.
+- [ ] **Step 1:** Run `npm run screenshots`. Expected: 6 WebP files of 150–600 KB each.
 - [ ] **Step 2:** Open each image with the Read tool. Expected: the real site is visible, with no consent banner, error page or blank frame. Re-capture any that fail, with a longer wait or a clip.
 - [ ] **Step 3:** Get the Canoo app images and fill in `SOURCES.md`.
 - [ ] **Step 4: Commit** with `feat: add project screenshots`.
@@ -226,7 +226,7 @@ export const summary: string;      // résumé professional summary
 - `Footer`: "Hiring for web, mobile or backend? Write to me."; the display email link `mailto:me@musab.dev`, sized `clamp(40px, 9.5vw, 140px)` to fit at 390px; and the meta row: GitHub, LinkedIn, X · Résumé (PDF) · the current year.
 
 - [ ] **Step 1: Write the failing e2e tests**:
-  - Five project names are visible in order.
+  - Six project names are visible in order; the PANSAA subsite link is present.
   - Each project link has its `url`.
   - "Naseeb by Qadr" links to `https://naseeb-by-qadr.pages.dev/`.
   - "Senior Frontend Developer" appears in `#cv`.
