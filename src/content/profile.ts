@@ -86,11 +86,11 @@ export const roles: Role[] = [
 		start: 'Aug 2022',
 		end: 'Jul 2025',
 		bullets: [
-			'Led the design and development of front-end applications, building responsive, accessible interfaces for NGOs, public bodies and agencies.',
-			'Built the front end of the Newborn Toolkit for NEST360 and UNICEF, including its PANSAA partnership subsite, and the Sandwell Business Growth council site.',
-			'Revamped the CEMatchMaker platform, improving site performance by 35% and user engagement by 40%.',
-			'Optimised the WorldKite residency tracker, reducing page load times by 50% and extending its tax-tracking features.',
-			'Developed admin panels for Ericc Help Desk and the Gender Lens platform, reducing administrative workload by 25%.',
+			'As a senior developer in the Studio 14 team, led front-end design and development for NGOs, public bodies and agencies, building responsive, accessible interfaces.',
+			'Worked on the front end of the Newborn Toolkit for NEST360 and UNICEF, including its PANSAA partnership subsite, and the Sandwell Business Growth council site.',
+			'Helped revamp the CEMatchMaker platform, improving site performance by 35% and user engagement by 40%.',
+			'Helped optimise the WorldKite residency tracker, reducing page load times by 50% and extending its tax-tracking features.',
+			'Worked on admin panels for Ericc Help Desk and the Gender Lens platform that reduced administrative workload by 25%.',
 		],
 	},
 	{

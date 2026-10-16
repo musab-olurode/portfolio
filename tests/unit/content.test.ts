@@ -40,6 +40,13 @@ describe('profile content', () => {
 		expect(line).not.toMatch(/^I built Canoo/);
 	});
 
+	test('credits the Studio 14 team rather than claiming solo builds', () => {
+		const bullets = roles.find((r) => r.company === 'Studio 14')!.bullets.join(' ');
+
+		expect(bullets).toMatch(/Studio 14 team/);
+		expect(bullets).not.toMatch(/^Built the front end|Revamped the|Optimised the|Developed admin panels/);
+	});
+
 	test('keeps location out of headline copy', () => {
 		for (const text of [profile.tagline, profile.promise, profile.now, summary]) {
 			expect(text).not.toMatch(/Ilorin|Nigeria|Kwara|\+234/);
