@@ -19,7 +19,7 @@ export interface Project {
 	imageAlt: string;
 	stack?: string;
 	subsite?: { name: string; url: string };
-	extraImages?: { src: string; alt: string }[];
+	reel?: { webm: string; mp4: string; poster: string; label: string };
 }
 
 export interface AlsoBuilt {
@@ -131,10 +131,12 @@ export const projects: Project[] = [
 		image: '/work/canoo-web.webp',
 		imageAlt: 'The canoo.ca home page',
 		stack: 'React Native · Next.js · Node.js · CMS',
-		extraImages: [
-			{ src: '/work/canoo-app-1.webp', alt: "Canoo app listing: what's on this week" },
-			{ src: '/work/canoo-app-2.webp', alt: 'Canoo app listing: explore places' },
-		],
+		reel: {
+			webm: '/work/canoo-reel.webm',
+			mp4: '/work/canoo-reel.mp4',
+			poster: '/work/canoo-reel-poster.webp',
+			label: 'Screen recording: the canoo.ca website scrolling, then the Canoo app',
+		},
 	},
 	{
 		slug: 'newborn',

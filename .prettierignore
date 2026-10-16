@@ -9,3 +9,6 @@ playwright-report
 .superpowers
 .taste-skill
 .wrangler
+video/node_modules
+video/out
+video/public

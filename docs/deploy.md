@@ -31,3 +31,17 @@ The site is a static Next.js export (`out/`) served by an assets-only Cloudflare
 
 After changing anything in `src/content/profile.ts` that appears on the résumé, run `npm run resume:pdf` before
 deploying so the PDF matches.
+
+## Regenerating the Canoo reel
+
+The silent loop in the Canoo panel (`public/work/canoo-reel.{webm,mp4}` and its poster) is built in code with Remotion
+in `video/`:
+
+1. `node video/scripts/record-canoo.mjs`: records a fresh 4:5 scroll through canoo.ca into `video/public/canoo-web.webm`
+   (gitignored).
+2. `cd video && npm install && npm run render`: renders `video/out/canoo-reel.mp4` (14 s, 1080×1350, no audio).
+   `npm run studio` previews it.
+3. From the repo root, compress for the web:
+   - `ffmpeg -i video/out/canoo-reel.mp4 -vf scale=864:1080 -c:v libx264 -preset veryslow -crf 30 -pix_fmt yuv420p -movflags +faststart -an public/work/canoo-reel.mp4`
+   - `ffmpeg -i video/out/canoo-reel.mp4 -vf scale=864:1080 -c:v libvpx-vp9 -b:v 0 -crf 40 -row-mt 1 -an public/work/canoo-reel.webm`
+   - Take the first frame as `public/work/canoo-reel-poster.webp`.

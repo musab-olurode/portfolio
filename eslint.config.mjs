@@ -32,6 +32,9 @@ export default defineConfig([
 		'.wrangler/**',
 		'test-results/**',
 		'playwright-report/**',
+		'video/node_modules/**',
+		'video/out/**',
+		'video/public/**',
 	]),
 	{
 		files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
@@ -171,7 +174,7 @@ export default defineConfig([
 		},
 	},
 	{
-		files: ['scripts/**/*.mjs'],
+		files: ['scripts/**/*.mjs', 'video/scripts/**/*.mjs'],
 		rules: {
 			// CLI scripts drive one browser page at a time and report to the terminal.
 			'no-await-in-loop': 'off',

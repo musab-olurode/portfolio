@@ -45,3 +45,8 @@ yarn-error.log*
 .superpowers
 next-env.d.ts
 scripts/.shot.mjs
+
+# video
+/video/node_modules
+/video/out
+/video/public/canoo-web.webm

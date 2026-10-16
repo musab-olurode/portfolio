@@ -2,6 +2,7 @@ import Image from 'next/image';
 
 import { type Project, projects } from '@/content/profile';
 
+import ReelVideo from '@/components/ReelVideo';
 import WorkIndex from '@/components/WorkIndex';
 
 function Caption({ project }: { project: Project }) {
@@ -29,7 +30,15 @@ function Caption({ project }: { project: Project }) {
 	);
 }
 
-function Shot({ project }: { project: Project }) {
+function Shot({ project }: { project: Project }): React.JSX.Element {
+	if (project.reel) {
+		return (
+			<div className='reveal reveal-img aspect-4/5 overflow-hidden bg-step-2'>
+				<ReelVideo className='size-full object-cover' {...project.reel} />
+			</div>
+		);
+	}
+
 	return (
 		<a
 			aria-hidden
@@ -72,22 +81,6 @@ export default function PinnedWork(): React.JSX.Element {
 					{projects.map((project) => (
 						<article key={project.slug} className='flex scroll-mt-[12svh] flex-col gap-6' id={`work-${project.slug}`}>
 							<Shot project={project} />
-							{project.extraImages && (
-								<div className='grid grid-cols-2 gap-4'>
-									{project.extraImages.map((img, i) => (
-										<Image
-											key={img.src}
-											alt={img.alt}
-											className='reveal reveal-img h-auto w-full'
-											height={1864}
-											sizes='(min-width: 1024px) 20vw, 50vw'
-											src={img.src}
-											style={{ '--d': `${80 + i * 80}ms` } as React.CSSProperties}
-											width={860}
-										/>
-									))}
-								</div>
-							)}
 							<Caption project={project} />
 						</article>
 					))}
